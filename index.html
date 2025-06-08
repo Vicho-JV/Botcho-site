@@ -1,76 +1,48 @@
-<!DOCTYPE html>
-<html lang="bg">
-<head>
-  <meta charset="UTF-8">
-  <title>Botcho - Начало</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Шрифтове и икони -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
+<main>
+  <section class="hero">
     <div class="container">
-      <h1 class="logo"><img src="logo.png" alt="Botcho Logo"></h1>
-      <input type="checkbox" id="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span><span></span><span></span>
-      </label>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Начало</a></li>
-          <li><a href="home.html">За нас</a></li>
-          <li><a href="products.html">Продукти</a></li>
-          <li><a href="contact.html">Контакти</a></li>
-        </ul>
-      </nav>
+      <img src="logo.png" alt="Botcho Logo" class="hero-logo">
+      <h2>Иновирайте с Botcho</h2>
+      <p>Предлагаме модерни решения за съвременния бизнес.</p>
+      <a href="products.html" class="btn">Нашите продукти</a>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h2>Иновирайте с Botcho</h2>
-        <p>Предлагаме модерни решения за съвременния бизнес.</p>
-        <a href="products.html" class="btn">Нашите продукти</a>
+  <section class="features">
+    <div class="container">
+      <h2>Нашите услуги</h2>
+      <div class="services-description">
+        <p>Създаваме чатбот, който помага на бизнесите да отговарят по-бързо на клиентите си — без нужда от ръчно писане всеки път.</p>
+        <p>Той разбира български и английски и е обучен специално за вашето съдържание.</p>
+        <p>Целта е проста: автоматизирайте клиентската си поддръжка, спестете време и помогнете на клиентите си да получат това, от което се нуждаят, незабавно.</p>
+        <p>Все още подобряваме продукта всеки ден и го предлагаме само на бизнеси, на които наистина можем да помогнем.</p>
       </div>
-    </section>
 
-    <section class="features">
-      <div class="container">
-        <h2>Нашите услуги</h2>
-		<div class="services-description">
-			<p>Създаваме чатбот, който помага на бизнесите да отговарят по-бързо на клиентите си — без нужда от ръчно писане всеки път.</p>
-			<p>Той разбира български и английски и е обучен специално за вашето съдържание.</p>
-			<p>Целта е проста: автоматизирайте клиентската си поддръжка, спестете време и помогнете на клиентите си да получат това, от което се нуждаят, незабавно.</p>
-			<p>Все още подобряваме продукта всеки ден и го предлагаме само на бизнеси, на които наистина можем да помогнем.</p>
-		</div>
-        <div class="feature-grid">
-          <div class="feature">
-            <i class="fas fa-cloud"></i>
-            <h3>Облачни изчисления</h3>
-            <p>Мащабируеми облачни решения за вашата инфраструктура.</p>
-          </div>
-          <div class="feature">
-            <i class="fas fa-shield-alt"></i>
-            <h3>Сигурност</h3>
-            <p>Първокласни услуги за защита на вашите данни.</p>
-          </div>
-          <div class="feature">
-            <i class="fas fa-cogs"></i>
-            <h3>Персонализация</h3>
-            <p>Гъвкави и персонализирани технологични решения.</p>
-          </div>
+      <!-- Icon Bar for Visual Spice -->
+      <div class="service-icons-bar">
+        <div><i class="fas fa-robot"></i><span>AI Чатбот</span></div>
+        <div><i class="fas fa-globe"></i><span>Многоезична поддръжка</span></div>
+        <div><i class="fas fa-user-shield"></i><span>Защита на данни</span></div>
+        <div><i class="fas fa-bolt"></i><span>Интеграция 24/7</span></div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <i class="fas fa-cloud"></i>
+          <h3>Облачни изчисления</h3>
+          <p>Мащабируеми облачни решения за вашата инфраструктура.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Сигурност</h3>
+          <p>Първокласни услуги за защита на вашите данни.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-cogs"></i>
+          <h3>Персонализация</h3>
+          <p>Гъвкави и персонализирани технологични решения.</p>
         </div>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Botcho. Всички права запазени.</p>
     </div>
-  </footer>
-</body>
-</html>
+  </section>
+</main>
