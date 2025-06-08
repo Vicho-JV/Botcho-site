@@ -57,7 +57,18 @@ nav .nav-links {
 .nav-links a.active {
   color: var(--accent-color);
 }
-
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-img {
+  height: 54px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(8,24,71,0.13);
+  padding: 6px;
+}
 /* Mobile Navigation (Hamburger) */
 #nav-toggle {
   display: none;
