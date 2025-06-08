@@ -4,9 +4,26 @@
   <meta charset="UTF-8">
   <title>Botcho</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Botcho Logo" class="logo-img" style="height: 50px; border-radius: 8px;">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Начало</a></li>
+          <li><a href="products.html">Продукти</a></li>
+          <li><a href="home.html">За нас</a></li>
+          <li><a href="contact.html">Контакт</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <main>
     <section class="hero">
       <div class="container">
@@ -16,6 +33,7 @@
         <a href="products.html" class="btn">Нашите продукти</a>
       </div>
     </section>
+
     <section class="features">
       <div class="container">
         <h2>Нашите услуги</h2>
@@ -25,12 +43,15 @@
           <p>Целта е проста: автоматизирайте клиентската си поддръжка, спестете време и помогнете на клиентите си да получат това, от което се нуждаят, незабавно.</p>
           <p>Все още подобряваме продукта всеки ден и го предлагаме само на бизнеси, на които наистина можем да помогнем.</p>
         </div>
+
+        <!-- Icon Bar for Visual Spice -->
         <div class="service-icons-bar">
           <div><i class="fas fa-robot"></i><span>AI Чатбот</span></div>
           <div><i class="fas fa-globe"></i><span>Многоезична поддръжка</span></div>
           <div><i class="fas fa-user-shield"></i><span>Защита на данни</span></div>
           <div><i class="fas fa-bolt"></i><span>Интеграция 24/7</span></div>
         </div>
+
         <div class="feature-grid">
           <div class="feature">
             <i class="fas fa-cloud"></i>
@@ -51,5 +72,11 @@
       </div>
     </section>
   </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Botcho. Всички права запазени.</p>
+    </div>
+  </footer>
 </body>
 </html>
