@@ -1,14 +1,14 @@
 /* style.css */
 /* Base Styles */
 :root {
-  --primary-color: #081847; /* Dark blue from logo */
-  --accent-color: #ff7f2a;  /* Orange accent from logo */
+  --primary-color: #081847; /* Тъмно синьо от логото */
+  --accent-color: #ff7f2a;  /* Оранжев акцент от логото */
 }
 * {
   box-sizing: border-box;
 }
 body {
-  padding-top: 70px;  /* offset for fixed header */
+  padding-top: 70px;  /* Отместване за фиксирания хедър */
   margin: 0;
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
@@ -91,7 +91,7 @@ nav .nav-links {
     margin: 15px 0;
     text-align: center;
   }
-  /* Show menu when toggled */
+  /* Покажи менюто при натискане на бургер меню */
   #nav-toggle:checked + .nav-toggle-label + nav .nav-links {
     display: flex;
   }
@@ -264,4 +264,102 @@ footer {
 }
 footer p {
   margin: 0;
+}
+
+/* General Section Headings */
+.content-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero h2,
+.hero p,
+.hero .btn,
+.feature,
+.product-item,
+.about-content img,
+.contact-form,
+.contact-info {
+  opacity: 0;
+}
+.hero h2 {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.3s;
+}
+.hero p {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.6s;
+}
+.hero .btn {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.9s;
+}
+.feature {
+  animation: fadeInUp 0.8s forwards;
+}
+.feature:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.feature:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.feature:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.product-item {
+  animation: fadeInUp 0.8s forwards;
+}
+.product-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.product-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.product-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.about-content img {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+/* Contact Form и Информация */
+.contact-form {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+.contact-info {
+  margin-top: 30px;
+  text-align: center;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.7s;
+}
+.contact-info p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+.contact-info i {
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+/* Отзивчиви настройки */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+  .about-content img {
+    margin-top: 20px;
+  }
 }
