@@ -363,3 +363,11 @@ footer p {
     margin-top: 20px;
   }
 }
+.services-description {
+  max-width: 800px;
+  margin: 20px auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  text-align: center;
+}
