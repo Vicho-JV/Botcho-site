@@ -375,3 +375,116 @@ footer p {
 .services-description p {
   margin-bottom: 15px;
 }
+.product-main {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.product-intro {
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 500px;
+}
+.product-hero-img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+.product-intro p {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.product-demo {
+  flex: 1 1 260px;
+  min-width: 260px;
+  max-width: 400px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 22px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.chat-demo {
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+}
+.chat-message {
+  margin-bottom: 12px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.chat-message.user {
+  background: #eaf1ff;
+  text-align: left;
+}
+.chat-message.bot {
+  background: #fff2e8;
+  text-align: left;
+}
+.chat-message span {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-right: 4px;
+}
+.demo-note {
+  font-size: 0.92rem;
+  color: #888;
+  text-align: center;
+  margin-top: 0;
+}
+.features-title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+.product-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.feature-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 18px;
+  width: 210px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.035);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+.feature-card i {
+  font-size: 1.7rem;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+.feature-card h4 {
+  font-size: 1.08rem;
+  margin: 10px 0 7px 0;
+}
+.feature-card p {
+  font-size: 0.98rem;
+  color: #555;
+}
+
+/* Responsive fix */
+@media (max-width: 950px) {
+  .product-main {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+.product-hero-img {
+  min-height: 150px;
+  object-fit: cover;
+}
