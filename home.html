@@ -1,81 +1,56 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Botcho - Начало</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Botcho - За нас</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <div class="logo">
-      <img src="finalno logo.png" alt="Botcho Logo">
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="Botcho Logo" class="logo-img">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Начало</a></li>
+          <li><a href="home.html" class="active">За нас</a></li>
+          <li><a href="products.html">Продукти</a></li>
+          <li><a href="contact.html">Контакти</a></li>
+        </ul>
+      </nav>
     </div>
-    <input type="checkbox" id="nav-toggle">
-    <label for="nav-toggle" class="nav-toggle-label">
-      <span></span><span></span><span></span>
-    </label>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Начало</a></li>
-        <li><a href="home.html">За нас</a></li>
-        <li><a href="products.html">Продукти</a></li>
-        <li><a href="contact.html">Контакт</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="container">
-    <h2>Botcho AI Поддръжка</h2>
-    <p>Създаваме интелигентни чатботи, които автоматизират клиентската поддръжка на български език.</p>
-    <a href="products.html" class="btn">Виж Продукта</a>
-  </div>
-</section>
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <h1>Кои сме ние?</h1>
+        <p>Botcho е проект, създаден с цел да автоматизира клиентската поддръжка на българските бизнеси чрез интелигентни чатботи.</p>
+      </div>
+    </section>
 
-<section class="features">
-  <div class="container">
-    <h2>Какво Предлага Botcho</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <i class="fas fa-robot"></i>
-        <h3>AI Чатбот</h3>
-        <p>Автоматично отговаря на често задавани въпроси и спестява време на клиентите ви.</p>
+    <section class="about-section">
+      <div class="container about-flex">
+        <div class="about-text">
+          <h2>Нашата история</h2>
+          <p>Botcho започна като идея между двама студенти, вдъхновени от нуждите на малкия бизнес в България. Забелязахме, че твърде много време се губи в отговаряне на едни и същи въпроси.</p>
+          <p>Създадохме лесно интегруем чатбот, който разбира български и английски, и се обучава спрямо специфичното съдържание на сайта ви.</p>
+          <p>Мисията ни е да направим изкуствения интелект достъпен, полезен и лесен за употреба – дори за хора, които нямат технически опит.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://source.unsplash.com/800x400/?startup" alt="Екипът зад Botcho">
+        </div>
       </div>
-      <div class="feature">
-        <i class="fas fa-language"></i>
-        <h3>Многоезичен</h3>
-        <p>Поддържа български и английски език с разбиране на нюанси и жаргони.</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-cogs"></i>
-        <h3>Персонализиран</h3>
-        <p>Настроен за вашия бизнес – научава съдържанието от вашия сайт или документи.</p>
-      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Botcho. Всички права запазени.</p>
     </div>
-  </div>
-</section>
-
-<section class="content-section about-section">
-  <div class="container about-content">
-    <div>
-      <h2>Защо Botcho?</h2>
-      <p>Създадохме Botcho, защото видяхме нуждата от по-бърза и по-достъпна поддръжка за малки и средни бизнеси. Нашата мисия е да автоматизираме разговорите, без да губим човешкия елемент.</p>
-      <p>Без сложни настройки. Без излишна бюрокрация. Само резултати.</p>
-    </div>
-    <img src="https://source.unsplash.com/600x400/?team,ai" alt="Екип Botcho">
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 Botcho. Всички права запазени.</p>
-</footer>
-
+  </footer>
 </body>
 </html>
