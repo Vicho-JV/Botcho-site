@@ -486,3 +486,38 @@ footer p {
     gap: 20px;
   }
 }
+.logo-link {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+}
+.logo-img {
+  height: 56px;
+  width: auto;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(8,24,71,0.13);
+  padding: 4px;
+  transition: box-shadow 0.25s;
+}
+.logo-img:hover {
+  box-shadow: 0 4px 18px rgba(47,79,140,0.22);
+}
+.hero-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(47,79,140,0.13);
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
