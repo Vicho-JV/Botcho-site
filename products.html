@@ -2,21 +2,18 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <title>Botcho - Продукти</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Шрифтове и икони -->
+  <title>Botcho - Продукти</title>
+  <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1 class="logo"><img src="logo.png" alt="Botcho Logo"></h1>
+    <div class="container header-container">
       <input type="checkbox" id="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span><span></span><span></span>
-      </label>
+      <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
           <li><a href="index.html">Начало</a></li>
@@ -25,6 +22,7 @@
           <li><a href="contact.html">Контакти</a></li>
         </ul>
       </nav>
+      <a href="index.html" class="logo"><img src="logo.png" alt="Botcho Logo" class="logo-img"></a>
     </div>
   </header>
 
@@ -35,11 +33,7 @@
         <div class="product-main">
           <div class="product-intro">
             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&w=600&q=80" alt="AI Chatbot" class="product-hero-img">
-            <p>
-              Botcho е интелигентен чатбот, създаден специално за малки и средни бизнеси в България. 
-              Автоматизира комуникацията с клиенти, разбира български и английски, и се настройва лесно според вашите нужди. 
-              Чатботът може да се интегрира към вашия уебсайт и работи 24/7, отговаряйки на най-честите въпроси вместо вас.
-            </p>
+            <p>Botcho е интелигентен чатбот, създаден специално за малки и средни бизнеси в България. Автоматизира комуникацията с клиенти, разбира български и английски, и се настройва лесно според вашите нужди. Чатботът може да се интегрира към вашия уебсайт и работи 24/7, отговаряйки на най-честите въпроси вместо вас.</p>
           </div>
           <div class="product-demo">
             <div class="chat-demo">
@@ -81,7 +75,12 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Botcho. Всички права запазени.</p>
+      <div class="footer-content">
+        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
+        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
+        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+      </div>
+      <p>© 2025 Botcho. Всички права запазени.</p>
     </div>
   </footer>
 </body>

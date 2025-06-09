@@ -1,33 +1,35 @@
+<!-- Updated index.html -->
 <!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Botcho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <header>
-  <div class="container header-container">
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Начало</a></li>
-        <li><a href="products.html">Продукти</a></li>
-        <li><a href="home.html">За нас</a></li>
-        <li><a href="contact.html">Контакт</a></li>
-      </ul>
-    </nav>
-    <!-- Logo on the right -->
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Botcho Logo" class="logo-img" style="height: 54px; border-radius: 12px;">
-    </a>
-  </div>
-</header>
+    <div class="container header-container">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Начало</a></li>
+          <li><a href="home.html">За нас</a></li>
+          <li><a href="products.html">Продукти</a></li>
+          <li><a href="contact.html">Контакти</a></li>
+        </ul>
+      </nav>
+      <a href="index.html" class="logo"><img src="logo.png" alt="Botcho Logo" class="logo-img"></a>
+    </div>
+  </header>
 
   <main>
     <section class="hero">
       <div class="container">
+        <img src="https://source.unsplash.com/1200x600/?chatbot" alt="Chatbot Illustration" class="hero-image">
         <img src="logo.png" alt="Botcho Logo" class="hero-logo">
         <h2>Иновирайте с Botcho</h2>
         <p>Предлагаме модерни решения за съвременния бизнес.</p>
@@ -76,6 +78,11 @@
 
   <footer>
     <div class="container">
+      <div class="footer-content">
+        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
+        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
+        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+      </div>
       <p>© 2025 Botcho. Всички права запазени.</p>
     </div>
   </footer>
