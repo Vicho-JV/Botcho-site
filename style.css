@@ -64,7 +64,15 @@ nav .nav-links {
   box-shadow: 0 2px 12px rgba(8,24,71,0.13);
   padding: 6px;
 }
-
+.hero-logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 18px rgba(8,24,71,0.14);
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
 /* Mobile Navigation (Hamburger) */
 #nav-toggle {
   display: none;
