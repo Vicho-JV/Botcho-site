@@ -185,10 +185,10 @@ nav .nav-links {
 }
 .service-icons-bar i {
   font-size: 2rem;
-  margin-bottom: 32px; /* More space between icon and text */
+  margin-bottom: 102px;  /* ← This makes a big, clean gap */ 
 }
 .service-icons-bar span {
-  margin-top: 6px;
+  margin-top: 6px;wev
 }
 
 /* Service Descriptions */
