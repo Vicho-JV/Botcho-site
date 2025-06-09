@@ -185,7 +185,7 @@ nav .nav-links {
 }
 .service-icons-bar i {
   font-size: 2rem;
-  margin-bottom: 18px; /* More space between icon and text */
+  margin-bottom: 32px; /* More space between icon and text */
 }
 .service-icons-bar span {
   margin-top: 6px;
