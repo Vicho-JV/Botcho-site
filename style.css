@@ -34,11 +34,12 @@ header .container {
   padding: 15px 0;
 }
 .logo-navbar {
-  height: 50px;
-  border-radius: 10px;      /* optional, for slightly rounded corners */
-  background: transparent;  /* no white box */
-  box-shadow: none;
-  padding: 0;
+  height: 64px; /* Bigger logo */
+  width: auto;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 10px;
   display: block;
 }
 nav .nav-links {
@@ -61,26 +62,23 @@ nav .nav-links {
   color: var(--accent-color);
 }
 
-/* Logo image style */
+/* Logo image style (remove old .logo-img background/box) */
 .logo-img {
-  height: 54px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(8,24,71,0.13);
-  padding: 6px;
+  display: none;
 }
 .hero-logo {
   width: 88px;
   height: 88px;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 2px 18px rgba(8,24,71,0.14);
+  background: transparent !important;
+  box-shadow: none !important;
   margin-bottom: 18px;
   margin-top: 0;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 /* Mobile Navigation (Hamburger) */
 #nav-toggle {
   display: none;
@@ -181,10 +179,16 @@ nav .nav-links {
   color: var(--accent-color);
   text-align: center;
   font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .service-icons-bar i {
   font-size: 2rem;
-  margin-bottom: 5px;
+  margin-bottom: 18px; /* More space between icon and text */
+}
+.service-icons-bar span {
+  margin-top: 6px;
 }
 
 /* Service Descriptions */
