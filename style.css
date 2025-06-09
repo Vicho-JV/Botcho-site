@@ -33,8 +33,13 @@ header .container {
   justify-content: space-between;
   padding: 15px 0;
 }
-.logo img {
+.logo-navbar {
   height: 50px;
+  border-radius: 10px;      /* optional, for slightly rounded corners */
+  background: transparent;  /* no white box */
+  box-shadow: none;
+  padding: 0;
+  display: block;
 }
 nav .nav-links {
   list-style: none;
@@ -65,13 +70,16 @@ nav .nav-links {
   padding: 6px;
 }
 .hero-logo {
-  width: 110px;
-  height: 110px;
+  width: 88px;
+  height: 88px;
   border-radius: 16px;
   background: #fff;
   box-shadow: 0 2px 18px rgba(8,24,71,0.14);
-  margin-bottom: 30px;
-  margin-top: 10px;
+  margin-bottom: 18px;
+  margin-top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Mobile Navigation (Hamburger) */
 #nav-toggle {
