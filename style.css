@@ -106,7 +106,8 @@ nav .nav-links {
 
 /* Hero Section */
 .hero {
-  background: var(--primary-color) url('https://source.unsplash.com/1600x600/?technology') center/cover no-repeat;
+  /* Use full-resolution Unsplash image as background */
+  background: var(--primary-color) url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=100') center/cover no-repeat;
   color: #fff;
   padding: 100px 0;
   text-align: center;
@@ -132,7 +133,7 @@ nav .nav-links {
 .hero .btn:hover {
   background-color: #e67300;
 }
-/* Hero Image */
+/* Hero Image (unused; kept in case of future inline images) */
 .hero .hero-image {
   width: 100%;
   max-width: 800px;
