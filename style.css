@@ -320,17 +320,19 @@ nav .nav-links {
   margin-top: 18px;
 }
 .feature-card {
-  background: #fff;
+  background: transparent;      /* No white */
   border-radius: 8px;
   padding: 20px 18px;
   width: 210px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  box-shadow: none;             /* No shadow */
   text-align: center;
-  transition: transform 0.25s, box-shadow 0.25s;
+  transition: transform 0.25s;
+}
 }
 .feature-card:hover {
   transform: translateY(-4px) scale(1.035);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  box-shadow: none;             /* No shadow on hover */
+}
 }
 .feature-card i {
   font-size: 1.7rem;
