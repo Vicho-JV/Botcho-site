@@ -449,13 +449,14 @@ footer .container {
   animation-delay: 0.7s;
 }
 .content-section {
-  padding-top: 100px;
+  padding-top: 80px; /* or 90px, adjust until it feels right for your header! */
 }
 @media (max-width: 768px) {
   .content-section {
-    padding-top: 76px;
+    padding-top: 60px; /* adjust for mobile, maybe a bit less */
   }
 }
+
 .content-section h2 {
-  margin-top: 0;
+  margin-top: 0; /* prevents doubling up the space */
 }
