@@ -34,7 +34,7 @@ header .container {
   padding: 15px 0;
 }
 .logo-navbar {
-  height: 96px; /* Bigger logo */
+  height: 112px; /* Bigger logo */
   width: auto;
   background: transparent !important;
   box-shadow: none !important;
@@ -67,12 +67,12 @@ nav .nav-links {
   display: none;
 }
 .hero-logo {
-  width: 140px;
-  height: 140px;
-  border-radius: 24px;
+  width: 160px;
+  height: 160px;
+  border-radius: 30px;
   background: transparent !important;
   box-shadow: none !important;
-  margin-bottom: 28px;
+  margin-bottom: 34px;
   margin-top: 0;
   display: block;
   margin-left: auto;
