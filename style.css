@@ -448,3 +448,15 @@ footer .container {
   animation: fadeInUp 1s forwards;
   animation-delay: 0.7s;
 }
+.content-section h2,
+.features h2 {
+  margin-top: 40px; /* Add this! */
+  opacity: 0;
+  /* animation stays as is */
+}
+@media (max-width: 768px) {
+  .content-section h2,
+  .features h2 {
+    margin-top: 24px; /* Less on mobile */
+  }
+}
