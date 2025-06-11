@@ -77,5 +77,30 @@
       <p>© 2025 Botcho. Всички права запазени.</p>
     </div>
   </footer>
+  <div class="chat-container minimized" id="chatBox">
+    <div class="chat-header">
+        <h4>Chat assistance</h4>
+        <button class="minimize-btn" id="minimizeBtn">+</button>
+    </div>
+    <div class="chat-body hidden" id="chatBody">
+        <div class="messages" id="messages"></div>
+        <div class="chat-input">
+            <div class="input-wrapper">
+                <input type="text" id="userInput" placeholder="Ask anything you want" />
+                <!-- Microphone button added -->
+                <button class="mic-btn" id="micBtn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="send-btn" id="sendBtn">&#10148;</button>
+            </div>
+            <div class="plug">
+                <a href="https://firmata-bace.com/" target="_blank" title="Go to firmata-bace.com">
+                    <img src="m&ulogo.png" alt="Logo" />
+                    <span>Powered by JV</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

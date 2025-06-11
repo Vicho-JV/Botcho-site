@@ -460,3 +460,242 @@ footer .container {
     padding-top: 120px;
   }
 }
+:root {
+     --minimized-size: 70px;
+     --minimized-bg: #007bff;
+ }
+
+ /* fluid width: never wider than 320px, never wider than 90vw, never narrower than 240px */
+ .chat-container {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     width: clamp(240px, 90vw, 320px);
+     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+     border-radius: 12px;
+     font-family: Arial, sans-serif;
+     background: #fff;
+     overflow: hidden;
+     transition: width .3s, height .3s, border-radius .3s;
+ }
+
+     .chat-container.minimized {
+         width: var(--minimized-size);
+         height: var(--minimized-size);
+         border-radius: 50%;
+         background: var(--minimized-bg);
+         cursor: pointer;
+     }
+
+         .chat-container.minimized::before {
+             content: "💬";
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             font-size: calc(var(--minimized-size)*0.5);
+             color: #fff;
+             pointer-events: none;
+         }
+
+ .chat-header {
+     background: #007bff;
+     color: #fff;
+     padding: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     height: 15px;
+ }
+
+ .minimize-btn {
+     background: none;
+     border: none;
+     font-size: 16px;
+     color: #fff;
+     cursor: pointer;
+ }
+
+ .chat-container.minimized .chat-header {
+     display: none;
+ }
+
+ /* fluid height: between 200px and 360px, but never more than 50vh */
+ .chat-body {
+     display: flex;
+     flex-direction: column;
+     height: clamp(200px, 50vh, 360px);
+ }
+
+ .hidden {
+     display: none;
+ }
+
+ .messages {
+     flex: 1;
+     padding: 12px;
+     overflow-y: auto;
+     background: #f9f9f9;
+ }
+
+ /* BOT bubbles (unchanged) */
+ .message-row.bot {
+     display: flex;
+     align-items: flex-start;
+     margin-bottom: 10px;
+     clear: both;
+ }
+
+     .message-row.bot .avatar {
+         width: 32px;
+         height: 32px;
+         border-radius: 50%;
+         background: #ccc;
+         margin-right: 8px;
+         flex-shrink: 0;
+     }
+
+     .message-row.bot .message.bot {
+         background: #e9e9eb;
+         color: #333;
+         border-radius: 16px;
+         padding: 8px 12px;
+         margin: 0;
+         max-width: 80%;
+     }
+
+ /* USER bubbles: flex wrapper + blue bubble */
+ .message-row.user {
+     display: flex;
+     justify-content: flex-end;
+     margin-bottom: 10px;
+     clear: both;
+ }
+
+     .message-row.user .message.user {
+         background: #007bff;
+         color: #fff;
+         border-radius: 16px;
+         padding: 8px 12px;
+         display: inline-block;
+         max-width: 80%;
+         word-wrap: break-word;
+         margin: 0;
+         float: none; /* override any old float */
+     }
+
+ .chat-input {
+     padding: 12px;
+     background: #f9f9f9;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .input-wrapper {
+     position: relative;
+     width: 100%;
+ }
+
+     .input-wrapper input {
+         width: 100%;
+         height: 50px;
+         box-sizing: border-box;
+         /* make room for two buttons on the right */
+         padding: 10px 90px 10px 12px;
+         font-size: 14px;
+         border: 1px solid #ddd;
+         border-radius: 20px;
+         outline: none;
+     }
+
+     .input-wrapper button.send-btn {
+         position: absolute;
+         top: 50%;
+         right: 12px;
+         transform: translateY(-50%);
+         width: 32px;
+         height: 32px;
+         border-radius: 50%;
+         background: #007bff;
+         border: none;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         color: #fff;
+         font-size: 18px;
+         cursor: pointer;
+     }
+
+         .input-wrapper button.send-btn:hover {
+             background: #0056b3;
+         }
+
+     /* Microphone button, placed to the left of the send button */
+     .input-wrapper button.mic-btn {
+         position: absolute;
+         top: 50%;
+         right: 50px; /* left of the send button */
+         transform: translateY(-50%);
+         width: 32px;
+         height: 32px;
+         border-radius: 50%;
+         background: #007bff;
+         border: none;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+         padding: 0;
+         color: #fff; /* icon color */
+         font-size: 16px; /* scales the Font Awesome icon */
+     }
+
+         .input-wrapper button.mic-btn:hover {
+             background: #0056b3;
+         }
+
+ .plug {
+     --plug-img-size: 20px;
+     --plug-font-size: 13px;
+     --plug-bg: #fff;
+     --plug-radius: 12px;
+     display: flex;
+     align-items: center;
+     background: #f9f9f9;
+     border-radius: var(--plug-radius);
+     padding: 4px 8px;
+     margin-top: 8px;
+     font-family: inherit;
+ }
+
+     .plug a {
+         display: flex;
+         align-items: center;
+         text-decoration: none;
+         color: #555;
+         font-size: var(--plug-font-size);
+     }
+
+     .plug img {
+         width: var(--plug-img-size);
+         height: var(--plug-img-size);
+         margin-right: 6px;
+     }
+
+ .input-wrapper button.mic-btn.recording {
+     background: #c0392b; /* darker/red background while listening */
+ }
+
+     .input-wrapper button.mic-btn.recording::after {
+         content: "🔴";
+         position: absolute;
+         top: 2px;
+         right: 2px;
+         font-size: 10px;
+     }
+
+
+     .input-wrapper button.mic-btn.recording i.fa-microphone {
+         color: #fff;
+     }
