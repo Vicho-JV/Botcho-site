@@ -451,12 +451,12 @@ footer .container {
 .content-section,
 .features,
 .about-bg {
-  padding-top: 110px;
+  padding-top: 150px;
 }
 @media (max-width: 768px) {
   .content-section,
   .features,
   .about-bg {
-    padding-top: 80px;
+    padding-top: 120px;
   }
 }
