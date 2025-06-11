@@ -448,15 +448,15 @@ footer .container {
   animation: fadeInUp 1s forwards;
   animation-delay: 0.7s;
 }
-/* Add spacing below navbar to page titles */
-.content-section h2,
-.features h2 {
-  margin-top: 52px;
+.content-section,
+.features,
+.about-bg {
+  padding-top: 110px;
 }
-
 @media (max-width: 768px) {
-  .content-section h2,
-  .features h2 {
-    margin-top: 32px;
+  .content-section,
+  .features,
+  .about-bg {
+    padding-top: 80px;
   }
 }
