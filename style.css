@@ -32,7 +32,7 @@ header .container {
   padding: 15px 0;
 }
 .logo-navbar {
-  height: 80px;
+  height: 60px;
   width: auto;
 }
 .nav-links {
@@ -63,18 +63,9 @@ header .container {
   display: block;
   width: 25px;
   height: 3px;
-  margin-bottom: 4px;
+  margin: 4px 0;
   background: #fff;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transition: 0.3s;
 }
 @media (max-width: 768px) {
   .nav-toggle-label {
@@ -99,10 +90,24 @@ header .container {
 }
 /* Hero Section */
 .hero {
-  background: var(--primary-color) url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-  padding: 60px 0;
-  text-align: center;
+  background: var(--primary-color) url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=100') center/cover no-repeat;
   color: #fff;
+  padding: 100px 0;
+  position: relative;
+  text-align: center;
+}
+.hero:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(8, 24, 71, 0.6);
+}
+.hero .container {
+  position: relative;
+  z-index: 2;
 }
 .hero-logo {
   width: 100px;
@@ -159,10 +164,28 @@ header .container {
   border-radius: 8px;
   padding: 20px;
   width: 260px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+.feature-icon i {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.feature-card:hover .feature-icon i {
+  transform: scale(1.1);
 }
 .feature-card h3 {
-  margin-top: 10px;
-  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin: 10px 0;
 }
 .feature-card p {
   color: #555;
@@ -219,53 +242,100 @@ header .container {
 }
 .chat-demo {
   font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+}
+.chat-message {
+  margin-bottom: 12px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.chat-message.user {
+  background: #e8f0fe;
+}
+.chat-message.bot {
+  background: #fff2e8;
+}
+.chat-message span {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-right: 5px;
+}
+.demo-note {
+  font-size: 0.9rem;
+  color: #888;
+  text-align: center;
 }
 .product-features-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 20px;
   justify-content: center;
+  margin-top: 20px;
 }
 .product-features-list .feature-card {
-  width: 260px;
+  padding: 20px;
+  width: 240px;
 }
-.product-features-list .feature-card h4 {
-  margin-top: 10px;
-  font-family: 'Inter', sans-serif;
-}
-.product-features-list .feature-card p {
-  font-size: 0.9rem;
-  margin-bottom: 0;
-}
-.feature-icon {
-  font-size: 2.2rem;
+.product-features-list i {
+  font-size: 2rem;
   color: var(--accent-color);
+  margin-bottom: 10px;
 }
-.chat-message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 10px;
-  color: #333;
+.product-features-list h4 {
+  margin: 10px 0 5px;
+  color: var(--primary-color);
+  font-size: 1.1rem;
 }
-.chat-message.user {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  text-align: right;
+.product-features-list p {
+  color: #555;
+  font-size: 0.95rem;
 }
-.chat-message.bot {
-  background-color: #f4f4f4;
-  text-align: left;
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 20px auto 0;
 }
-.chat-message span {
-  font-weight: 700;
-  margin-right: 5px;
-}
-.demo-note {
+.contact-form label {
   margin-top: 10px;
-  font-size: 0.85rem;
-  color: #666;
+  font-weight: 500;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.contact-form button {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.contact-form button:hover {
+  background-color: #e67300;
+}
+.contact-info {
+  margin-top: 30px;
   text-align: center;
+}
+.contact-info p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+.contact-info i {
+  color: var(--primary-color);
+  margin-right: 8px;
 }
 footer {
   background-color: var(--primary-color);
@@ -329,22 +399,64 @@ footer .container {
   animation-delay: 0.2s;
 }
 .hero h2,
-.hero p {
+.hero p,
+.hero .btn {
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s forwards;
+}
+.hero h2 {
+  animation: fadeInUp 1s forwards;
   animation-delay: 0.3s;
 }
+.hero p {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.6s;
+}
+.hero .btn {
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.9s;
+}
+.feature-card {
+  opacity: 0;
+  animation: fadeInUp 0.8s forwards;
+}
+.feature-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.feature-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.feature-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.feature-card:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.about-img-wrap img {
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+.contact-form {
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+.contact-info {
+  margin-top: 30px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.7s;
+}
 .content-section {
-  padding-top: 110px; /* or 110px, adjust until it feels right for your header! */
-  padding-bottom: 60px;
+  padding-top: 80px; /* or 90px, adjust until it feels right for your header! */
 }
 @media (max-width: 768px) {
   .content-section {
-    padding-top: 100px; /* adjust for mobile, maybe a bit less */
+    padding-top: 60px; /* adjust for mobile, maybe a bit less */
   }
 }
-.content-section.contact-page .container > h2,
-.content-section.contact-page .container > p {
-  text-align: center;
+
+.content-section h2 {
+  margin-top: 0; /* prevents doubling up the space */
 }
