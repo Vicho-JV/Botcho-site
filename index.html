@@ -117,7 +117,8 @@
     align-self: center;
 }
 .minimize-btn {
-    background: #081847; /* Or #fff if you prefer white! */
+    margin-right: 4px;
+    background: #081847;
     border: 2px solid var(--accent-color);
     border-radius: 50%;
     font-size: 18px;
@@ -129,15 +130,14 @@
     align-items: center;
     justify-content: center;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 0 2px #081847, 0 0 0 4px #fff; /* navy outline + white outline to block ALL gradient bleed */
-    z-index: 2; /* stay above the header background */
+    box-shadow: 0 0 0 2px #081847; /* only the navy outline! */
+    z-index: 2;
 }
-
 .minimize-btn:hover {
     background: var(--accent-color);
     color: #fff;
     transform: scale(1.07);
-    box-shadow: 0 0 0 2px var(--accent-color), 0 0 0 4px #fff; /* orange border + white outline on hover */
+    box-shadow: 0 0 0 2px var(--accent-color); /* only the orange on hover */
 }
 
 /* Body (messages list + input area container) */
