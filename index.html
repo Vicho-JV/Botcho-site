@@ -93,16 +93,18 @@
 
 /* Header (visible when chat is open) */
 .chat-header {
-    background: linear-gradient( to right, var(--primary-color) 97%, var(--accent-color) 100% );
+    background: linear-gradient( to right, var(--primary-color) 98%, var(--accent-color) 100% );
     /* ... */
 }
+.chat-header {
+    justify-content: flex-end;
+    /* ...rest of your styles */
+}
 .chat-header h4 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin: 0;
-    /* Optionally add an icon before the title
-       .chat-header h4::before { content: "\f086"; font-family: FontAwesome; margin-right: 8px; } */
+    margin-right: auto;
+}
+.minimize-btn {
+    margin-right: 4px; /* a little spacing from the edge */
 }
 .minimize-btn {
     background: #081847; /* Or #fff if you prefer white! */
