@@ -306,6 +306,26 @@
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+.plug {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-top: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    gap: 5px;
+}
+.plug-logo {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    border-radius: 4px;
+    object-fit: cover;
+}
  </style>
 
 </head>
@@ -392,11 +412,9 @@
                 <button class="send-btn" id="sendBtn">&#10148;</button>
             </div>
             <div class="plug">
-                <a href="https://firmata-bace.com/" target="_blank" title="Go to firmata-bace.com">
-                    <img src="m&ulogo.png" alt="Logo" />
-                    <span>Powered by JV</span>
-                </a>
-            </div>
+    <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+    <span>Powered by Botcho</span>
+			</div>
         </div>
     </div>
 </div>

@@ -55,9 +55,10 @@ async function sendMessage() {
     // Show bot typing indicator
     const row = document.createElement('div');
     row.className = 'message-row bot';
-    const avatar = document.createElement('img');
-    avatar.src = 'm&ulogo.png';
-    avatar.className = 'avatar';
+	const avatar = document.createElement('img');
+	avatar.src = 'logoOriginalno.png';         // Your Botcho logo
+	avatar.alt = 'Botcho Bot';
+	avatar.className = 'avatar bot-avatar';    // Add bot-avatar for styling
     const b = document.createElement('div');
     b.className = 'message bot';
     row.appendChild(avatar);
