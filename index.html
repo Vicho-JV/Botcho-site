@@ -109,22 +109,22 @@
        .chat-header h4::before { content: "\f086"; font-family: FontAwesome; margin-right: 8px; } */
 }
 .minimize-btn {
-    background: none;
-    border: 2px solid var(--accent-color);   /* orange border */
+    background: #081847; /* Use primary color for background */
+    border: 2px solid var(--accent-color);
     border-radius: 50%;
     font-size: 18px;
-    color: var(--accent-color);              /* orange icon */
+    color: var(--accent-color);
     cursor: pointer;
-    width: 28px; height: 28px;               /* make it round, adjust as needed */
+    width: 28px; height: 28px;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s, color 0.2s;
-    box-shadow: none;                        /* remove any shadow */
+    box-shadow: none;
 }
 .minimize-btn:hover {
     background: var(--accent-color);
     color: #fff;
-    transform: scale(1.07);                  /* slightly smaller scale */
-	box-shadow: none !important; /* <--- Add this line */
+    transform: scale(1.07);
+    box-shadow: none;
 }
 
 /* Body (messages list + input area container) */
