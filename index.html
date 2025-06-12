@@ -262,7 +262,8 @@
 .input-wrapper button.send-btn:hover,
 .input-wrapper button.mic-btn:hover {
     background-color: #e67300;
-    transform: scale(1.001);   /* was 1.1, now 1.05 for more subtle effect */
+    /* Combine BOTH transforms! */
+    transform: translateY(-50%) scale(1.01); /* Use 1.01 for a touch of smoothness */
 }
 /* Microphone recording state styling */
 .input-wrapper button.mic-btn.recording {
