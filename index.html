@@ -110,14 +110,21 @@
 }
 .minimize-btn {
     background: none;
-    border: none;
+    border: 2px solid var(--accent-color);   /* orange border */
+    border-radius: 50%;
     font-size: 18px;
-    color: #fff;
+    color: var(--accent-color);              /* orange icon */
     cursor: pointer;
-    /* Add a subtle hover effect for the close/minimize button */
-    transition: transform 0.2s;
+    width: 28px; height: 28px;               /* make it round, adjust as needed */
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: none;                        /* remove any shadow */
 }
-.minimize-btn:hover { transform: scale(1.2); }
+.minimize-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.07);                  /* slightly smaller scale */
+}
 
 /* Body (messages list + input area container) */
 .chat-body {
@@ -240,8 +247,8 @@
 .input-wrapper button.mic-btn { right: 54px; /* Mic button to the left of send */ }
 .input-wrapper button.send-btn:hover,
 .input-wrapper button.mic-btn:hover {
-    background-color: #e67300;  /* darker orange on hover */
-    transform: scale(1.1);
+    background-color: #e67300;
+    transform: scale(1.05);   /* was 1.1, now 1.05 for more subtle effect */
 }
 /* Microphone recording state styling */
 .input-wrapper button.mic-btn.recording {
