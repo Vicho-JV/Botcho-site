@@ -11,278 +11,200 @@
        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
  <style>
-/* Chatbot Widget CSS – Creative Redesign for Botcho */
-/* Brand Colors (from main site): primary navy and accent orange */
-:root {
-    --primary-color: #081847;
-    --accent-color: #ff7f2a;
-    --minimized-size: 70px;
+/* Botcho Chatbot Widget – Updated Styles */
+
+/* -------------- Container & Overall Layout -------------- */
+
+/* Main chat widget container (open state) */
+.chatbot-container {
+  font-family: 'Roboto', 'Inter', sans-serif;  /* Brand fonts applied */
+  position: fixed; 
+  bottom: 20px; right: 20px;  /* example positioning; adjust as needed */
+  width: 320px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;  /* smooth rounded corners for modern look */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);  /* subtle drop-shadow for depth */
+  background: rgba(255, 255, 255, 0.8);  /* translucent background for glassmorphic effect */
+  backdrop-filter: blur(8px);            /* backdrop blur to create "glass" feel */
+  -webkit-backdrop-filter: blur(8px);    /* Safari support for backdrop-filter */
+  overflow: hidden;  /* clip children (for rounded corners on content) */
 }
 
-/* Container (open chat window) */
-.chat-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: clamp(240px, 90vw, 320px);
-    background-color: #fff;  /* base background (mostly covered by inner sections) */
-    color: #333;
-    border-radius: 16px;     /* increased radius for smoother corners */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);  /* a slightly deeper shadow for elevation */
-    overflow: hidden;
-    transition: width 0.3s, height 0.3s, border-radius 0.3s,
-                transform 0.3s, box-shadow 0.3s;
+/* Minimized chat head (closed state) – keep existing styles */
+/* (No changes made to the minimized state; retain previous CSS for the collapsed chat icon/launcher) */
+
+/* -------------- Header -------------- */
+
+.chatbot-header {
+  background: linear-gradient(180deg, #0a1d55 0%, #081847 100%);  /* (5) subtle vertical gradient using brand navy */
+  color: #fff;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* If a header title or text is present */
+  font-size: 16px;
+  font-weight: 500;
 }
 
-/* Minimized State (chat head bubble) */
-.chat-container.minimized {
-    width: var(--minimized-size);
-    height: var(--minimized-size);
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    background-image: none;  /* remove logo image, we'll use an icon instead */
-    cursor: pointer;
-    /* Center the icon inside the circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Allow pulsing ring to show outside the circle */
-    overflow: visible;
-    transform-origin: bottom right;
-}
-.chat-container.minimized::before {
-    /* Chat bubble icon (FontAwesome comment icon) */
-    content: "\f075";  /* FontAwesome chat icon (comment) */
-    font-family: FontAwesome;
-    font-size: 1.4rem;
-    font-weight: 900;        /* use solid icon weight if FontAwesome 5+ */
-    color: #fff;
-    display: inline-block;
-}
-/* Pulsating ring animation around the chat head */
-.chat-container.minimized::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: var(--minimized-size);
-    height: var(--minimized-size);
-    border: 3px solid var(--accent-color);
-    border-radius: 50%;
-    opacity: 0;
-    animation: pulse-ring 3s infinite;
-    /* Ensure the ring is behind the chat icon circle */
-    z-index: -1;
-}
-@keyframes pulse-ring {
-    0% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.8); opacity: 0; }
-    100% { transform: scale(1.8); opacity: 0; }
-}
-/* Hover effect for minimized bubble (grow and glow) */
-.chat-container.minimized:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    transform: scale(1.05);
+/* Minimize button (the top-right button to collapse chat) */
+.chatbot-header .minimize-button {
+  background: transparent;
+  border: 2px solid #ff7f2a;        /* (1) replaced orange glow with a clean orange border */
+  /* Remove any existing shadow/glow: */
+  box-shadow: none;
+  border-radius: 50%;              /* make button circular for a stylish look */
+  width: 24px; height: 24px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #ff7f2a;                  /* icon or symbol colored orange to match border */
+  font-size: 16px; line-height: 1;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* Hide the header and other parts when minimized (only show the bubble) */
-.chat-container.minimized .chat-header,
-.chat-container.minimized .chat-body,
-.chat-container.minimized .chat-input {
-    display: none;
+/* Optional hover effect for minimize button: invert colors for clarity */
+.chatbot-header .minimize-button:hover {
+  background: #ff7f2a;   /* orange fill on hover */
+  color: #fff;           /* icon turns white on hover for contrast */
 }
 
-/* Header (visible when chat is open) */
-.chat-header {
-    background: linear-gradient( to right, var(--primary-color) 85%, var(--accent-color) 100% );
-    color: #fff;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.chat-header h4 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin: 0;
-    /* Optionally add an icon before the title
-       .chat-header h4::before { content: "\f086"; font-family: FontAwesome; margin-right: 8px; } */
-}
-.minimize-btn {
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: #fff;
-    cursor: pointer;
-    /* Add a subtle hover effect for the close/minimize button */
-    transition: transform 0.2s;
-}
-.minimize-btn:hover { transform: scale(1.2); }
+/* -------------- Chat Body (Messages Area) -------------- */
 
-/* Body (messages list + input area container) */
-.chat-body {
-    display: flex;
-    flex-direction: column;
-    height: clamp(200px, 50vh, 360px);
-    background-color: #f9f9f9; /* light background for chat area */
-}
-.messages {
-    flex: 1;
-    padding: 12px;
-    overflow-y: auto;
-    /* You can add a subtle background pattern or gradient here if desired */
-    /* e.g., background: linear-gradient(to bottom, #fafafa, #f0f0f0); */
+.chatbot-body {
+  flex: 1;
+  padding: 12px 12px 0 12px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: transparent; /* use container's blurred background through transparency */
+  /* If a different gradient background is preferred instead of full transparency, uncomment below: */
+  /* background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%); */
 }
 
-/* Message bubbles */
-.message-row.bot {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    clear: both;
+/* Individual message bubbles */
+.chatbot-body .message {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: flex-start;
+  /* Ensure long messages wrap nicely */
+  flex-wrap: wrap;
 }
-.message-row.bot .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #ccc;
-    margin-right: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
+.chatbot-body .message.bot-message {
+  /* Bot message alignment (left) */
+  flex-direction: row;
 }
-.message-row.bot .message.bot {
-    background: #e9e9eb;
-    color: #333;
-    padding: 8px 12px;
-    margin: 0;
-    max-width: 80%;
-    /* New bubble shape for bot: rounded with a flat tail on bottom-left */
-    border-radius: 16px 16px 16px 4px;
-    /* Add a slight shadow to bot bubbles for depth */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-.message-row.user {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    clear: both;
-}
-.message-row.user .message.user {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 8px 12px;
-    margin: 0;
-    max-width: 80%;
-    /* New bubble shape for user: rounded with a flat tail on bottom-right */
-    border-radius: 16px 4px 16px 16px;
-    /* Slight shadow for user bubbles as well */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    /* Align text right for user messages (optional stylistic choice) */
-    text-align: left;
-    /* (We keep text left-aligned even on right side to maintain readability) */
+.chatbot-body .message.user-message {
+  /* User message alignment (right) */
+  flex-direction: row-reverse;
+  text-align: right;
 }
 
-/* Input area (text box + send/mic buttons) */
-.chat-input {
-    padding: 10px 12px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.input-wrapper {
-    position: relative;
-    width: 100%;
-}
-/* Text input field */
-.input-wrapper input {
-    width: 100%;
-    height: 45px;
-    box-sizing: border-box;
-    padding: 0 100px 0 14px;  /* space for buttons on the right */
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #ddd;
-    border-radius: 22px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.input-wrapper input::placeholder {
-    color: #999;
-}
-.input-wrapper input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
-    outline: none;
-}
-/* Send and Mic buttons */
-.input-wrapper button.send-btn,
-.input-wrapper button.mic-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background-color: var(--accent-color);
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.3s, transform 0.2s;
-}
-/* Position of the buttons inside input wrapper */
-.input-wrapper button.send-btn { right: 12px; /* Send (typically an arrow icon) */ }
-.input-wrapper button.mic-btn { right: 54px; /* Mic button to the left of send */ }
-.input-wrapper button.send-btn:hover,
-.input-wrapper button.mic-btn:hover {
-    background-color: #e67300;  /* darker orange on hover */
-    transform: scale(1.1);
-}
-/* Microphone recording state styling */
-.input-wrapper button.mic-btn.recording {
-    background-color: #c0392b !important;  /* red background when recording */
-}
-.input-wrapper button.mic-btn.recording::after {
-    content: "🔴";
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    font-size: 10px;
-}
-/* If using FontAwesome icon inside mic button, ensure it's white when recording */
-.input-wrapper button.mic-btn.recording i.fa-microphone { color: #fff; }
-
-/* "Powered by" branding or any footer note in the widget */
-.plug {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 12px;
-    padding: 4px 8px;
-    margin-top: 8px;
-    font-family: inherit;
-    font-size: 12px;
-    color: #555;
-    text-decoration: none;
-}
-.plug img {
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
+/* Avatar images for messages */
+.chatbot-body .message .avatar {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  margin: 0 8px;  /* space between avatar and bubble */
+  border-radius: 8px;               /* slightly rounded square avatars */
+  object-fit: contain;             /* if using <img>, ensure the whole logo is visible */
+  /* If using an element with background-image instead of <img>, e.g.:
+     background: url('logoOriginalno.png') center/cover no-repeat;
+  */
 }
 
-/* Animations for message appearance */
-.message-row {
-    animation: fadeIn 0.3s ease forwards;
+/* Specific styling for bot avatar (using Botcho logo) */
+.avatar.bot-avatar {
+  /* If using an <img class="bot-avatar">, it will inherit .avatar styles above. */
+  /* Additional styling if needed can go here. */
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+
+/* Message bubble styling */
+.chatbot-body .message .bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.chatbot-body .message.bot-message .bubble {
+  background: #eef1f7;       /* light grey/blue bubble for bot messages */
+  color: #081847;            /* dark text (brand navy) for bot text for contrast */
+}
+.chatbot-body .message.user-message .bubble {
+  background: #ff7f2a;       /* brand orange bubble for user messages */
+  color: #fff;               /* white text for user messages */
+}
+
+/* -------------- Input Area -------------- */
+
+.chatbot-input-area {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.6);  /* (5) translucent background for input bar (glass effect) */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(0,0,0,0.1);  /* subtle separator line from messages */
+  border-bottom-left-radius: 12px;  /* match container's bottom corners */
+  border-bottom-right-radius: 12px;
+}
+
+/* Text input field inside the input area */
+.chatbot-input-area input.chat-input {
+  flex: 1;
+  font-size: 14px;
+  font-family: 'Roboto', 'Inter', sans-serif;
+  padding: 8px 10px;
+  border: 1px solid rgba(8,24,71, 0.3);  /* slight navy border for definition */
+  border-radius: 4px;
+  background: #fff;                    /* solid background for readability of typed text */
+  color: #081847;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chatbot-input-area input.chat-input::placeholder {
+  color: #9298aa;  /* a medium grey for placeholder text */
+}
+.chatbot-input-area input.chat-input:focus {
+  border-color: #ff7f2a;  /* (5) highlight input border in brand orange on focus */
+}
+
+/* Send and Mic action buttons */
+.chatbot-input-area .send-button,
+.chatbot-input-area .mic-button {
+  background: #081847;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+.chatbot-input-area .send-button:hover,
+.chatbot-input-area .mic-button:hover {
+  /* (2) toned-down hover effect: slight scale instead of exaggerated zoom */
+  transform: scale(1.1);         /* reduced from a larger scale (e.g., 1.2) to 1.1 */
+  background: #0a1d55;           /* a slightly lighter hover background (optional) */
+}
+
+/* Icon styling (if icons are SVG or font icons inside the buttons) */
+.chatbot-input-area .send-button svg,
+.chatbot-input-area .mic-button svg {
+  width: 20px; height: 20px;
+  /* Assuming icons are white by default; if not, force white for contrast on dark button */
+  fill: #fff;
+}
+
+/* Responsive adjustments (example): make chat widget width fluid on small screens */
+@media(max-width: 480px) {
+  .chatbot-container {
+    right: 10px; bottom: 10px;
+    width: calc(100% - 20px);  /* use almost full width on very small screens */
+    max-height: 80vh;
+  }
 }
  </style>
 
