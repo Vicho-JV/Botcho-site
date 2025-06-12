@@ -93,8 +93,12 @@
 
 /* Header (visible when chat is open) */
 .chat-header {
-    background: linear-gradient( to right, var(--primary-color) 98%, var(--accent-color) 100% );
-    /* ... */
+    background: var(--primary-color); /* solid navy, NO gradient! */
+    color: #fff;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .chat-header {
     justify-content: flex-end;
