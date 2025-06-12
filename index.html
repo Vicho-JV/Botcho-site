@@ -93,22 +93,28 @@
 
 /* Header (visible when chat is open) */
 .chat-header {
-    background: var(--primary-color); /* solid navy, NO gradient! */
+    background: var(--primary-color); /* solid navy */
     color: #fff;
-    padding: 12px;
+    padding: 18px 16px 16px 16px;     /* more top/bottom padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.chat-header {
-    justify-content: flex-end;
-    /* ...rest of your styles */
+    min-height: 48px;                 /* minimum height for headroom */
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 }
 .chat-header h4 {
-    margin-right: auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.13rem;    /* slightly bigger */
+    line-height: 1.2;      /* improves vertical alignment */
+    margin: 0;
+    margin-right: auto;    /* keeps it left-aligned if you want button on the right */
+    letter-spacing: 0.02em;
 }
 .minimize-btn {
-    margin-right: 4px; /* a little spacing from the edge */
+    margin-right: 4px;
+    align-self: center;
 }
 .minimize-btn {
     background: #081847; /* Or #fff if you prefer white! */
