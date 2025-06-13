@@ -203,7 +203,13 @@ function applyLanguage(lang) {
   document.querySelectorAll("[data-key]").forEach(el => {
     el.innerHTML = translations[lang][el.dataset.key];
   });
-  document.getElementById("langToggle").textContent = lang === "en" ? "BG" : "EN";
+
+  const toggleBtn = document.getElementById("langToggle");
+  toggleBtn.innerHTML = `
+    <img src="flags${lang === 'en' ? 'gb' : 'bg'}.png" alt="${lang.toUpperCase()} Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
+    ${lang.toUpperCase()}
+  `;
+
   document.documentElement.lang = lang;
 }
 if (currentLang === "en") {

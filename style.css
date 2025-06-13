@@ -493,6 +493,7 @@ footer .container {
      background: #fff;
      overflow: hidden;
      transition: width .3s, height .3s, border-radius .3s;
+	 z-index: 9999;
  }
 
      .chat-container.minimized {
@@ -726,4 +727,17 @@ footer .container {
 .contact-header p {
   color: #444;
   font-size: 1.1rem;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-links .lang-switch {
+  margin-left: auto;
+}
+
+#langToggle img {
+  border-radius: 3px;
 }
