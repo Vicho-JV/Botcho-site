@@ -205,9 +205,11 @@ function applyLanguage(lang) {
   });
 
   const toggleBtn = document.getElementById("langToggle");
+  const nextLang = lang === 'en' ? 'bg' : 'en';
+  const nextFlag = nextLang === 'en' ? 'en' : 'bg';
   toggleBtn.innerHTML = `
-    <img src="flags${lang === 'en' ? 'gb' : 'bg'}.png" alt="${lang.toUpperCase()} Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
-    ${lang.toUpperCase()}
+    <img src="flags${nextFlag}.png" alt="${nextLang.toUpperCase()} Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
+    ${nextLang.toUpperCase()}
   `;
 
   document.documentElement.lang = lang;
