@@ -10,324 +10,288 @@
   <link rel="stylesheet"
        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
- <style>
-/* Chatbot Widget CSS – Creative Redesign for Botcho */
-/* Brand Colors (from main site): primary navy and accent orange */
-:root {
-    --primary-color: #081847;
-    --accent-color: #ff7f2a;
-    --minimized-size: 70px;
-}
+  <style>
+    /* Chatbot Widget CSS – Creative Redesign for Botcho */
+    /* Brand Colors (from main site): primary navy and accent orange */
+    :root {
+        --primary-color: #081847;
+        --accent-color: #ff7f2a;
+        --minimized-size: 70px;
+    }
 
-/* Container (open chat window) */
-.chat-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: clamp(240px, 90vw, 320px);
-    background-color: #fff;  /* base background (mostly covered by inner sections) */
-    color: #333;
-    border-radius: 16px;     /* increased radius for smoother corners */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);  /* a slightly deeper shadow for elevation */
-    overflow: hidden;
-    transition: width 0.3s, height 0.3s, border-radius 0.3s,
-                transform 0.3s, box-shadow 0.3s;
-}
+    /* Container (open chat window) */
+    .chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: clamp(240px, 90vw, 320px);
+        background-color: #fff;
+        color: #333;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        overflow: hidden;
+        transition: width 0.3s, height 0.3s, border-radius 0.3s,
+                    transform 0.3s, box-shadow 0.3s;
+    }
 
-/* Minimized State (chat head bubble) */
-.chat-container.minimized {
-    width: var(--minimized-size);
-    height: var(--minimized-size);
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    background-image: none;  /* remove logo image, we'll use an icon instead */
-    cursor: pointer;
-    /* Center the icon inside the circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Allow pulsing ring to show outside the circle */
-    overflow: visible;
-    transform-origin: bottom right;
-}
-.chat-container.minimized::before {
-    /* Chat bubble icon (FontAwesome comment icon) */
-    content: "\f075";  /* FontAwesome chat icon (comment) */
-    font-family: FontAwesome;
-    font-size: 1.4rem;
-    font-weight: 900;        /* use solid icon weight if FontAwesome 5+ */
-    color: #fff;
-    display: inline-block;
-}
-/* Pulsating ring animation around the chat head */
-.chat-container.minimized::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: var(--minimized-size);
-    height: var(--minimized-size);
-    border: 3px solid var(--accent-color);
-    border-radius: 50%;
-    opacity: 0;
-    animation: pulse-ring 3s infinite;
-    /* Ensure the ring is behind the chat icon circle */
-    z-index: -1;
-}
-@keyframes pulse-ring {
-    0% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.8); opacity: 0; }
-    100% { transform: scale(1.8); opacity: 0; }
-}
-/* Hover effect for minimized bubble (grow and glow) */
-.chat-container.minimized:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    transform: scale(1.05);
-}
+    /* Minimized State (chat head bubble) */
+    .chat-container.minimized {
+        width: var(--minimized-size);
+        height: var(--minimized-size);
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        background-image: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        transform-origin: bottom right;
+    }
+    .chat-container.minimized::before {
+        content: "\f075";
+        font-family: FontAwesome;
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: #fff;
+        display: inline-block;
+    }
+    /* Pulsating ring animation around the chat head */
+    .chat-container.minimized::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: var(--minimized-size);
+        height: var(--minimized-size);
+        border: 3px solid var(--accent-color);
+        border-radius: 50%;
+        opacity: 0;
+        animation: pulse-ring 3s infinite;
+        z-index: -1;
+    }
+    @keyframes pulse-ring {
+        0% { transform: scale(1); opacity: 0.6; }
+        50% { transform: scale(1.8); opacity: 0; }
+        100% { transform: scale(1.8); opacity: 0; }
+    }
+    /* Hover effect for minimized bubble */
+    .chat-container.minimized:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        transform: scale(1.05);
+    }
 
-/* Hide the header and other parts when minimized (only show the bubble) */
-.chat-container.minimized .chat-header,
-.chat-container.minimized .chat-body,
-.chat-container.minimized .chat-input {
-    display: none;
-}
+    /* Hide parts when minimized */
+    .chat-container.minimized .chat-header,
+    .chat-container.minimized .chat-body,
+    .chat-container.minimized .chat-input {
+        display: none;
+    }
 
-/* Header (visible when chat is open) */
-.chat-header {
-    background: var(--primary-color); /* solid navy */
-    color: #fff;
-    padding: 18px 16px 16px 16px;     /* more top/bottom padding */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 48px;                 /* minimum height for headroom */
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-}
-.chat-header h4 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 1.13rem;    /* slightly bigger */
-    line-height: 1.2;      /* improves vertical alignment */
-    margin: 0;
-    margin-right: auto;    /* keeps it left-aligned if you want button on the right */
-    letter-spacing: 0.02em;
-}
-.minimize-btn {
-    margin-right: 4px;
-    align-self: center;
-}
-.minimize-btn {
-    margin-right: 4px;
-    background: #081847;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    font-size: 18px;
-    color: var(--accent-color);
-    cursor: pointer;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 0 2px #081847; /* only the navy outline! */
-    z-index: 2;
-}
-.minimize-btn:hover {
-    background: var(--accent-color);
-    color: #fff;
-    transform: scale(1.07);
-    box-shadow: 0 0 0 2px var(--accent-color); /* only the orange on hover */
-}
+    /* Header (open chat) */
+    .chat-header {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 18px 16px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+    .chat-header h4 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1.13rem;
+        line-height: 1.2;
+        margin: 0;
+        margin-right: auto;
+        letter-spacing: 0.02em;
+    }
+    .minimize-btn {
+        margin-right: 4px;
+        align-self: center;
+        background: #081847;
+        border: 2px solid var(--accent-color);
+        border-radius: 50%;
+        font-size: 18px;
+        color: var(--accent-color);
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 0 0 2px #081847;
+        z-index: 2;
+    }
+    .minimize-btn:hover {
+        background: var(--accent-color);
+        color: #fff;
+        transform: scale(1.07);
+        box-shadow: 0 0 0 2px var(--accent-color);
+    }
 
-/* Body (messages list + input area container) */
-.chat-body {
-    display: flex;
-    flex-direction: column;
-    height: clamp(200px, 50vh, 360px);
-    background-color: #f9f9f9; /* light background for chat area */
-}
-.messages {
-    flex: 1;
-    padding: 12px;
-    overflow-y: auto;
-    /* You can add a subtle background pattern or gradient here if desired */
-    /* e.g., background: linear-gradient(to bottom, #fafafa, #f0f0f0); */
-}
+    /* Body (messages area) */
+    .chat-body {
+        display: flex;
+        flex-direction: column;
+        height: clamp(200px, 50vh, 360px);
+        background-color: #f9f9f9;
+    }
+    .messages {
+        flex: 1;
+        padding: 12px;
+        overflow-y: auto;
+    }
 
-/* Message bubbles */
-.message-row.bot {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    clear: both;
-}
-.message-row.bot .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #ccc;
-    margin-right: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-.message-row.bot .message.bot {
-    background: #e9e9eb;
-    color: #333;
-    padding: 8px 12px;
-    margin: 0;
-    max-width: 80%;
-    /* New bubble shape for bot: rounded with a flat tail on bottom-left */
-    border-radius: 16px 16px 16px 4px;
-    /* Add a slight shadow to bot bubbles for depth */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-.message-row.user {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    clear: both;
-}
-.message-row.user .message.user {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 8px 12px;
-    margin: 0;
-    max-width: 80%;
-    /* New bubble shape for user: rounded with a flat tail on bottom-right */
-    border-radius: 16px 4px 16px 16px;
-    /* Slight shadow for user bubbles as well */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    /* Align text right for user messages (optional stylistic choice) */
-    text-align: left;
-    /* (We keep text left-aligned even on right side to maintain readability) */
-}
+    /* Message bubbles */
+    .message-row.bot {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        clear: both;
+    }
+    .message-row.bot .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ccc;
+        margin-right: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+    .message-row.bot .message.bot {
+        background: #e9e9eb;
+        color: #333;
+        padding: 8px 12px;
+        margin: 0;
+        max-width: 80%;
+        border-radius: 16px 16px 16px 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .message-row.user {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        clear: both;
+    }
+    .message-row.user .message.user {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 8px 12px;
+        margin: 0;
+        max-width: 80%;
+        border-radius: 16px 4px 16px 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        text-align: left;
+    }
 
-/* Input area (text box + send/mic buttons) */
-.chat-input {
-    padding: 10px 12px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.input-wrapper {
-    position: relative;
-    width: 100%;
-}
-/* Text input field */
-.input-wrapper input {
-    width: 100%;
-    height: 45px;
-    box-sizing: border-box;
-    padding: 0 100px 0 14px;  /* space for buttons on the right */
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #ddd;
-    border-radius: 22px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.input-wrapper input::placeholder {
-    color: #999;
-}
-.input-wrapper input:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
-    outline: none;
-}
-/* Send and Mic buttons */
-.input-wrapper button.send-btn,
-.input-wrapper button.mic-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background-color: var(--accent-color);
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.3s, transform 0.2s;
-}
-/* Position of the buttons inside input wrapper */
-.input-wrapper button.send-btn { right: 12px; /* Send (typically an arrow icon) */ }
-.input-wrapper button.mic-btn { right: 54px; /* Mic button to the left of send */ }
-.input-wrapper button.send-btn:hover,
-.input-wrapper button.mic-btn:hover {
-    background-color: #e67300;
-    /* Combine BOTH transforms! */
-    transform: translateY(-50%) scale(1.01); /* Use 1.01 for a touch of smoothness */
-}
-/* Microphone recording state styling */
-.input-wrapper button.mic-btn.recording {
-    background-color: #c0392b !important;  /* red background when recording */
-}
-.input-wrapper button.mic-btn.recording::after {
-    content: "🔴";
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    font-size: 10px;
-}
-/* If using FontAwesome icon inside mic button, ensure it's white when recording */
-.input-wrapper button.mic-btn.recording i.fa-microphone { color: #fff; }
+    /* Input area */
+    .chat-input {
+        padding: 10px 12px;
+        background-color: #f9f9f9;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+    .input-wrapper input {
+        width: 100%;
+        height: 45px;
+        box-sizing: border-box;
+        padding: 0 100px 0 14px;
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
+        border: 1px solid #ddd;
+        border-radius: 22px;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-wrapper input::placeholder {
+        color: #999;
+    }
+    .input-wrapper input:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
+        outline: none;
+    }
+    /* Send and Mic buttons */
+    .input-wrapper button.send-btn,
+    .input-wrapper button.mic-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: var(--accent-color);
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    .input-wrapper button.send-btn { right: 12px; }
+    .input-wrapper button.mic-btn { right: 54px; }
+    .input-wrapper button.send-btn:hover,
+    .input-wrapper button.mic-btn:hover {
+        background-color: #e67300;
+        transform: translateY(-50%) scale(1.01);
+    }
+    .input-wrapper button.mic-btn.recording {
+        background-color: #c0392b !important;
+    }
+    .input-wrapper button.mic-btn.recording::after {
+        content: "🔴";
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        font-size: 10px;
+    }
+    .input-wrapper button.mic-btn.recording i.fa-microphone {
+        color: #fff;
+    }
 
-/* "Powered by" branding or any footer note in the widget */
-.plug {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 12px;
-    padding: 4px 8px;
-    margin-top: 8px;
-    font-family: inherit;
-    font-size: 12px;
-    color: #555;
-    text-decoration: none;
-}
-.plug img {
-    width: 18px;
-    height: 18px;
-    margin-right: 6px;
-}
+    /* "Powered by" branding */
+    .plug {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 12px;
+        padding: 4px 8px;
+        margin-top: 8px;
+        font-family: inherit;
+        font-size: 13px;
+        color: #555;
+        text-decoration: none;
+        gap: 5px;
+    }
+    .plug-logo {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
 
-/* Animations for message appearance */
-.message-row {
-    animation: fadeIn 0.3s ease forwards;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-.plug {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 12px;
-    padding: 4px 8px;
-    margin-top: 8px;
-    font-family: inherit;
-    font-size: 13px;
-    color: #555;
-    text-decoration: none;
-    gap: 5px;
-}
-.plug-logo {
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-    border-radius: 4px;
-    object-fit: cover;
-}
- </style>
-
+    /* Message appearance animation */
+    .message-row {
+        animation: fadeIn 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -336,10 +300,11 @@
       <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html" class="active">Начало</a></li>
-          <li><a href="home.html">За нас</a></li>
-          <li><a href="products.html">Продукти</a></li>
-          <li><a href="contact.html">Контакти</a></li>
+          <li><a href="index.html" data-key="navHome" class="active">Начало</a></li>
+          <li><a href="home.html" data-key="navAbout">За нас</a></li>
+          <li><a href="products.html" data-key="navProducts">Продукти</a></li>
+          <li><a href="contact.html" data-key="navContact">Контакти</a></li>
+          <li><a href="#" id="langToggle">EN</a></li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -352,33 +317,33 @@
     <section class="hero">
       <div class="container">
         <img src="logo.png" alt="Botcho Logo" class="hero-logo">
-        <h2>Иновирайте с Botcho</h2>
-        <p>Предлагаме модерни решения за съвременния бизнес.</p>
-        <a href="products.html" class="btn">Нашите продукти</a>
+        <h2 data-key="heroHeading">Иновирайте с Botcho</h2>
+        <p data-key="heroText">Предлагаме модерни решения за съвременния бизнес.</p>
+        <a href="products.html" class="btn" data-key="heroBtn">Нашите продукти</a>
       </div>
     </section>
 
     <section class="features">
       <div class="container">
-        <h2>Нашите услуги</h2>
+        <h2 data-key="featuresHeading">Нашите услуги</h2>
         <div class="services-description">
-          <p>Botcho е интелигентен AI чатбот, създаден специално за нуждите на българския бизнес. Той автоматизира клиентското обслужване на вашия уебсайт, отговаря мигновено на въпроси, спестява време и подобрява потребителското изживяване – всичко това с изчистен дизайн, съобразен с вашата визия.</p>
+           <p data-key="servicesDescription">Botcho е интелигентен AI чатбот, създаден специално за нуждите на българския бизнес. Той автоматизира клиентското обслужване на вашия уебсайт, отговаря мигновено на въпроси, спестява време и подобрява потребителското изживяване – всичко това с изчистен дизайн, съобразен с вашата визия.</p>
         </div>
         <div class="features-container">
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-cloud"></i></div>
-            <h3>Изцяло съобразен с вашия бранд</h3>
-            <p>Botcho изглежда и се държи така, както вие искате – с цветове, стил и тон, които отразяват идентичността на вашия бизнес.</p>
+            <h3 data-key="featureTitle1">Изцяло съобразен с вашия бранд</h3>
+            <p data-key="featureText1">Botcho изглежда и се държи така, както вие искате – с цветове, стил и тон, които отразяват идентичността на вашия бизнес.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Лесна интеграция без усилия</h3>
-            <p>Botcho се интегрира директно във вашия уебсайт без нужда от технически познания. Получавате всичко необходимо и сме до вас при всяка стъпка.</p>
+            <h3 data-key="featureTitle2">Лесна интеграция без усилия</h3>
+            <p data-key="featureText2">Botcho се интегрира директно във вашия уебсайт без нужда от технически познания. Получавате всичко необходимо и сме до вас при всяка стъпка.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
-            <h3>Повече време, по-малко въпроси</h3>
-            <p>Botcho поема клиентските въпроси, така че вие и вашият екип да се фокусирате върху по-важните задачи.</p>
+            <h3 data-key="featureTitle3">Повече време, по-малко въпроси</h3>
+            <p data-key="featureText3">Botcho поема клиентските въпроси, така че вие и вашият екип да се фокусирате върху по-важните задачи.</p>
           </div>
         </div>
       </div>
@@ -388,11 +353,11 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
-        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
-        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+        <p data-key="addressLine"><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
+        <p data-key="emailLine"><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
+        <p data-key="phoneLine"><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
       </div>
-      <p>© 2025 Botcho. Всички права запазени.</p>
+      <p data-key="footerRights">© 2025 Botcho. Всички права запазени.</p>
     </div>
   </footer>
   <div class="chat-container minimized" id="chatBox">
@@ -405,19 +370,18 @@
         <div class="chat-input">
             <div class="input-wrapper">
                 <input type="text" id="userInput" placeholder="Ask anything you want" />
-                <!-- Microphone button added -->
                 <button class="mic-btn" id="micBtn">
                     <i class="fas fa-microphone"></i>
                 </button>
                 <button class="send-btn" id="sendBtn">&#10148;</button>
             </div>
             <div class="plug">
-    <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-    <span>Powered by Botcho</span>
-			</div>
+                <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+                <span>Powered by Botcho</span>
+            </div>
         </div>
     </div>
-</div>
-<script src="func.js"></script>
+  </div>
+  <script src="func.js"></script>
 </body>
 </html>
