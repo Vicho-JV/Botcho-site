@@ -5,282 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Botcho</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
-
-  <style>
-    /* Chatbot Widget CSS – Creative Redesign for Botcho */
-    /* Brand Colors: primary navy and accent orange */
-    :root {
-      --primary-color: #081847;
-      --accent-color: #ff7f2a;
-      --minimized-size: 70px;
-    }
-    /* Container (open chat window) */
-    .chat-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: clamp(240px, 90vw, 320px);
-      background-color: #fff;
-      color: #333;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      overflow: hidden;
-      transition: width 0.3s, height 0.3s, border-radius 0.3s,
-                  transform 0.3s, box-shadow 0.3s;
-    }
-    /* Minimized State (chat head bubble) */
-    .chat-container.minimized {
-      width: var(--minimized-size);
-      height: var(--minimized-size);
-      border-radius: 50%;
-      background-color: var(--primary-color);
-      background-image: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
-      transform-origin: bottom right;
-    }
-    .chat-container.minimized::before {
-      content: "\f075";  /* FontAwesome comment icon */
-      font-family: FontAwesome;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: #fff;
-      display: inline-block;
-    }
-    .chat-container.minimized::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: var(--minimized-size);
-      height: var(--minimized-size);
-      border: 3px solid var(--accent-color);
-      border-radius: 50%;
-      opacity: 0;
-      animation: pulse-ring 3s infinite;
-      z-index: -1;
-    }
-    @keyframes pulse-ring {
-      0%   { transform: scale(1); opacity: 0.6; }
-      50%  { transform: scale(1.8); opacity: 0; }
-      100% { transform: scale(1.8); opacity: 0; }
-    }
-    .chat-container.minimized:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      transform: scale(1.05);
-    }
-    /* Hide header and content when minimized */
-    .chat-container.minimized .chat-header,
-    .chat-container.minimized .chat-body,
-    .chat-container.minimized .chat-input {
-      display: none;
-    }
-    /* Chat Header (when open) */
-    .chat-header {
-      background: var(--primary-color);
-      color: #fff;
-      padding: 18px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 48px;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-    }
-    .chat-header h4 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1.13rem;
-      line-height: 1.2;
-      margin: 0;
-      margin-right: auto;
-      letter-spacing: 0.02em;
-    }
-    .minimize-btn {
-      margin-right: 4px;
-      align-self: center;
-      background: #081847;
-      border: 2px solid var(--accent-color);
-      border-radius: 50%;
-      font-size: 18px;
-      color: var(--accent-color);
-      cursor: pointer;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 0 2px #081847;
-      z-index: 2;
-    }
-    .minimize-btn:hover {
-      background: var(--accent-color);
-      color: #fff;
-      transform: scale(1.07);
-      box-shadow: 0 0 0 2px var(--accent-color);
-    }
-    /* Chat Body */
-    .chat-body {
-      display: flex;
-      flex-direction: column;
-      height: clamp(200px, 50vh, 360px);
-      background-color: #f9f9f9;
-    }
-    .messages {
-      flex: 1;
-      padding: 12px;
-      overflow-y: auto;
-      /* optional background gradient or pattern */
-    }
-    /* Message bubbles */
-    .message-row.bot {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 10px;
-      clear: both;
-    }
-    .message-row.bot .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #ccc;
-      margin-right: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .message-row.bot .message.bot {
-      background: #e9e9eb;
-      color: #333;
-      padding: 8px 12px;
-      margin: 0;
-      max-width: 80%;
-      border-radius: 16px 16px 16px 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .message-row.user {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-      clear: both;
-    }
-    .message-row.user .message.user {
-      background: var(--primary-color);
-      color: #fff;
-      padding: 8px 12px;
-      margin: 0;
-      max-width: 80%;
-      border-radius: 16px 4px 16px 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    /* Input area (text box + buttons) */
-    .chat-input {
-      padding: 10px 12px;
-      background-color: #f9f9f9;
-      border-top: 1px solid #eee;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .input-wrapper {
-      position: relative;
-      width: 100%;
-    }
-    .input-wrapper input {
-      width: 100%;
-      height: 45px;
-      padding: 0 100px 0 14px;
-      font-size: 14px;
-      font-family: 'Roboto', sans-serif;
-      border: 1px solid #ddd;
-      border-radius: 22px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .input-wrapper input::placeholder {
-      color: #999;
-    }
-    .input-wrapper input:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
-      outline: none;
-    }
-    .input-wrapper button.send-btn,
-    .input-wrapper button.mic-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      background-color: var(--accent-color);
-      cursor: pointer;
-      padding: 0;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .input-wrapper button.send-btn { right: 12px; }
-    .input-wrapper button.mic-btn { right: 54px; }
-    .input-wrapper button.send-btn:hover,
-    .input-wrapper button.mic-btn:hover {
-      background-color: #e67300;
-      transform: translateY(-50%) scale(1.01);
-    }
-    .input-wrapper button.mic-btn.recording {
-      background-color: #c0392b !important;
-    }
-    .input-wrapper button.mic-btn.recording::after {
-      content: "🔴";
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      font-size: 10px;
-    }
-    .input-wrapper button.mic-btn.recording i.fa-microphone { color: #fff; }
-    /* "Powered by" branding */
-    .plug {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 4px 8px;
-      margin-top: 8px;
-      font-family: inherit;
-      font-size: 12px;
-      color: #555;
-      text-decoration: none;
-      gap: 5px;
-    }
-    .plug img {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-    }
-    .message-row {
-      animation: fadeIn 0.3s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .plug-logo {
-      width: 16px;
-      height: 16px;
-      margin-right: 4px;
-      border-radius: 4px;
-      object-fit: cover;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -289,11 +15,11 @@
       <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
+          <li><a href="#" id="langToggle"><img src="flag-en.png" alt="English" style="width:24px; height:auto;"></a></li>
           <li><a href="index.html" class="active"><span class="lang-bg">Начало</span><span class="lang-en" style="display:none;">Home</span></a></li>
           <li><a href="home.html"><span class="lang-bg">За нас</span><span class="lang-en" style="display:none;">About Us</span></a></li>
           <li><a href="products.html"><span class="lang-bg">Продукти</span><span class="lang-en" style="display:none;">Products</span></a></li>
           <li><a href="contact.html"><span class="lang-bg">Контакти</span><span class="lang-en" style="display:none;">Contact</span></a></li>
-          <li><a href="#" id="langToggle"><img src="flag-en.png" alt="English" style="width:24px; height:auto;"></a></li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -349,6 +75,28 @@
       <p><span class="lang-bg">© 2025 Botcho. Всички права запазени.</span><span class="lang-en" style="display:none;">© 2025 Botcho. All rights reserved.</span></p>
     </div>
   </footer>
+  <div class="chat-container minimized" id="chatBox">
+    <div class="chat-header">
+      <h4><span class="lang-bg">Чат асистент</span><span class="lang-en" style="display:none;">Chat assistance</span></h4>
+      <button class="minimize-btn" id="minimizeBtn">+</button>
+    </div>
+    <div class="chat-body hidden" id="chatBody">
+      <div class="messages" id="messages"></div>
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <input type="text" id="userInput" placeholder="Попитайте каквото желаете" />
+          <button class="mic-btn" id="micBtn">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="send-btn" id="sendBtn">&#10148;</button>
+        </div>
+        <div class="plug">
+          <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+          <span class="lang-bg">Задвижвано от Botcho</span><span class="lang-en" style="display:none;">Powered by Botcho</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="func.js"></script>
   <script src="lang-switch.js"></script>
 </body>

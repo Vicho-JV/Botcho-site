@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
       flagIcon.alt = 'English';
       document.documentElement.lang = 'bg';
     }
+    // Update placeholder text for chatbot input if present
+    const chatInput = document.getElementById('userInput');
+    if (chatInput) {
+      chatInput.placeholder = (lang === 'en') ? 'Ask anything you want' : 'Попитайте каквото желаете';
+    }
     localStorage.setItem('siteLang', lang);
     currentLang = lang;
   }
@@ -24,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleLink = document.getElementById('langToggle');
   const flagIcon = toggleLink.querySelector('img');
 
-  // Apply saved language preference on every page load
+  // Apply saved language preference on page load
   setLanguage(currentLang);
 
   // Toggle language on click
