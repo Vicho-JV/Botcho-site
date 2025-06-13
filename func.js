@@ -217,6 +217,8 @@ function applyLanguage(lang) {
 if (currentLang === "en") {
   applyLanguage("en");
 } else {
+	 applyLanguage("bg");
+}
   document.getElementById("langToggle").textContent = "EN";
 }
 document.getElementById("langToggle").addEventListener("click", e => {
