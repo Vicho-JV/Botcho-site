@@ -199,21 +199,7 @@ document.querySelectorAll("[data-key]").forEach(el => {
   translations.bg[el.dataset.key] = el.innerHTML;
 });
 let currentLang = localStorage.getItem("lang") || "bg";
-function applyLanguage(lang) {
-  document.querySelectorAll("[data-key]").forEach(el => {
-    el.innerHTML = translations[lang][el.dataset.key];
-  });
-
-  const toggleBtn = document.getElementById("langToggle");
-  const nextLang = lang === 'en' ? 'bg' : 'en';
-  const nextFlag = nextLang === 'en' ? 'en' : 'bg';
-  toggleBtn.innerHTML = `
-    <img src="flags${nextFlag}.png" alt="${nextLang.toUpperCase()} Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
-    ${nextLang.toUpperCase()}
-  `;
-
-  document.documentElement.lang = lang;
-}
+applyLanguage(currentLang);
 if (currentLang === "en") {
   applyLanguage("en");
 } else {
