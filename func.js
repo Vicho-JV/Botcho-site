@@ -198,22 +198,29 @@ translations.bg = {};
 document.querySelectorAll("[data-key]").forEach(el => {
   translations.bg[el.dataset.key] = el.innerHTML;
 });
-let currentLang = localStorage.getItem("lang") || "bg";
-applyLanguage(currentLang);
-if (currentLang === "en") {
-  applyLanguage("en");
-} else {
-	
-  document.getElementById("langToggle").textContent = "EN";
+function applyLanguage(lang) {
+  document.querySelectorAll("[data-key]").forEach(el => {
+    el.innerHTML = translations[lang][el.dataset.key];
+  });
+
+  const toggleBtn = document.getElementById("langToggle");
+  const nextLang = lang === 'en' ? 'bg' : 'en';
+  const nextFlag = nextLang === 'en' ? 'flagsen' : 'flagsbg';
+
+  toggleBtn.innerHTML = `
+    <img src="${nextFlag}.png" alt="${nextLang.toUpperCase()} Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
+    ${nextLang.toUpperCase()}
+  `;
+
+  document.documentElement.lang = lang;
 }
+let currentLang = localStorage.getItem("lang") || "bg";
+applyLanguage(currentLang);  // Ensure it applies on first load
+
 document.getElementById("langToggle").addEventListener("click", e => {
   e.preventDefault();
   let lang = localStorage.getItem("lang") || "bg";
-  if (lang === "bg") {
-    localStorage.setItem("lang", "en");
-    applyLanguage("en");
-  } else {
-    localStorage.setItem("lang", "bg");
-    applyLanguage("bg");
-  }
+  lang = lang === "bg" ? "en" : "bg";
+  localStorage.setItem("lang", lang);
+  applyLanguage(lang);
 });
