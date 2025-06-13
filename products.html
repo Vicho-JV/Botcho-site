@@ -11,7 +11,7 @@
     /* Chatbot Widget CSS – Creative Redesign for Botcho */
     /* (Same chat CSS as in index.html, omitted for brevity) */
     :root { --primary-color: #081847; --accent-color: #ff7f2a; --minimized-size: 70px; }
-    .chat-container { position: fixed; bottom: 20px; right: 20px; width: clamp(240px, 90vw, 320px); background-color: #fff; color: #333; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); overflow: hidden; transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s; z-index: 9999; }
+    .chat-container { position: fixed; bottom: 20px; right: 20px; width: clamp(240px, 90vw, 320px); background-color: #fff; color: #333; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); overflow: hidden; transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;   z-index: 9999; }
     .chat-container.minimized { width: 70px; height: 70px; border-radius: 50%; background-color: #081847; background-image: none; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: visible; transform-origin: bottom right; }
     .chat-container.minimized::before { content: "\f075"; font-family: FontAwesome; font-size: 1.4rem; font-weight: 900; color: #fff; display: inline-block; }
     .chat-container.minimized::after { content: ""; position: absolute; top: 0; left: 0; width: 70px; height: 70px; border: 3px solid #ff7f2a; border-radius: 50%; opacity: 0; animation: pulse-ring 3s infinite; z-index: -1; }
