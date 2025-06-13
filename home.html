@@ -58,6 +58,322 @@
       <p><span class="lang-bg">© 2025 Botcho. Всички права запазени.</span><span class="lang-en" style="display:none;">© 2025 Botcho. All rights reserved.</span></p>
     </div>
   </footer>
-  <script src="lang-switch.js"></script>
-</body>
-</html>
+ <style>
+/* Chatbot Widget CSS – Creative Redesign for Botcho */</body>
+/* Brand Colors (from main site): primary navy and accent orange */</html>
+:root {
+    --primary-color: #081847;
+    --accent-color: #ff7f2a;
+    --minimized-size: 70px;
+}
+
+/* Container (open chat window) */
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: clamp(240px, 90vw, 320px);
+    background-color: #fff;  /* base background (mostly covered by inner sections) */
+    color: #333;
+    border-radius: 16px;     /* increased radius for smoother corners */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);  /* a slightly deeper shadow for elevation */
+    overflow: hidden;
+    transition: width 0.3s, height 0.3s, border-radius 0.3s,
+                transform 0.3s, box-shadow 0.3s;
+}
+
+/* Minimized State (chat head bubble) */
+.chat-container.minimized {
+    width: var(--minimized-size);
+    height: var(--minimized-size);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    background-image: none;  /* remove logo image, we'll use an icon instead */
+    cursor: pointer;
+    /* Center the icon inside the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Allow pulsing ring to show outside the circle */
+    overflow: visible;
+    transform-origin: bottom right;
+}
+.chat-container.minimized::before {
+    /* Chat bubble icon (FontAwesome comment icon) */
+    content: "\f075";  /* FontAwesome chat icon (comment) */
+    font-family: FontAwesome;
+    font-size: 1.4rem;
+    font-weight: 900;        /* use solid icon weight if FontAwesome 5+ */
+    color: #fff;
+    display: inline-block;
+}
+/* Pulsating ring animation around the chat head */
+.chat-container.minimized::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: var(--minimized-size);
+    height: var(--minimized-size);
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse-ring 3s infinite;
+    /* Ensure the ring is behind the chat icon circle */
+    z-index: -1;
+}
+@keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.8); opacity: 0; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+/* Hover effect for minimized bubble (grow and glow) */
+.chat-container.minimized:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+}
+
+/* Hide the header and other parts when minimized (only show the bubble) */
+.chat-container.minimized .chat-header,
+.chat-container.minimized .chat-body,
+.chat-container.minimized .chat-input {
+    display: none;
+}
+
+/* Header (visible when chat is open) */
+.chat-header {
+    background: var(--primary-color); /* solid navy */
+    color: #fff;
+    padding: 18px 16px 16px 16px;     /* more top/bottom padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;                 /* minimum height for headroom */
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+.chat-header h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.13rem;    /* slightly bigger */
+    line-height: 1.2;      /* improves vertical alignment */
+    margin: 0;
+    margin-right: auto;    /* keeps it left-aligned if you want button on the right */
+    letter-spacing: 0.02em;
+}
+.minimize-btn {
+    margin-right: 4px;
+    align-self: center;
+}
+.minimize-btn {
+    margin-right: 4px;
+    background: #081847;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--accent-color);
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 0 2px #081847; /* only the navy outline! */
+    z-index: 2;
+}
+.minimize-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.07);
+    box-shadow: 0 0 0 2px var(--accent-color); /* only the orange on hover */
+}
+
+/* Body (messages list + input area container) */
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    height: clamp(200px, 50vh, 360px);
+    background-color: #f9f9f9; /* light background for chat area */
+}
+.messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    /* You can add a subtle background pattern or gradient here if desired */
+    /* e.g., background: linear-gradient(to bottom, #fafafa, #f0f0f0); */
+}
+
+/* Message bubbles */
+.message-row.bot {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    clear: both;
+}
+.message-row.bot .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-right: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.message-row.bot .message.bot {
+    background: #e9e9eb;
+    color: #333;
+    padding: 8px 12px;
+    margin: 0;
+    max-width: 80%;
+    /* New bubble shape for bot: rounded with a flat tail on bottom-left */
+    border-radius: 16px 16px 16px 4px;
+    /* Add a slight shadow to bot bubbles for depth */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.message-row.user {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    clear: both;
+}
+.message-row.user .message.user {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 8px 12px;
+    margin: 0;
+    max-width: 80%;
+    /* New bubble shape for user: rounded with a flat tail on bottom-right */
+    border-radius: 16px 4px 16px 16px;
+    /* Slight shadow for user bubbles as well */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    /* Align text right for user messages (optional stylistic choice) */
+    text-align: left;
+    /* (We keep text left-aligned even on right side to maintain readability) */
+}
+
+/* Input area (text box + send/mic buttons) */
+.chat-input {
+    padding: 10px 12px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+/* Text input field */
+.input-wrapper input {
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 0 100px 0 14px;  /* space for buttons on the right */
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 22px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-wrapper input::placeholder {
+    color: #999;
+}
+.input-wrapper input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
+    outline: none;
+}
+/* Send and Mic buttons */
+.input-wrapper button.send-btn,
+.input-wrapper button.mic-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s, transform 0.2s;
+}
+/* Position of the buttons inside input wrapper */
+.input-wrapper button.send-btn { right: 12px; /* Send (typically an arrow icon) */ }
+.input-wrapper button.mic-btn { right: 54px; /* Mic button to the left of send */ }
+.input-wrapper button.send-btn:hover,
+.input-wrapper button.mic-btn:hover {
+    background-color: #e67300;
+    /* Combine BOTH transforms! */
+    transform: translateY(-50%) scale(1.01); /* Use 1.01 for a touch of smoothness */
+}
+/* Microphone recording state styling */
+.input-wrapper button.mic-btn.recording {
+    background-color: #c0392b !important;  /* red background when recording */
+}
+.input-wrapper button.mic-btn.recording::after {
+    content: "🔴";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 10px;
+}
+/* If using FontAwesome icon inside mic button, ensure it's white when recording */
+.input-wrapper button.mic-btn.recording i.fa-microphone { color: #fff; }
+
+/* "Powered by" branding or any footer note in the widget */
+.plug {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-top: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+}
+.plug img {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+}
+
+/* Animations for message appearance */
+.message-row {
+    animation: fadeIn 0.3s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.plug {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-top: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    gap: 5px;
+}
+.plug-logo {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+ </style>
+
+<script src="func.js"></script>
