@@ -66,6 +66,31 @@ header .container {
   background: var(--accent-color);
   box-shadow: 0 2px 12px 0 rgba(255,127,42,0.09);
 }
+#nav-toggle {
+  display: none !important;
+  position: absolute !important; /* double safety */
+  left: -9999px; /* move it way off screen if some browser still renders it */
+}
+header {
+  background-color: var(--primary-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 4px 24px rgba(8,24,71,0.13);
+  backdrop-filter: blur(2px);
+}
+header::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-color) 0%, transparent 90%);
+  opacity: 0.7;
+  position: absolute;
+  left: 0; bottom: 0;
+  z-index: 2;
+}
 .nav-toggle-label {
   display: none;
   cursor: pointer;
