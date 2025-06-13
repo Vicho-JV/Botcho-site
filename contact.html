@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Botcho - Контакти</title>
+  <title>Botcho - Contact</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -15,10 +15,11 @@
       <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">Начало</a></li>
-          <li><a href="home.html">За нас</a></li>
-          <li><a href="products.html">Продукти</a></li>
-          <li><a href="contact.html" class="active">Контакти</a></li>
+          <li><a href="index.html"><span class="lang-bg">Начало</span><span class="lang-en" style="display:none;">Home</span></a></li>
+          <li><a href="home.html"><span class="lang-bg">За нас</span><span class="lang-en" style="display:none;">About Us</span></a></li>
+          <li><a href="products.html"><span class="lang-bg">Продукти</span><span class="lang-en" style="display:none;">Products</span></a></li>
+          <li><a href="contact.html" class="active"><span class="lang-bg">Контакти</span><span class="lang-en" style="display:none;">Contact</span></a></li>
+          <li><a href="#" id="langToggle"><img src="flag-en.png" alt="English" style="width:24px; height:auto;"></a></li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -30,21 +31,21 @@
   <main>
     <section class="content-section">
       <div class="container">
-        <h2>Свържете се с нас</h2>
-        <p>Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
+        <h2><span class="lang-bg">Свържете се с нас</span><span class="lang-en" style="display:none;">Contact Us</span></h2>
+        <p><span class="lang-bg">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</span><span class="lang-en" style="display:none;">Have questions or comments? We'd love to hear from you. Fill out the form below to get in touch with the Botcho team.</span></p>
         <form class="contact-form" action="#" method="post">
-          <label for="name">Име</label>
+          <label for="name"><span class="lang-bg">Име</span><span class="lang-en" style="display:none;">Name</span></label>
           <input type="text" id="name" name="name" required>
-          <label for="email">Имейл</label>
+          <label for="email"><span class="lang-bg">Имейл</span><span class="lang-en" style="display:none;">Email</span></label>
           <input type="email" id="email" name="email" required>
-          <label for="message">Съобщение</label>
+          <label for="message"><span class="lang-bg">Съобщение</span><span class="lang-en" style="display:none;">Message</span></label>
           <textarea id="message" name="message" rows="5" required></textarea>
-          <button type="submit">Изпрати съобщението</button>
+          <button type="submit"><span class="lang-bg">Изпрати съобщението</span><span class="lang-en" style="display:none;">Send Message</span></button>
         </form>
         <div class="contact-info">
-          <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
-          <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
-          <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+          <p><i class="fas fa-map-marker-alt"></i> <span class="lang-bg">Адрес: гр. София, ул. 'Примерна' №1</span><span class="lang-en" style="display:none;">Address: Sofia, "Example" St. No. 1</span></p>
+          <p><i class="fas fa-envelope"></i> <span class="lang-bg">Имейл: info@botcho.com</span><span class="lang-en" style="display:none;">Email: info@botcho.com</span></p>
+          <p><i class="fas fa-phone"></i> <span class="lang-bg">Телефон: +359 88 123 4567</span><span class="lang-en" style="display:none;">Phone: +359 88 123 4567</span></p>
         </div>
       </div>
     </section>
@@ -53,12 +54,13 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
-        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
-        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+        <p><i class="fas fa-map-marker-alt"></i> <span class="lang-bg">Адрес: гр. София, ул. 'Примерна' №1</span><span class="lang-en" style="display:none;">Address: Sofia, "Example" St. No. 1</span></p>
+        <p><i class="fas fa-envelope"></i> <span class="lang-bg">Имейл: info@botcho.com</span><span class="lang-en" style="display:none;">Email: info@botcho.com</span></p>
+        <p><i class="fas fa-phone"></i> <span class="lang-bg">Телефон: +359 88 123 4567</span><span class="lang-en" style="display:none;">Phone: +359 88 123 4567</span></p>
       </div>
-      <p>© 2025 Botcho. Всички права запазени.</p>
+      <p><span class="lang-bg">© 2025 Botcho. Всички права запазени.</span><span class="lang-en" style="display:none;">© 2025 Botcho. All rights reserved.</span></p>
     </div>
   </footer>
+  <script src="lang-switch.js"></script>
 </body>
 </html>

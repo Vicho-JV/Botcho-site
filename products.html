@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Botcho - Продукти</title>
+  <title>Botcho - Products</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -15,10 +15,11 @@
       <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">Начало</a></li>
-          <li><a href="home.html">За нас</a></li>
-          <li><a href="products.html" class="active">Продукти</a></li>
-          <li><a href="contact.html">Контакти</a></li>
+          <li><a href="index.html"><span class="lang-bg">Начало</span><span class="lang-en" style="display:none;">Home</span></a></li>
+          <li><a href="home.html"><span class="lang-bg">За нас</span><span class="lang-en" style="display:none;">About Us</span></a></li>
+          <li><a href="products.html" class="active"><span class="lang-bg">Продукти</span><span class="lang-en" style="display:none;">Products</span></a></li>
+          <li><a href="contact.html"><span class="lang-bg">Контакти</span><span class="lang-en" style="display:none;">Contact</span></a></li>
+          <li><a href="#" id="langToggle"><img src="flag-en.png" alt="English" style="width:24px; height:auto;"></a></li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -30,43 +31,43 @@
   <main>
     <section class="content-section">
       <div class="container">
-        <h2>Botcho Чатбот за бизнес</h2>
+        <h2><span class="lang-bg">Botcho Чатбот за бизнес</span><span class="lang-en" style="display:none;">Botcho Chatbot for Business</span></h2>
         <div class="product-main">
           <div class="product-intro">
             <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="AI Chatbot" class="product-hero-img">
-            <p>Botcho е интелигентен чатбот, създаден специално за малки и средни бизнеси в България. Автоматизира комуникацията с клиенти, разбира български и английски, и се настройва лесно според вашите нужди. Чатботът може да се интегрира към вашия уебсайт и работи 24/7, отговаряйки на най-честите въпроси вместо вас.</p>
+            <p><span class="lang-bg">Botcho е интелигентен чатбот, създаден специално за малки и средни бизнеси в България. Автоматизира комуникацията с клиенти, разбира български и английски, и се настройва лесно според вашите нужди. Чатботът може да се интегрира към вашия уебсайт и работи 24/7, отговаряйки на най-честите въпроси вместо вас.</span><span class="lang-en" style="display:none;">Botcho is an intelligent chatbot designed specifically for small and medium businesses in Bulgaria. It automates communication with customers, understands Bulgarian and English, and can be easily configured to your needs. The chatbot can be integrated into your website and works 24/7, answering the most common questions on your behalf.</span></p>
           </div>
           <div class="product-demo">
             <div class="chat-demo">
-              <div class="chat-message user"><span>Потребител:</span> Здравей! Какво може да прави вашият чатбот?</div>
-              <div class="chat-message bot"><span>Botcho:</span> Здравейте! Аз мога да отговарям на въпроси, да давам информация за продукти, да насочвам към правилните контакти и още много. На разположение съм 24/7!</div>
-              <div class="chat-message user"><span>Потребител:</span> Поддържа ли български език?</div>
-              <div class="chat-message bot"><span>Botcho:</span> Да, напълно разбирам и пиша на български и английски език!</div>
+              <div class="chat-message user"><span class="lang-bg">Потребител: Здравей! Какво може да прави вашият чатбот?</span><span class="lang-en" style="display:none;">User: Hello! What can your chatbot do?</span></div>
+              <div class="chat-message bot"><span class="lang-bg">Botcho: Здравейте! Аз мога да отговарям на въпроси, да давам информация за продукти, да насочвам към правилните контакти и още много. На разположение съм 24/7!</span><span class="lang-en" style="display:none;">Botcho: Hello! I can answer questions, provide information about products, direct you to the right contacts, and much more. I'm available 24/7!</span></div>
+              <div class="chat-message user"><span class="lang-bg">Потребител: Поддържа ли български език?</span><span class="lang-en" style="display:none;">User: Does it support Bulgarian?</span></div>
+              <div class="chat-message bot"><span class="lang-bg">Botcho: Да, напълно разбирам и пиша на български и английски език!</span><span class="lang-en" style="display:none;">Botcho: Yes, I fully understand and write in both Bulgarian and English!</span></div>
             </div>
-            <p class="demo-note">* Демонстрация на реален чат</p>
+            <p class="demo-note"><span class="lang-bg">* Демонстрация на реален чат</span><span class="lang-en" style="display:none;">* Demonstration of an actual chat</span></p>
           </div>
         </div>
-        <h3 class="features-title">Основни функционалности:</h3>
+        <h3 class="features-title"><span class="lang-bg">Основни функционалности:</span><span class="lang-en" style="display:none;">Key Features:</span></h3>
         <div class="product-features-list">
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-language"></i></div>
-            <h4>Двуезична поддръжка</h4>
-            <p>Български и английски, разбира жаргон и формален език.</p>
+            <h4><span class="lang-bg">Двуезична поддръжка</span><span class="lang-en" style="display:none;">Bilingual Support</span></h4>
+            <p><span class="lang-bg">Български и английски, разбира жаргон и формален език.</span><span class="lang-en" style="display:none;">Supports Bulgarian and English; understands both informal and formal language.</span></p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-            <h4>Лесна интеграция</h4>
-            <p>Инсталира се на всеки сайт с няколко клика.</p>
+            <h4><span class="lang-bg">Лесна интеграция</span><span class="lang-en" style="display:none;">Easy Integration</span></h4>
+            <p><span class="lang-bg">Инсталира се на всеки сайт с няколко клика.</span><span class="lang-en" style="display:none;">Can be installed on any site with just a few clicks.</span></p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-clock"></i></div>
-            <h4>Работи 24/7</h4>
-            <p>Вашият бизнес е достъпен винаги, дори в неработно време.</p>
+            <h4><span class="lang-bg">Работи 24/7</span><span class="lang-en" style="display:none;">Works 24/7</span></h4>
+            <p><span class="lang-bg">Вашият бизнес е достъпен винаги, дори в неработно време.</span><span class="lang-en" style="display:none;">Your business is always accessible, even outside of working hours.</span></p>
           </div>
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
-            <h4>Сигурност</h4>
-            <p>Данните на клиентите са защитени според всички стандарти.</p>
+            <h4><span class="lang-bg">Сигурност</span><span class="lang-en" style="display:none;">Security</span></h4>
+            <p><span class="lang-bg">Данните на клиентите са защитени според всички стандарти.</span><span class="lang-en" style="display:none;">Customer data is protected according to all standards.</span></p>
           </div>
         </div>
       </div>
@@ -76,12 +77,13 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
-        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
-        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+        <p><i class="fas fa-map-marker-alt"></i> <span class="lang-bg">Адрес: гр. София, ул. 'Примерна' №1</span><span class="lang-en" style="display:none;">Address: Sofia, "Example" St. No. 1</span></p>
+        <p><i class="fas fa-envelope"></i> <span class="lang-bg">Имейл: info@botcho.com</span><span class="lang-en" style="display:none;">Email: info@botcho.com</span></p>
+        <p><i class="fas fa-phone"></i> <span class="lang-bg">Телефон: +359 88 123 4567</span><span class="lang-en" style="display:none;">Phone: +359 88 123 4567</span></p>
       </div>
-      <p>© 2025 Botcho. Всички права запазени.</p>
+      <p><span class="lang-bg">© 2025 Botcho. Всички права запазени.</span><span class="lang-en" style="display:none;">© 2025 Botcho. All rights reserved.</span></p>
     </div>
   </footer>
+  <script src="lang-switch.js"></script>
 </body>
 </html>

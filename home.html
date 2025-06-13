@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Botcho - За нас</title>
+  <title>Botcho - About Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -15,10 +15,11 @@
       <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">Начало</a></li>
-          <li><a href="home.html" class="active">За нас</a></li>
-          <li><a href="products.html">Продукти</a></li>
-          <li><a href="contact.html">Контакти</a></li>
+          <li><a href="index.html"><span class="lang-bg">Начало</span><span class="lang-en" style="display:none;">Home</span></a></li>
+          <li><a href="home.html" class="active"><span class="lang-bg">За нас</span><span class="lang-en" style="display:none;">About Us</span></a></li>
+          <li><a href="products.html"><span class="lang-bg">Продукти</span><span class="lang-en" style="display:none;">Products</span></a></li>
+          <li><a href="contact.html"><span class="lang-bg">Контакти</span><span class="lang-en" style="display:none;">Contact</span></a></li>
+          <li><a href="#" id="langToggle"><img src="flag-en.png" alt="English" style="width:24px; height:auto;"></a></li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -34,9 +35,9 @@
           <div class="about-content">
             <div class="about-text">
               <div class="about-icon"><i class="fas fa-users"></i></div>
-              <h2>За Botcho</h2>
-              <p><strong>Botcho</strong> е малък, независим проект, създаден с цел да помогне на бизнесите да автоматизират комуникацията си с клиенти. Вместо да губят време в отговаряне на едни и същи въпроси всеки ден, ние предлагаме прост и ефективен чатбот, който разбира както български, така и английски език и може да бъде обучен специално за вашия сайт и съдържание.</p>
-              <p>Не сме голяма фирма, нито софтуерна корпорация. Но работим бързо, слушаме внимателно и се стараем да изградим реална стойност с всяка интеграция. Нашата цел е не просто да продаваме продукт, а да ви спестим време и усилия, като изградим нещо полезно и адаптирано към нуждите ви.</p>
+              <h2><span class="lang-bg">За Botcho</span><span class="lang-en" style="display:none;">About Botcho</span></h2>
+              <p><span class="lang-bg"><strong>Botcho</strong> е малък, независим проект, създаден с цел да помогне на бизнесите да автоматизират комуникацията си с клиенти. Вместо да губят време в отговаряне на едни и същи въпроси всеки ден, ние предлагаме прост и ефективен чатбот, който разбира както български, така и английски език и може да бъде обучен специално за вашия сайт и съдържание.</span><span class="lang-en" style="display:none;"><strong>Botcho</strong> is a small, independent project created to help businesses automate their communication with customers. Instead of wasting time answering the same questions every day, we offer a simple and effective chatbot that understands both Bulgarian and English and can be trained specifically for your website and content.</span></p>
+              <p><span class="lang-bg">Не сме голяма фирма, нито софтуерна корпорация. Но работим бързо, слушаме внимателно и се стараем да изградим реална стойност с всяка интеграция. Нашата цел е не просто да продаваме продукт, а да ви спестим време и усилия, като изградим нещо полезно и адаптирано към нуждите ви.</span><span class="lang-en" style="display:none;">We are not a big company or a software corporation. But we work quickly, listen closely, and strive to create real value with each integration. Our goal is not just to sell a product, but to save you time and effort by building something useful and tailored to your needs.</span></p>
             </div>
             <div class="about-img-wrap">
               <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?fit=crop&w=800&q=80" alt="Botcho Team">
@@ -50,12 +51,13 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p><i class="fas fa-map-marker-alt"></i> Адрес: гр. София, ул. 'Примерна' №1</p>
-        <p><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
-        <p><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+        <p><i class="fas fa-map-marker-alt"></i> <span class="lang-bg">Адрес: гр. София, ул. 'Примерна' №1</span><span class="lang-en" style="display:none;">Address: Sofia, "Example" St. No. 1</span></p>
+        <p><i class="fas fa-envelope"></i> <span class="lang-bg">Имейл: info@botcho.com</span><span class="lang-en" style="display:none;">Email: info@botcho.com</span></p>
+        <p><i class="fas fa-phone"></i> <span class="lang-bg">Телефон: +359 88 123 4567</span><span class="lang-en" style="display:none;">Phone: +359 88 123 4567</span></p>
       </div>
-      <p>© 2025 Botcho. Всички права запазени.</p>
+      <p><span class="lang-bg">© 2025 Botcho. Всички права запазени.</span><span class="lang-en" style="display:none;">© 2025 Botcho. All rights reserved.</span></p>
     </div>
   </footer>
+  <script src="lang-switch.js"></script>
 </body>
 </html>
