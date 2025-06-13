@@ -1,32 +1,35 @@
-// Language switcher script: toggles between Bulgarian and English text
+// Language switcher script with localStorage support
+
 document.addEventListener('DOMContentLoaded', () => {
-  let currentLang = 'bg'; // current language state ('bg' or 'en'), default Bulgarian
+  // Helper function to set language
+  function setLanguage(lang) {
+    if (lang === 'en') {
+      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = '');
+      flagIcon.src = 'flag-bg.png';
+      flagIcon.alt = 'Bulgarian';
+      document.documentElement.lang = 'en';
+    } else {
+      document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = '');
+      flagIcon.src = 'flag-en.png';
+      flagIcon.alt = 'English';
+      document.documentElement.lang = 'bg';
+    }
+    localStorage.setItem('siteLang', lang);
+    currentLang = lang;
+  }
+
+  let currentLang = localStorage.getItem('siteLang') || 'bg';
   const toggleLink = document.getElementById('langToggle');
   const flagIcon = toggleLink.querySelector('img');
 
-  // Toggle content language on icon click
+  // Apply saved language preference on every page load
+  setLanguage(currentLang);
+
+  // Toggle language on click
   toggleLink.addEventListener('click', (e) => {
     e.preventDefault();
-    if (currentLang === 'bg') {
-      // Switch to English: hide Bulgarian text and show English text
-      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = '');
-      // Update flag icon to Bulgarian flag
-      flagIcon.src = 'flag-bg.png';
-      flagIcon.alt = 'Bulgarian';
-      // Update page language attribute for accessibility
-      document.documentElement.lang = 'en';
-      currentLang = 'en';
-    } else {
-      // Switch to Bulgarian: hide English text and show Bulgarian text
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = '');
-      // Update flag icon back to English flag
-      flagIcon.src = 'flag-en.png';
-      flagIcon.alt = 'English';
-      // Update page language attribute
-      document.documentElement.lang = 'bg';
-      currentLang = 'bg';
-    }
+    setLanguage(currentLang === 'bg' ? 'en' : 'bg');
   });
 });
