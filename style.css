@@ -83,6 +83,24 @@ header .container {
   background: #fff;
   transition: 0.3s;
 }
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  height: 100%;
+  line-height: 1.6;
+}
+
+#langToggle img {
+  vertical-align: middle;
+  margin-right: 6px;
+  height: 16px;
+}
 @media (max-width: 768px) {
   header .container {
     flex-direction: row;
