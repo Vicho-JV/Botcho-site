@@ -48,36 +48,25 @@
   </style>
 </head>
 <body>
- <header>
-  <div class="container">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="Botcho Logo" class="logo-navbar">
-    </a>
-
-    <nav>
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <input type="checkbox" id="nav-toggle" />
-
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Начало</a></li>
-        <li><a href="home.html">За нас</a></li>
-        <li><a href="products.html">Продукти</a></li>
-        <li><a href="contact.html">Контакти</a></li>
-      </ul>
-    </nav>
-
-    <div class="lang-switch">
-      <a href="#" id="langToggle">
-        <img src="flagsbg.png" alt="BG Flag" id="langFlag" style="width: 20px; height: auto; vertical-align: middle; margin-right: 6px;">
-        BG
+  <header>
+    <div class="container">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-key="navHome">Начало</a></li>
+          <li><a href="home.html" data-key="navAbout">За нас</a></li>
+          <li><a href="products.html" data-key="navProducts">Продукти</a></li>
+          <li><a href="contact.html" data-key="navContact" class="active">Контакти</a></li>
+          <li><a href="#" id="langToggle">EN</a></li>
+        </ul>
+      </nav>
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Botcho Logo" class="logo-navbar">
       </a>
     </div>
-  </div>
-</header>
+  </header>
+
   <main>
     <section class="content-section">
       <div class="container">
