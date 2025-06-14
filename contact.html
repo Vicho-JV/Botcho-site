@@ -11,7 +11,7 @@
     /* Chatbot Widget CSS – Creative Redesign for Botcho */
     /* (Same chat CSS as in index.html) */
     :root { --primary-color: #081847; --accent-color: #ff7f2a; --minimized-size: 70px; }
-    .chat-container { position: fixed; bottom: 20px; right: 20px; width: clamp(240px, 90vw, 320px); background-color: #fff; color: #333; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); overflow: hidden; transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;   z-index: 9999; }
+    .chat-container { position: fixed; bottom: 20px; right: 20px; width: clamp(240px, 90vw, 320px); background-color: #fff; color: #333; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); overflow: hidden; transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;  }
     .chat-container.minimized { width: 70px; height: 70px; border-radius: 50%; background-color: #081847; background-image: none; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: visible; transform-origin: bottom right; }
     .chat-container.minimized::before { content: "\f075"; font-family: FontAwesome; font-size: 1.4rem; font-weight: 900; color: #fff; display: inline-block; }
     .chat-container.minimized::after { content: ""; position: absolute; top: 0; left: 0; width: 70px; height: 70px; border: 3px solid #ff7f2a; border-radius: 50%; opacity: 0; animation: pulse-ring 3s infinite; z-index: -1; }
@@ -70,11 +70,9 @@
   <main>
     <section class="content-section">
       <div class="container">
-        <div class="contact-header">
-          <h2 data-key="contactHeading">Свържете се с нас</h2>
-          <p data-key="contactIntro">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
-        </div>
-        <form class="contact-form" action="https://formspree.io/f/yourFormID" method="post">
+        <h2 data-key="contactHeading">Свържете се с нас</h2>
+        <p data-key="contactIntro">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
+        <form class="contact-form" action="#" method="post">
           <label for="name" data-key="formName">Име</label>
           <input type="text" id="name" name="name" required>
           <label for="email" data-key="formEmail">Имейл</label>
@@ -104,24 +102,24 @@
   </footer>
   <div class="chat-container minimized" id="chatBox">
     <div class="chat-header">
-      <h4>Chat assistance</h4>
-      <button class="minimize-btn" id="minimizeBtn">+</button>
+        <h4>Chat assistance</h4>
+        <button class="minimize-btn" id="minimizeBtn">+</button>
     </div>
     <div class="chat-body hidden" id="chatBody">
-      <div class="messages" id="messages"></div>
-      <div class="chat-input">
-        <div class="input-wrapper">
-          <input type="text" id="userInput" placeholder="Ask anything you want" />
-          <button class="mic-btn" id="micBtn">
-            <i class="fas fa-microphone"></i>
-          </button>
-          <button class="send-btn" id="sendBtn">&#10148;</button>
+        <div class="messages" id="messages"></div>
+        <div class="chat-input">
+            <div class="input-wrapper">
+                <input type="text" id="userInput" placeholder="Ask anything you want" />
+                <button class="mic-btn" id="micBtn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="send-btn" id="sendBtn">&#10148;</button>
+            </div>
+            <div class="plug">
+                <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+                <span>Powered by Botcho</span>
+            </div>
         </div>
-        <div class="plug">
-          <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-          <span>Powered by Botcho</span>
-        </div>
-      </div>
     </div>
   </div>
   <script src="func.js"></script>
