@@ -84,24 +84,26 @@ header .container {
   transition: 0.3s;
 }
 @media (max-width: 768px) {
-  .nav-toggle-label {
-    display: block;
-  }
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: var(--primary-color);
+  header .container {
     flex-direction: column;
-    display: none;
+    align-items: center;
+    gap: 10px;
   }
-  .nav-links li {
-    margin: 15px 0;
-    text-align: center;
+
+  .logo-navbar {
+    height: 60px;
+    max-width: 100%;
   }
-  #nav-toggle:checked + .nav-toggle-label + nav .nav-links {
-    display: flex;
+
+  .lang-switch {
+    margin-top: 10px;
+  }
+
+  .nav-links {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 }
 .nav-links {
