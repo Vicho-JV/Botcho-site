@@ -164,10 +164,7 @@ header .container {
 }
 
 #langToggle img {
-  width: 20px;
-  height: auto;
-  margin-right: 6px;
-  vertical-align: middle;
+  border-radius: 3px;
 }
 /* Hero Section */
 .hero {
