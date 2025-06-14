@@ -70,9 +70,11 @@
   <main>
     <section class="content-section">
       <div class="container">
-        <h2 data-key="contactHeading">Свържете се с нас</h2>
-        <p data-key="contactIntro">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
-        <form class="contact-form" action="#" method="post">
+        <div class="contact-header">
+          <h2 data-key="contactHeading">Свържете се с нас</h2>
+          <p data-key="contactIntro">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
+        </div>
+        <form class="contact-form" action="https://formspree.io/f/yourFormID" method="post">
           <label for="name" data-key="formName">Име</label>
           <input type="text" id="name" name="name" required>
           <label for="email" data-key="formEmail">Имейл</label>
@@ -102,24 +104,24 @@
   </footer>
   <div class="chat-container minimized" id="chatBox">
     <div class="chat-header">
-        <h4>Chat assistance</h4>
-        <button class="minimize-btn" id="minimizeBtn">+</button>
+      <h4>Chat assistance</h4>
+      <button class="minimize-btn" id="minimizeBtn">+</button>
     </div>
     <div class="chat-body hidden" id="chatBody">
-        <div class="messages" id="messages"></div>
-        <div class="chat-input">
-            <div class="input-wrapper">
-                <input type="text" id="userInput" placeholder="Ask anything you want" />
-                <button class="mic-btn" id="micBtn">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="send-btn" id="sendBtn">&#10148;</button>
-            </div>
-            <div class="plug">
-                <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-                <span>Powered by Botcho</span>
-            </div>
+      <div class="messages" id="messages"></div>
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <input type="text" id="userInput" placeholder="Ask anything you want" />
+          <button class="mic-btn" id="micBtn">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="send-btn" id="sendBtn">&#10148;</button>
         </div>
+        <div class="plug">
+          <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+          <span>Powered by Botcho</span>
+        </div>
+      </div>
     </div>
   </div>
   <script src="func.js"></script>

@@ -6,9 +6,7 @@
   <title>Botcho</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet"
-       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
   <style>
     /* Chatbot Widget CSS – Creative Redesign for Botcho */
@@ -32,7 +30,7 @@
         overflow: hidden;
         transition: width 0.3s, height 0.3s, border-radius 0.3s,
                     transform 0.3s, box-shadow 0.3s;
-		z-index: 9999;
+        z-index: 9999;
     }
 
     /* Minimized State (chat head bubble) */
@@ -305,7 +303,11 @@
           <li><a href="home.html" data-key="navAbout">За нас</a></li>
           <li><a href="products.html" data-key="navProducts">Продукти</a></li>
           <li><a href="contact.html" data-key="navContact">Контакти</a></li>
-     <li><a href="#" id="langToggle">EN</a></li>
+          <li class="lang-switch">
+            <a href="#" id="langToggle">
+              <img src="flagsbg.png" alt="BG Flag" id="langFlag"> BG
+            </a>
+          </li>
         </ul>
       </nav>
       <a href="index.html" class="logo">
@@ -328,21 +330,21 @@
       <div class="container">
         <h2 data-key="featuresHeading">Нашите услуги</h2>
         <div class="services-description">
-           <p data-key="servicesDescription">Botcho е интелигентен AI чатбот, създаден специално за нуждите на българския бизнес. Той автоматизира клиентското обслужване на вашия уебсайт, отговаря мигновено на въпроси, спестява време и подобрява потребителското изживяване – всичко това с изчистен дизайн, съобразен с вашата визия.</p>
+          <p data-key="servicesDescription">Botcho е интелигентен AI чатбот, създаден специално за нуждите на българския бизнес. Той автоматизира клиентското обслужване на вашия уебсайт, отговаря мигновено на въпроси, спестява време и подобрява потребителското изживяване – всичко това с изчистен дизайн, съобразен с вашата визия.</p>
         </div>
         <div class="features-container">
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-cloud"></i></div>
+            <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
             <h3 data-key="featureTitle1">Изцяло съобразен с вашия бранд</h3>
             <p data-key="featureText1">Botcho изглежда и се държи така, както вие искате – с цветове, стил и тон, които отразяват идентичността на вашия бизнес.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="feature-icon"><i class="fas fa-plug"></i></div>
             <h3 data-key="featureTitle2">Лесна интеграция без усилия</h3>
             <p data-key="featureText2">Botcho се интегрира директно във вашия уебсайт без нужда от технически познания. Получавате всичко необходимо и сме до вас при всяка стъпка.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
+            <div class="feature-icon"><i class="fas fa-clock"></i></div>
             <h3 data-key="featureTitle3">Повече време, по-малко въпроси</h3>
             <p data-key="featureText3">Botcho поема клиентските въпроси, така че вие и вашият екип да се фокусирате върху по-важните задачи.</p>
           </div>
@@ -363,24 +365,24 @@
   </footer>
   <div class="chat-container minimized" id="chatBox">
     <div class="chat-header">
-        <h4>Chat assistance</h4>
-        <button class="minimize-btn" id="minimizeBtn">+</button>
+      <h4>Chat assistance</h4>
+      <button class="minimize-btn" id="minimizeBtn">+</button>
     </div>
     <div class="chat-body hidden" id="chatBody">
-        <div class="messages" id="messages"></div>
-        <div class="chat-input">
-            <div class="input-wrapper">
-                <input type="text" id="userInput" placeholder="Ask anything you want" />
-                <button class="mic-btn" id="micBtn">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="send-btn" id="sendBtn">&#10148;</button>
-            </div>
-            <div class="plug">
-                <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-                <span>Powered by Botcho</span>
-            </div>
+      <div class="messages" id="messages"></div>
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <input type="text" id="userInput" placeholder="Ask anything you want" />
+          <button class="mic-btn" id="micBtn">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="send-btn" id="sendBtn">&#10148;</button>
         </div>
+        <div class="plug">
+          <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+          <span>Powered by Botcho</span>
+        </div>
+      </div>
     </div>
   </div>
   <script src="func.js"></script>
