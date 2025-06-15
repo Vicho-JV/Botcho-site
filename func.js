@@ -224,33 +224,3 @@ document.getElementById("langToggle").addEventListener("click", e => {
   localStorage.setItem("lang", lang);
   applyLanguage(lang);
 });
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  var form = document.getElementById('contact-form');
-  var thankYou = document.getElementById('thankyou-message');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(form);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        form.style.display = 'none';
-        thankYou.style.display = 'block';
-      } else {
-        response.json().then(function(data) {
-          alert(data.error || "Възникна грешка. Моля, опитайте отново.");
-        });
-      }
-    })
-    .catch(function(error) {
-      alert("Възникна грешка. Моля, опитайте отново.");
-    });
-  });
-});
-</script>

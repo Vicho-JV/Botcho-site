@@ -72,7 +72,7 @@
       <div class="container">
         <h2 data-key="contactHeading">Свържете се с нас</h2>
         <p data-key="contactIntro">Имате въпроси или коментари? Ще се радваме да се свържете с нас. Попълнете формуляра по-долу, за да се свържете с екипа на Botcho.</p>
-        <form class="contact-form" action="https://formspree.io/f/xkgbbwre" method="POST">
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xkgbbwre" method="POST">
           <label for="name" data-key="formName">Име</label>
           <input type="text" id="name" name="name" required>
           <label for="email" data-key="formEmail">Имейл</label>
@@ -126,5 +126,37 @@
     </div>
   </div>
   <script src="func.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  var form = document.getElementById('contact-form');
+  var thankYou = document.getElementById('thankyou-message');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          form.style.display = 'none';
+          thankYou.style.display = 'block';
+        } else {
+          response.json().then(function(data) {
+            alert(data.error || "Възникна грешка. Моля, опитайте отново.");
+          });
+        }
+      })
+      .catch(function(error) {
+        alert("Възникна грешка. Моля, опитайте отново.");
+      });
+    });
+  }
+});
+</script>
 </body>
 </html>
