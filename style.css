@@ -791,22 +791,20 @@ footer .container {
   font-size: 1.1rem;
 }
 html, body {
-  height: 100%;       /* make body fill the viewport */
+  height: 100%;
   margin: 0;
 }
-
 body {
   display: flex;
-  flex-direction: column;  /* stack header → content → footer */
+  flex-direction: column;
 }
-
+main {
+  flex: 1 0 auto;      /* main takes all extra space */
+}
 .content-section {
-  flex: 1 0 auto;          /* let it grow to push footer down */
-  display: block;          /* undo any centering */
-  padding-top: 150px;      /* keep your spacing */
+  padding-top: 150px;  /* keeps your “thank you” down from the header */
 }
-
 footer {
-  flex-shrink: 0;          /* don’t let it compress */
-  margin-top: auto;        /* push it to the bottom */
+  flex-shrink: 0;      /* don’t let footer shrink */
+  margin-top: auto;    /* push footer to the bottom */
 }
