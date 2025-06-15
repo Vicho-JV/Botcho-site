@@ -790,26 +790,23 @@ footer .container {
   color: #444;
   font-size: 1.1rem;
 }
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+html, body {
+  height: 100%;       /* make body fill the viewport */
+  margin: 0;
 }
 
-main {
-  flex: 1 0 auto;
+body {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  /* stack header → content → footer */
+}
+
+.content-section {
+  flex: 1 0 auto;          /* let it grow to push footer down */
+  display: block;          /* undo any centering */
+  padding-top: 150px;      /* keep your spacing */
 }
 
 footer {
-  flex-shrink: 0;
-}
-
-/* ---------- CONTENT SECTION (no more vertical centering) ---------- */
-.content-section {
-  flex: 1 0 auto;             /* still fills the space so footer stays down */
-  display: flex;              
-  flex-direction: column;
-  justify-content: flex-start;/* <-- pull everything to the top */
+  flex-shrink: 0;          /* don’t let it compress */
+  margin-top: auto;        /* push it to the bottom */
 }
