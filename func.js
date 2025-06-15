@@ -78,7 +78,7 @@ async function sendMessage() {
             sessionId = crypto.randomUUID();
             sessionStorage.setItem("chat_session_id", sessionId);
         }
-        const res = await fetch('http://127.0.0.1:5000/chat', {
+        const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -234,7 +234,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
         const instRow = document.createElement('div');
         instRow.className = 'message-row bot';
         const instAvatar = document.createElement('img');
-        instAvatar.src = 'm&ulogo.png'; instAvatar.className = 'avatar';
+        instAvatar.src = 'logoOriginalno.png'; instAvatar.className = 'avatar';
         const instMsg = document.createElement('div');
         instMsg.className = 'message bot';
         instRow.append(instAvatar, instMsg);
@@ -336,7 +336,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
             const checkRow = document.createElement('div');
             checkRow.className = 'message-row bot';
             const avatar = document.createElement('img');
-            avatar.src = 'm&ulogo.png'; avatar.className = 'avatar';
+            avatar.src = 'logoOriginalno.png'; avatar.className = 'avatar';
             const checkMsg = document.createElement('div');
             checkMsg.className = 'message bot';
             checkRow.append(avatar, checkMsg);
@@ -361,7 +361,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
               date, time,
               page_url, session_id, user_id
             };
-            const res = await fetch('http://127.0.0.1:5000/chat', {
+            const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
               method: 'POST',
               headers: {'Content-Type':'application/json'},
               body: JSON.stringify(payload)
@@ -482,7 +482,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
                        date, time, name, phone,
                        page_url, session_id, user_id
                    };
-                   const res = await fetch('http://127.0.0.1:5000/chat', {
+                   const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
                        method: 'POST',
                        headers: { 'Content-Type': 'application/json' },
                        body: JSON.stringify(bookPayload)
@@ -493,7 +493,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
                    const row2 = document.createElement('div');
                    row2.className = 'message-row bot';
                    const avatar2 = document.createElement('img');
-                   avatar2.src = 'm&ulogo.png'; avatar2.className = 'avatar';
+                   avatar2.src = 'logoOriginalno.png'; avatar2.className = 'avatar';
                    const resultMsg = document.createElement('div');
                    resultMsg.className = 'message bot';
                    row2.append(avatar2, resultMsg);
