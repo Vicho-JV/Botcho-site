@@ -78,7 +78,7 @@ async function sendMessage() {
             sessionId = crypto.randomUUID();
             sessionStorage.setItem("chat_session_id", sessionId);
         }
-        const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
+        const res = await fetch('https://3367kq644ng7hga4ymgsizroya0ynwjc.lambda-url.eu-north-1.on.aws/chat, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -361,7 +361,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
               date, time,
               page_url, session_id, user_id
             };
-            const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
+            const res = await fetch('https://3367kq644ng7hga4ymgsizroya0ynwjc.lambda-url.eu-north-1.on.aws/chat', {
               method: 'POST',
               headers: {'Content-Type':'application/json'},
               body: JSON.stringify(payload)
@@ -482,7 +482,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
                        date, time, name, phone,
                        page_url, session_id, user_id
                    };
-                   const res = await fetch('https://hkfla5g77k2n5iku4vj4ohqzqu0gecen.lambda-url.eu-north-1.on.aws/chat', {
+                   const res = await fetch('https://3367kq644ng7hga4ymgsizroya0ynwjc.lambda-url.eu-north-1.on.aws/chat', {
                        method: 'POST',
                        headers: { 'Content-Type': 'application/json' },
                        body: JSON.stringify(bookPayload)
