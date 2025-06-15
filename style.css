@@ -790,3 +790,15 @@ footer .container {
   color: #444;
   font-size: 1.1rem;
 }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content, .content-section, .container {
+  flex: 1 0 auto;
+}
+footer {
+  flex-shrink: 0;
+}
