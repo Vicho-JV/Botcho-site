@@ -795,10 +795,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.main-content, .content-section, .container {
-  flex: 1 0 auto;
-}
 footer {
   flex-shrink: 0;
 }
