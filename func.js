@@ -226,7 +226,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
 });
        (function () {
     const N = 7;  // minimum days before booking
-    const bookBtn = document.getElementById('bookBtn');
+    const bookBtn = document.getElementById('calendarBtn');
     let appointmentForm = null;
 
     bookBtn.addEventListener('click', async () => {
