@@ -806,9 +806,9 @@ footer {
   flex-shrink: 0;
 }
 
+/* ---------- CONTENT SECTION (no more vertical centering) ---------- */
 .content-section {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 1 0 auto;       /* keep it growing to push footer down */
+  /* removed display:flex; flex-direction; and justify-content:center; */
+  padding-top: 150px;   /* adjust this to taste */
 }
