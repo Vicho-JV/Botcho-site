@@ -790,21 +790,21 @@ footer .container {
   color: #444;
   font-size: 1.1rem;
 }
-html, body {
-  height: 100%;
-  margin: 0;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
-main {
-  flex: 1 0 auto;      /* main takes all extra space */
-}
-.content-section {
-  padding-top: 150px;  /* keeps your “thank you” down from the header */
-}
 footer {
-  flex-shrink: 0;      /* don’t let footer shrink */
-  margin-top: auto;    /* push footer to the bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* ensure nothing hides behind the footer */
+main {
+  /* set this to your footer’s total height */
+  padding-bottom: 180px;
+}
+
+/* keep your thank-you up under the header */
+.content-section {
+  padding-top: 150px;
 }
