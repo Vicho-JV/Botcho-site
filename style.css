@@ -671,209 +671,52 @@ footer .container {
      align-items: center;
  }
 
- .input-wrapper {
-     position: relative;
-     width: 100%;
- }
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
 
-     .input-wrapper input {
-         width: 100%;
-         height: 50px;
-         box-sizing: border-box;
-         /* make room for two buttons on the right */
-         padding: 10px 90px 10px 12px;
-         font-size: 14px;
-         border: 1px solid #ddd;
-         border-radius: 20px;
-         outline: none;
-     }
+.input-wrapper input {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 0 142px 0 14px; /* enough space for 3 buttons */
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 22px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
 
-     .input-wrapper button.send-btn {
-         position: absolute;
-         top: 50%;
-         right: 12px;
-         transform: translateY(-50%);
-         width: 32px;
-         height: 32px;
-         border-radius: 50%;
-         background: #007bff;
-         border: none;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         color: #fff;
-         font-size: 18px;
-         cursor: pointer;
-     }
-
-         .input-wrapper button.send-btn:hover {
-             background: #0056b3;
-         }
-
-     /* Microphone button, placed to the left of the send button */
-     .input-wrapper button.mic-btn {
-         position: absolute;
-         top: 50%;
-         right: 50px; /* left of the send button */
-         transform: translateY(-50%);
-         width: 32px;
-         height: 32px;
-         border-radius: 50%;
-         background: #007bff;
-         border: none;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         cursor: pointer;
-         padding: 0;
-         color: #fff; /* icon color */
-         font-size: 16px; /* scales the Font Awesome icon */
-     }
-
-         .input-wrapper button.mic-btn:hover {
-             background: #0056b3;
-         }
-		 .input-wrapper button.book-btn {
+.input-wrapper button.send-btn,
+.input-wrapper button.mic-btn,
+.input-wrapper button.book-btn {
   position: absolute;
   top: 50%;
-  right: 49px; /* between mic and send */
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: #007bff;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 16px;
+  background-color: var(--accent-color);
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.input-wrapper button.book-btn:hover {
-  background: #0056b3;
-}
-
- .plug {
-     --plug-img-size: 20px;
-     --plug-font-size: 13px;
-     --plug-bg: #fff;
-     --plug-radius: 12px;
-     display: flex;
-     align-items: center;
-     background: #f9f9f9;
-     border-radius: var(--plug-radius);
-     padding: 4px 8px;
-     margin-top: 8px;
-     font-family: inherit;
- }
-
-     .plug a {
-         display: flex;
-         align-items: center;
-         text-decoration: none;
-         color: #555;
-         font-size: var(--plug-font-size);
-     }
-
-     .plug img {
-         width: var(--plug-img-size);
-         height: var(--plug-img-size);
-         margin-right: 6px;
-     }
-
- .input-wrapper button.mic-btn.recording {
-     background: #c0392b; /* darker/red background while listening */
- }
-
-     .input-wrapper button.mic-btn.recording::after {
-         content: "🔴";
-         position: absolute;
-         top: 2px;
-         right: 2px;
-         font-size: 10px;
-     }
-
-
-     .input-wrapper button.mic-btn.recording i.fa-microphone {
-         color: #fff;
-.contact-header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.contact-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-.contact-header p {
-  color: #444;
+  padding: 0;
   font-size: 1.1rem;
-}
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-/* ensure nothing hides behind the footer */
-main {
-  /* set this to your footer’s total height */
-  padding-bottom: 180px;
-}
+.input-wrapper button.send-btn { right: 12px; }
+.input-wrapper button.mic-btn { right: 54px; }
+.input-wrapper button.book-btn { right: 96px; }
 
-/* keep your thank-you up under the header */
-.content-section {
-  padding-top: 150px;
-}
-/* Increase right padding to 142px to accommodate three buttons (send, mic, calendar) */
-.input-wrapper input {
-    width: 100%;
-    height: 45px;
-    box-sizing: border-box;
-    padding: 0 142px 0 14px;  /* was 100px on the right, now 142px */
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #ddd;
-    border-radius: 22px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-/* Common styles for send, mic, and new calendar button */
-.input-wrapper button.send-btn,
-.input-wrapper button.mic-btn,
-.input-wrapper button.calendar-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background-color: var(--accent-color);
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-/* Individual positions for each button (spacing of ~42px between each) */
-.input-wrapper button.send-btn    { right: 12px; }  /* Send (rightmost) */
-.input-wrapper button.mic-btn     { right: 54px; }  /* Mic (in the middle) */
-.input-wrapper button.calendar-btn{ right: 96px; }  /* Calendar (leftmost of the three) */
-
-/* Hover effect for all three buttons (darken color slightly and scale up) */
 .input-wrapper button.send-btn:hover,
 .input-wrapper button.mic-btn:hover,
-.input-wrapper button.calendar-btn:hover {
-    background-color: #e67300;             /* slightly darker accent color on hover */
-    transform: translateY(-50%) scale(1.01);
+.input-wrapper button.book-btn:hover {
+  background-color: #e67300;
+  transform: translateY(-50%) scale(1.01);
 }
