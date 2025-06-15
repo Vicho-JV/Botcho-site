@@ -808,3 +808,50 @@ main {
 .content-section {
   padding-top: 150px;
 }
+/* Increase right padding to 142px to accommodate three buttons (send, mic, calendar) */
+.input-wrapper input {
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    padding: 0 142px 0 14px;  /* was 100px on the right, now 142px */
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 22px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Common styles for send, mic, and new calendar button */
+.input-wrapper button.send-btn,
+.input-wrapper button.mic-btn,
+.input-wrapper button.calendar-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Individual positions for each button (spacing of ~42px between each) */
+.input-wrapper button.send-btn    { right: 12px; }  /* Send (rightmost) */
+.input-wrapper button.mic-btn     { right: 54px; }  /* Mic (in the middle) */
+.input-wrapper button.calendar-btn{ right: 96px; }  /* Calendar (leftmost of the three) */
+
+/* Hover effect for all three buttons (darken color slightly and scale up) */
+.input-wrapper button.send-btn:hover,
+.input-wrapper button.mic-btn:hover,
+.input-wrapper button.calendar-btn:hover {
+    background-color: #e67300;             /* slightly darker accent color on hover */
+    transform: translateY(-50%) scale(1.01);
+}
