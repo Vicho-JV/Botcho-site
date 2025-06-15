@@ -733,6 +733,28 @@ footer .container {
          .input-wrapper button.mic-btn:hover {
              background: #0056b3;
          }
+		 .input-wrapper button.book-btn {
+  position: absolute;
+  top: 50%;
+  right: 49px; /* between mic and send */
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #007bff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.input-wrapper button.book-btn:hover {
+  background: #0056b3;
+}
 
  .plug {
      --plug-img-size: 20px;
