@@ -808,26 +808,3 @@ main {
 .content-section {
   padding-top: 150px;
 }
-.input-wrapper button.book-btn { 
-    position: absolute;
-    top: 50%;
-    right: 88px; /* adjust if needed! */
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #007bff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.input-wrapper button.book-btn:hover {
-    background: #0056b3;
-}
-.input-wrapper button.book-btn i {
-    font-size: 1.15rem;
-}
