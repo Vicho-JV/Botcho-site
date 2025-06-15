@@ -78,7 +78,7 @@ async function sendMessage() {
             sessionId = crypto.randomUUID();
             sessionStorage.setItem("chat_session_id", sessionId);
         }
-        const res = await fetch('https://3367kq644ng7hga4ymgsizroya0ynwjc.lambda-url.eu-north-1.on.aws/chat, {
+        const res = await fetch('https://3367kq644ng7hga4ymgsizroya0ynwjc.lambda-url.eu-north-1.on.aws/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
