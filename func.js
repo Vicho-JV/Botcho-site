@@ -489,7 +489,7 @@ document.getElementById("langToggle").addEventListener("click", e => {
                    });
                    const d2 = await res.json();
 
-                   // Show result
+                   // Show result фдбдфбфдбфдб
                    const row2 = document.createElement('div');
                    row2.className = 'message-row bot';
                    const avatar2 = document.createElement('img');
