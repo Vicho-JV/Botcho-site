@@ -228,6 +228,12 @@ document.getElementById("langToggle").addEventListener("click", e => {
     const N = 7;  // minimum days before booking
     const bookBtn = document.getElementById('bookBtn');
     let appointmentForm = null;
+document.addEventListener('click', e => {
+  if (e.target.matches('.calendar-trigger')) {
+    // reuse your existing calendar‐popup logic
+    openCalendarModal(/* … */);
+  }
+});
 
     bookBtn.addEventListener('click', async () => {
         // 0️⃣ show instructions to user
