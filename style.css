@@ -48,24 +48,34 @@ header .container {
   margin-left: 0;
 }
 .nav-links a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1.08rem;
-  padding: 8px 18px;
-  border-radius: 8px;
-  transition: 
-    color 0.24s cubic-bezier(.55,0,.1,1), 
-    background 0.22s cubic-bezier(.33,1,.68,1);
-  letter-spacing: 0.02em;
-}
-
+   text-decoration: none;
+   color: #fff;
+   font-weight: 500;
+   font-size: 1.08rem;
+   padding: 8px 18px;
+   border-radius: 8px;
+   transition:
+     color 0.24s cubic-bezier(.55,0,.1,1),
+     background 0.22s cubic-bezier(.33,1,.68,1);
+   letter-spacing: 0.02em;
+   position: relative;
+ }
+/* simple underline on hover & active */
 .nav-links a.active,
 .nav-links a:hover {
-  color: var(--primary-color);
-  background: var(--accent-color);
-  box-shadow: 0 2px 12px 0 rgba(255,127,42,0.09);
+  background: none;               /* no pill background */
+  color: var(--accent-color);     /* accent text color */
 }
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  content: "";
+  display: block;
+  margin: 4px auto 0;             /* tweak top margin for spacing */
+  width: 50%;                     /* width of the underline */
+  border-bottom: 2px solid var(--accent-color);
+}
+
 #nav-toggle {
   display: none !important;
   position: absolute !important; /* double safety */
@@ -662,39 +672,7 @@ footer .container {
          margin: 0;
          float: none; /* override any old float */
      }
-/* reset default button styling inside message bubbles */
-.message-button {
-  all: unset;                /* remove all UA button styles */
-  cursor: pointer;           /* show pointer */
-  display: inline-block;     
-  box-sizing: border-box;
-}
 
-/* pick up the existing user‐bubble look */
-.message-button.user {
-  background: var(--primary-color);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 16px 4px 16px 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-size: 1.1rem;
-  line-height: 1;
-}
-
-/* optional: adjust width/height to make it more square */
-.calendar-trigger {
-  width: 48px;
-  height: 48px;
-  padding: 0;              /* center the emoji */
-  text-align: center;
-}
-
-/* ensure the emoji is centered vertically */
-.calendar-trigger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
  .chat-input {
      padding: 12px;
      background: #f9f9f9;
