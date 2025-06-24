@@ -35,6 +35,16 @@ header .container {
   height: 75px;
   width: auto;
 }
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
 .nav-links {
   list-style: none;
   display: flex;
