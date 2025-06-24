@@ -31,10 +31,6 @@ header .container {
   justify-content: space-between;
   padding: 15px 0;
 }
-.logo-navbar {
-  height: 75px;
-  width: auto;
-}
 .nav-links {
   list-style: none;
   display: flex;
@@ -48,18 +44,24 @@ header .container {
   margin-left: 0;
 }
 .nav-links a {
-   text-decoration: none;
-   color: #fff;
-   font-weight: 500;
-   font-size: 1.08rem;
-   padding: 8px 18px;
-   border-radius: 8px;
-   transition:
-     color 0.24s cubic-bezier(.55,0,.1,1),
-     background 0.22s cubic-bezier(.33,1,.68,1);
-   letter-spacing: 0.02em;
-   position: relative;
- }
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.08rem;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: 
+    color 0.24s cubic-bezier(.55,0,.1,1), 
+    background 0.22s cubic-bezier(.33,1,.68,1);
+  letter-spacing: 0.02em;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--primary-color);
+  background: var(--accent-color);
+  box-shadow: 0 2px 12px 0 rgba(255,127,42,0.09);
+}
 /* simple underline on hover & active */
 .nav-links a.active,
 .nav-links a:hover {
