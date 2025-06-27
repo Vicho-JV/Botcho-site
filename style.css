@@ -586,6 +586,7 @@ footer .container {
   color: #fff;
   pointer-events: none;
   opacity: 1;
+  z-index: 10;
 }
          }
 
