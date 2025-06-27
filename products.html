@@ -92,9 +92,9 @@
 <div class="customization-buttons" style="margin-bottom: 16px;">
   <button id="colorBtn" onclick="toggleColor()">Цвят</button>
   <button id="fontBtn" onclick="toggleFont()">Шрифт</button>
-  <button id="layoutBtn" onclick="toggleLayout()">Форма</button>
+  <button id="layoutBtn" onclick="toggleLayout()">Форма на чатбота</button>
   <button id="sendIconBtn" onclick="toggleSendIcon()">Икона</button>
-  <button id="shapeBtn" onclick="toggleShape()">Форма</button>
+  <button id="shapeBtn" onclick="toggleShape()">Форма на съобщенията</button>
   <button id="avatarBtn" onclick="toggleAvatar()">Аватар</button>
   <button id="shadowBtn" onclick="toggleShadow()">Сянка</button>
 </div>
@@ -112,7 +112,7 @@
   <button onclick="selectFont('Roboto')">Roboto</button>
 </div>
 <div id="layoutOptions" class="options hidden">
-  <button onclick="selectLayout('default')">По подразбиране</button>
+  <button onclick="selectLayout('default')">Квадратен</button>
   <button onclick="selectLayout('rounded')">Закръглен</button>
   <button onclick="selectLayout('compact')">Компактен</button>
 </div>
@@ -123,21 +123,21 @@
 </div>
 
 <div id="bubbleShapeOptions" class="options hidden">
-  <button onclick="selectShape('rounded')">Rounded</button>
-  <button onclick="selectShape('square')">Square</button>
-  <button onclick="selectShape('pill')">Pill</button>
+  <button onclick="selectShape('rounded')">Закръглен</button>
+  <button onclick="selectShape('square')">Квадратен</button>
+  <button onclick="selectShape('pill')">Овален</button>
 </div>
 
 <div id="avatarShapeOptions" class="options hidden">
-  <button onclick="selectAvatar('round')">Round</button>
-  <button onclick="selectAvatar('square')">Square</button>
-  <button onclick="selectAvatar('hidden')">Hide</button>
+  <button onclick="selectAvatar('round')">Закръглен</button>
+  <button onclick="selectAvatar('square')">Квадратен</button>
+  <button onclick="selectAvatar('hidden')">Без</button>
 </div>
 
 <div id="shadowOptions" class="options hidden">
-  <button onclick="selectShadow('none')">None</button>
-  <button onclick="selectShadow('soft')">Soft</button>
-  <button onclick="selectShadow('deep')">Deep</button>
+  <button onclick="selectShadow('none')">Без</button>
+  <button onclick="selectShadow('soft')">Лека</button>
+  <button onclick="selectShadow('deep')">Дълбока</button>
 </div>
 
   <div class="chat-container" id="customDemo" style="position: static; margin: 0 auto;">
