@@ -228,12 +228,6 @@ document.getElementById("langToggle").addEventListener("click", e => {
     const N = 7;  // minimum days before booking
     const bookBtn = document.getElementById('bookBtn');
     let appointmentForm = null;
-document.addEventListener('click', e => {
-  if (e.target.matches('.calendar-trigger')) {
-    // reuse your existing calendar‐popup logic
-    openCalendarModal(/* … */);
-  }
-});
 
     bookBtn.addEventListener('click', async () => {
         // 0️⃣ show instructions to user
@@ -521,3 +515,192 @@ document.addEventListener('click', e => {
                });
            }
 })();
+// ── CUSTOMIZATION CHATBOT DEMO ──qwfq
+
+function hideAllOptionPanels() {
+  const panels = [
+    'colorOptions',
+    'fontOptions',
+    'layoutOptions',
+    'icon-options',
+    'bubbleShapeOptions',
+    'avatarShapeOptions',
+    'shadowOptions'
+  ];
+  panels.forEach(id => document.getElementById(id)?.classList.add('hidden'));
+
+  document.querySelectorAll('.customization-buttons button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+}
+
+function highlightActiveButton(id) {
+  document.getElementById(id)?.classList.add('active');
+}
+
+function toggleColor() {
+  const panel = document.getElementById('colorOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('colorBtn');
+  }
+}
+
+function toggleFont() {
+  const panel = document.getElementById('fontOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('fontBtn');
+  }
+}
+
+function toggleLayout() {
+  const panel = document.getElementById('layoutOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('layoutBtn');
+  }
+}
+
+function toggleSendIcon() {
+  const panel = document.getElementById('icon-options');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('sendIconBtn');
+  }
+}
+
+function toggleShape() {
+  const panel = document.getElementById('bubbleShapeOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('shapeBtn');
+  }
+}
+
+function toggleAvatar() {
+  const panel = document.getElementById('avatarShapeOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('avatarBtn');
+  }
+}
+
+function toggleShadow() {
+  const panel = document.getElementById('shadowOptions');
+  const isHidden = panel.classList.contains('hidden');
+  hideAllOptionPanels();
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    highlightActiveButton('shadowBtn');
+  }
+}
+
+function selectColor(color) {
+  const demo = document.getElementById('customDemo');
+  demo.classList.remove('theme-blue', 'theme-green', 'theme-red', 'theme-dark');
+  demo.classList.add('theme-' + color);
+  document.getElementById('colorOptions').classList.add('hidden');
+  document.getElementById('colorBtn').classList.remove('active');
+}
+
+function selectFont(font) {
+  document.getElementById('customDemo').style.fontFamily = font;
+  document.getElementById('fontOptions').classList.add('hidden');
+  document.getElementById('fontBtn').classList.remove('active');
+}
+
+function selectLayout(layout) {
+  const demo = document.getElementById('customDemo');
+  demo.classList.remove('layout-rounded', 'layout-compact');
+  if (layout === 'rounded') demo.classList.add('layout-rounded');
+  if (layout === 'compact') demo.classList.add('layout-compact');
+  document.getElementById('layoutOptions').classList.add('hidden');
+  document.getElementById('layoutBtn').classList.remove('active');
+}
+
+function setSendIcon(type) {
+  const sendBtn = document.querySelector('#customDemo .send-btn');
+  const icons = {
+    plane: '<i class="fas fa-paper-plane"></i>',
+    arrow: '<i class="fas fa-arrow-right"></i>',
+    bolt: '<i class="fas fa-bolt"></i>'
+  };
+  if (icons[type]) {
+    sendBtn.innerHTML = icons[type];
+  }
+}
+
+function selectShape(shape) {
+  const demo = document.getElementById('customDemo');
+  demo.classList.remove('bubble-rounded', 'bubble-square', 'bubble-pill');
+  demo.classList.add('bubble-' + shape);
+  document.getElementById('bubbleShapeOptions').classList.add('hidden');
+  document.getElementById('shapeBtn').classList.remove('active');
+}
+
+function selectAvatar(style) {
+  const demo = document.getElementById('customDemo');
+  demo.classList.remove('avatar-round', 'avatar-square', 'avatar-hidden');
+  demo.classList.add('avatar-' + style);
+  document.getElementById('avatarShapeOptions').classList.add('hidden');
+  document.getElementById('avatarBtn').classList.remove('active');
+}
+
+function selectShadow(level) {
+  const demo = document.getElementById('customDemo');
+  demo.classList.remove('shadow-none', 'shadow-soft', 'shadow-deep');
+  demo.classList.add('shadow-' + level);
+  document.getElementById('shadowOptions').classList.add('hidden');
+  document.getElementById('shadowBtn').classList.remove('active');
+}
+
+function toggleCustomChat() {
+  const demo = document.getElementById("customDemo");
+  const body = document.getElementById("customChatBody");
+  const isMinimized = demo.classList.toggle("minimized");
+  body.classList.toggle("hidden", isMinimized);
+  demo.querySelector(".minimize-btn").textContent = isMinimized ? '+' : '–';
+}
+
+document.getElementById("customDemo").addEventListener("click", (e) => {
+  const demo = document.getElementById("customDemo");
+  if (!demo.classList.contains("minimized")) return;
+  if (e.target.closest(".minimize-btn")) return;
+  toggleCustomChat();
+});
+
+function sendCustomMessage() {
+  const input = document.getElementById("customInput");
+  const messages = document.getElementById("customMessages");
+  const text = input.value.trim();
+  if (!text) return;
+
+  const userRow = document.createElement("div");
+  userRow.className = "message-row user";
+  userRow.innerHTML = `<div class="message user">${text}</div>`;
+  messages.appendChild(userRow);
+
+  const botRow = document.createElement("div");
+  botRow.className = "message-row bot";
+  botRow.innerHTML = `
+    <img src="logoOriginalno.png" class="avatar">
+    <div class="message bot">Chatbot response</div>
+  `;
+  messages.appendChild(botRow);
+
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
+}

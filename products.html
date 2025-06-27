@@ -86,6 +86,89 @@
             <p class="demo-note" data-key="demoNote">* Демонстрация на реален чат</p>
           </div>
         </div>
+		<div class="chatbot-customizer">
+  <h3 style="margin-top: 40px; margin-bottom: 20px;">Визуализация на персонализация</h3>
+
+<div class="customization-buttons" style="margin-bottom: 16px;">
+  <button id="colorBtn" onclick="toggleColor()">Цвят</button>
+  <button id="fontBtn" onclick="toggleFont()">Шрифт</button>
+  <button id="layoutBtn" onclick="toggleLayout()">Форма</button>
+  <button id="sendIconBtn" onclick="toggleSendIcon()">Икона</button>
+  <button id="shapeBtn" onclick="toggleShape()">Форма</button>
+  <button id="avatarBtn" onclick="toggleAvatar()">Аватар</button>
+  <button id="shadowBtn" onclick="toggleShadow()">Сянка</button>
+</div>
+  <!-- Add these below the customization buttons in your HTML -->
+<div id="colorOptions" class="options hidden">
+  <button onclick="selectColor('blue')">Син</button>
+  <button onclick="selectColor('green')">Зелен</button>
+  <button onclick="selectColor('red')">Червен</button>
+  <button onclick="selectColor('dark')">Тъмен</button>
+</div>
+<div id="fontOptions" class="options hidden">
+  <button onclick="selectFont('Inter')">Inter</button>
+  <button onclick="selectFont('Courier New')">Courier New</button>
+  <button onclick="selectFont('Comic Sans MS')">Comic Sans</button>
+  <button onclick="selectFont('Roboto')">Roboto</button>
+</div>
+<div id="layoutOptions" class="options hidden">
+  <button onclick="selectLayout('default')">По подразбиране</button>
+  <button onclick="selectLayout('rounded')">Закръглен</button>
+  <button onclick="selectLayout('compact')">Компактен</button>
+</div>
+<div id="icon-options" class="options hidden">
+  <button onclick="setSendIcon('plane')"><i class="fas fa-paper-plane"></i></button>
+  <button onclick="setSendIcon('arrow')"><i class="fas fa-arrow-right"></i></button>
+  <button onclick="setSendIcon('bolt')"><i class="fas fa-bolt"></i></button>
+</div>
+
+<div id="bubbleShapeOptions" class="options hidden">
+  <button onclick="selectShape('rounded')">Rounded</button>
+  <button onclick="selectShape('square')">Square</button>
+  <button onclick="selectShape('pill')">Pill</button>
+</div>
+
+<div id="avatarShapeOptions" class="options hidden">
+  <button onclick="selectAvatar('round')">Round</button>
+  <button onclick="selectAvatar('square')">Square</button>
+  <button onclick="selectAvatar('hidden')">Hide</button>
+</div>
+
+<div id="shadowOptions" class="options hidden">
+  <button onclick="selectShadow('none')">None</button>
+  <button onclick="selectShadow('soft')">Soft</button>
+  <button onclick="selectShadow('deep')">Deep</button>
+</div>
+
+  <div class="chat-container" id="customDemo" style="position: static; margin: 0 auto;">
+  <div class="clickable-overlay" onclick="toggleCustomChat()"></div>
+    <div class="chat-header">
+      <h4 style="font-size: 1rem">Botcho</h4>
+      <button class="minimize-btn" onclick="toggleCustomChat()">–</button>
+    </div>
+    <div class="chat-body" id="customChatBody">
+      <div class="messages" id="customMessages">
+        <div class="message-row user">
+          <div class="message user">Здравей, какво можеш да направиш?</div>
+        </div>
+        <div class="message-row bot">
+          <img src="logoOriginalno.png" class="avatar">
+          <div class="message bot">Мога да отговарям на въпроси и да помогна на клиентите ви!</div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <input type="text" id="customInput" placeholder="Напиши съобщение...">
+          <button class="send-btn" onclick="sendCustomMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="plug">
+          <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
+          <span>Botcho демо</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         <h3 class="features-title" data-key="featuresTitle">Основни функционалности:</h3>
         <div class="product-features-list">
           <div class="feature-card">
