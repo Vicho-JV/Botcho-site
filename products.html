@@ -88,15 +88,29 @@
         </div>
 		<div class="chatbot-customizer">
   <h3 style="margin-top: 40px; margin-bottom: 20px;">Визуализация на персонализация</h3>
+  <p class="lang-bg" style="margin-bottom: 12px; font-size: 0.95rem; color: #555;">
+  Тук можеш да тестваш някои от визуалните възможности на Botcho – цветове, форми, икони, аватари и други. Всичко може да бъде адаптирано по твое желание, така че ботът да изглежда като част от твоя бранд.
+</p>
+<p class="lang-en" style="margin-bottom: 12px; font-size: 0.95rem; color: #555; display:none;">
+  This demo shows just a few of the design options for Botcho – colors, layout, icons, avatars, and more. Everything can be adjusted to perfectly fit your brand identity.
+</p>
 
 <div class="customization-buttons" style="margin-bottom: 16px;">
-  <button id="colorBtn" onclick="toggleColor()">Цвят</button>
-  <button id="fontBtn" onclick="toggleFont()">Шрифт</button>
-  <button id="layoutBtn" onclick="toggleLayout()">Форма на чатбота</button>
-  <button id="sendIconBtn" onclick="toggleSendIcon()">Икона</button>
-  <button id="shapeBtn" onclick="toggleShape()">Форма на съобщенията</button>
-  <button id="avatarBtn" onclick="toggleAvatar()">Аватар</button>
-  <button id="shadowBtn" onclick="toggleShadow()">Сянка</button>
+  <button id="colorBtn" onclick="toggleColor()" class="lang-bg">Цвят</button>
+  <button id="fontBtn" onclick="toggleFont()" class="lang-bg">Шрифт</button>
+  <button id="layoutBtn" onclick="toggleLayout()" class="lang-bg">Форма на чатбота</button>
+  <button id="sendIconBtn" onclick="toggleSendIcon()" class="lang-bg">Икона</button>
+  <button id="shapeBtn" onclick="toggleShape()" class="lang-bg">Форма на съобщенията</button>
+  <button id="avatarBtn" onclick="toggleAvatar()" class="lang-bg">Аватар</button>
+  <button id="shadowBtn" onclick="toggleShadow()" class="lang-bg">Сянка</button>
+
+  <button id="colorBtnEN" onclick="toggleColor()" class="lang-en" style="display:none;">Color</button>
+  <button id="fontBtnEN" onclick="toggleFont()" class="lang-en" style="display:none;">Font</button>
+  <button id="layoutBtnEN" onclick="toggleLayout()" class="lang-en" style="display:none;">Layout</button>
+  <button id="sendIconBtnEN" onclick="toggleSendIcon()" class="lang-en" style="display:none;">Icon</button>
+  <button id="shapeBtnEN" onclick="toggleShape()" class="lang-en" style="display:none;">Bubble</button>
+  <button id="avatarBtnEN" onclick="toggleAvatar()" class="lang-en" style="display:none;">Avatar</button>
+  <button id="shadowBtnEN" onclick="toggleShadow()" class="lang-en" style="display:none;">Shadow</button>
 </div>
   <!-- Add these below the customization buttons in your HTML -->
 <div id="colorOptions" class="options hidden">
