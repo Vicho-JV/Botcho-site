@@ -1,74 +1,70 @@
-// Language switcher script with localStorage support
+// Language switcher for Products page customizer
+// Works alongside func.js (which controls [data-key] text & #langToggle)
 document.addEventListener('DOMContentLoaded', () => {
-  // Read whichever key is already set, default to 'bg'
-  let currentLang = localStorage.getItem('siteLang') || localStorage.getItem('lang') || 'bg';
-
   const toggleLink = document.getElementById('langToggle');
-  // func.js usually injects an <img> into #langToggle; guard in case it's not there
   let flagIcon = toggleLink ? toggleLink.querySelector('img') : null;
 
-  function setLanguage(lang) {
-    if (lang === 'en') {
-      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = '');
-      if (flagIcon) {
+  // Show/hide .lang-bg / .lang-en and update placeholders/tooltips
+  function setLanguageVisuals(lang) {
+    const showBG = (lang !== 'en');
+    document.querySelectorAll('.lang-bg').forEach(el => el.style.display = showBG ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(el => el.style.display = showBG ? 'none' : '');
+
+    // Update html lang
+    document.documentElement.lang = showBG ? 'bg' : 'en';
+
+    // Update flag icon only if it exists (some pages don’t have it)
+    if (flagIcon) {
+      if (showBG) {
+        flagIcon.src = 'flag-en.png';
+        flagIcon.alt = 'English';
+      } else {
         flagIcon.src = 'flag-bg.png';
         flagIcon.alt = 'Bulgarian';
       }
-      document.documentElement.lang = 'en';
-    } else {
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.lang-bg').forEach(el => el.style.display = '');
-      if (flagIcon) {
-        flagIcon.src = 'flag-en.png';
-        flagIcon.alt = 'English';
-      }
-      document.documentElement.lang = 'bg';
     }
 
-    // Update placeholder of the main site chat (bottom-right widget)
+    // Main floating chat widget placeholder & titles
     const chatInput = document.getElementById('userInput');
     if (chatInput) {
-      chatInput.placeholder = (lang === 'en')
-        ? 'Ask anything you want'
-        : 'Попитайте каквото желаете';
+      chatInput.placeholder = showBG ? 'Попитайте каквото желаете' : 'Ask anything you want';
     }
+    const sendBtnEl = document.getElementById('sendBtn');
+    if (sendBtnEl) sendBtnEl.title = showBG ? 'Изпрати' : 'Send';
+    const micBtnEl = document.getElementById('micBtn');
+    if (micBtnEl) micBtnEl.title = showBG ? 'Говори' : 'Speak';
+    const bookBtnEl = document.getElementById('bookBtn');
+    if (bookBtnEl) bookBtnEl.title = showBG ? 'Запази час' : 'Book Appointment';
 
-    // Update placeholder of the Products page demo chat
+    // Products demo chat input placeholder
     const customInput = document.getElementById('customInput');
     if (customInput) {
-      customInput.placeholder = (lang === 'en')
-        ? 'Type a message...'
-        : 'Напиши съобщение...';
-    }
-
-    // Update tooltips (main widget)
-    const sendBtnEl = document.getElementById('sendBtn');
-    if (sendBtnEl) sendBtnEl.title = (lang === 'en' ? 'Send' : 'Изпрати');
-    const micBtnEl = document.getElementById('micBtn');
-    if (micBtnEl) micBtnEl.title = (lang === 'en' ? 'Speak' : 'Говори');
-    const bookBtnEl = document.getElementById('bookBtn');
-    if (bookBtnEl) bookBtnEl.title = (lang === 'en' ? 'Book Appointment' : 'Запази час');
-
-    // Keep both keys in sync so func.js and this file agree
-    localStorage.setItem('siteLang', lang);
-    localStorage.setItem('lang', lang);
-    currentLang = lang;
-
-    // Re-grab flagIcon in case func.js just injected it
-    if (!flagIcon && toggleLink) {
-      flagIcon = toggleLink.querySelector('img');
+      customInput.placeholder = showBG ? 'Напиши съобщение...' : 'Type a message...';
     }
   }
 
-  // Apply saved preference on page load
-  setLanguage(currentLang);
+  // Read whichever key func.js uses; fall back to 'bg'
+  function getCurrentLang() {
+    return localStorage.getItem('lang') || localStorage.getItem('siteLang') || 'bg';
+  }
 
-  // Toggle on click
+  // Initial render
+  setLanguageVisuals(getCurrentLang());
+
+  // IMPORTANT: do NOT toggle here. Let func.js handle the toggle,
+  // then we sync *after* its handler runs.
   if (toggleLink) {
     toggleLink.addEventListener('click', (e) => {
       e.preventDefault();
-      setLanguage(currentLang === 'bg' ? 'en' : 'bg');
+      // Give func.js a tick to flip localStorage('lang') and update [data-key] text
+      setTimeout(() => {
+        setLanguageVisuals(getCurrentLang());
+        // Re-grab a flag icon if func.js just injected it
+        if (!flagIcon) flagIcon = toggleLink.querySelector('img');
+      }, 0);
     });
   }
+
+  // Also resync when returning to this page (e.g., from another page that changed the lang)
+  window.addEventListener('pageshow', () => setLanguageVisuals(getCurrentLang()));
 });
