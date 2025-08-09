@@ -87,120 +87,184 @@
           </div>
         </div>
 		<div class="product-main">
-  <div class="chatbot-customizer">
-<h3 class="lang-bg" style="margin-top: 40px; margin-bottom: 20px;">Преглед на персонализирането</h3>
-<h3 class="lang-en" style="margin-top: 40px; margin-bottom: 20px; display: none;">Customization Preview</h3>
- <p class="lang-bg" style="margin-bottom: 12px; font-size: 0.95rem; color: #555;">
-  Тук можеш да тестваш някои от визуалните възможности на Botcho – цветове, форми, икони, аватари и други. Всичко може да бъде адаптирано по твое желание, така че ботът да изглежда като част от твоя бранд.
-</p>
-<p class="lang-en" style="margin-bottom: 12px; font-size: 0.95rem; color: #555; display: none;">
-  Here you can test some of Botcho's visual options – colors, shapes, icons, avatars, and more. Everything can be tailored to fit your brand, so your chatbot feels like a natural part of your website.
-</p>
+<!-- Chatbot Customization Preview (unified BG/EN elements) -->
+<div class="chatbot-customizer">
+  <!-- Section Heading -->
+  <h3>
+    <span class="lang-bg">Преглед на персонализирането</span>
+    <span class="lang-en" style="display:none;">Customization Preview</span>
+  </h3>
+  <p style="font-size:0.95rem; color:#555;">
+    <span class="lang-bg">
+      Тук можеш да тестваш някои от визуалните възможности на Botcho – цветове, форми, икони, аватари и други. 
+      Всичко може да бъде адаптирано по твое желание, така че ботът да изглежда като част от твоя бранд.
+    </span>
+    <span class="lang-en" style="display:none;">
+      Here you can test some of Botcho’s visual options – colors, shapes, icons, avatars, and more. 
+      Everything can be tailored to fit your brand, so your chatbot feels like a natural part of your website.
+    </span>
+  </p>
 
-<div class="customization-buttons" style="margin-bottom: 16px;">
-  <button id="colorBtn" onclick="toggleColor()" class="lang-bg">Цвят</button>
-  <button id="fontBtn" onclick="toggleFont()" class="lang-bg">Шрифт</button>
-  <button id="layoutBtn" onclick="toggleLayout()" class="lang-bg">Форма на чатбота</button>
-  <button id="sendIconBtn" onclick="toggleSendIcon()" class="lang-bg">Икона</button>
-  <button id="shapeBtn" onclick="toggleShape()" class="lang-bg">Форма на съобщенията</button>
-  <button id="avatarBtn" onclick="toggleAvatar()" class="lang-bg">Аватар</button>
-  <button id="shadowBtn" onclick="toggleShadow()" class="lang-bg">Сянка</button>
+  <!-- Customization control buttons (single button with both languages) -->
+  <div class="customization-buttons" style="margin-bottom: 16px;">
+    <button id="colorBtn" onclick="toggleColor()">
+      <span class="lang-bg">Цвят</span>
+      <span class="lang-en" style="display:none;">Color</span>
+    </button>
+    <button id="fontBtn" onclick="toggleFont()">
+      <span class="lang-bg">Шрифт</span>
+      <span class="lang-en" style="display:none;">Font</span>
+    </button>
+    <button id="layoutBtn" onclick="toggleLayout()">
+      <span class="lang-bg">Форма на чатбота</span>
+      <span class="lang-en" style="display:none;">Layout</span>
+    </button>
+    <button id="sendIconBtn" onclick="toggleSendIcon()">
+      <span class="lang-bg">Икона</span>
+      <span class="lang-en" style="display:none;">Icon</span>
+    </button>
+    <button id="shapeBtn" onclick="toggleShape()">
+      <span class="lang-bg">Форма на съобщенията</span>
+      <span class="lang-en" style="display:none;">Bubble</span>
+    </button>
+    <button id="avatarBtn" onclick="toggleAvatar()">
+      <span class="lang-bg">Аватар</span>
+      <span class="lang-en" style="display:none;">Avatar</span>
+    </button>
+    <button id="shadowBtn" onclick="toggleShadow()">
+      <span class="lang-bg">Сянка</span>
+      <span class="lang-en" style="display:none;">Shadow</span>
+    </button>
+  </div>
 
-  <button id="colorBtnEN" onclick="toggleColor()" class="lang-en" style="display:none;">Color</button>
-  <button id="fontBtnEN" onclick="toggleFont()" class="lang-en" style="display:none;">Font</button>
-  <button id="layoutBtnEN" onclick="toggleLayout()" class="lang-en" style="display:none;">Layout</button>
-  <button id="sendIconBtnEN" onclick="toggleSendIcon()" class="lang-en" style="display:none;">Icon</button>
-  <button id="shapeBtnEN" onclick="toggleShape()" class="lang-en" style="display:none;">Bubble</button>
-  <button id="avatarBtnEN" onclick="toggleAvatar()" class="lang-en" style="display:none;">Avatar</button>
-  <button id="shadowBtnEN" onclick="toggleShadow()" class="lang-en" style="display:none;">Shadow</button>
-</div>
-  <!-- Add these below the customization buttons in your HTML -->
-<div id="colorOptions" class="options hidden">
-  <button class="lang-bg" onclick="selectColor('blue')">Син</button>
-  <button class="lang-bg" onclick="selectColor('green')">Зелен</button>
-  <button class="lang-bg" onclick="selectColor('red')">Червен</button>
-  <button class="lang-bg" onclick="selectColor('dark')">Тъмен</button>
+  <!-- Pop-up option panels (combined BG/EN text) -->
+  <div id="colorOptions" class="options hidden">
+    <button onclick="selectColor('blue')">
+      <span class="lang-bg">Син</span>
+      <span class="lang-en" style="display:none;">Blue</span>
+    </button>
+    <button onclick="selectColor('green')">
+      <span class="lang-bg">Зелен</span>
+      <span class="lang-en" style="display:none;">Green</span>
+    </button>
+    <button onclick="selectColor('red')">
+      <span class="lang-bg">Червен</span>
+      <span class="lang-en" style="display:none;">Red</span>
+    </button>
+    <button onclick="selectColor('dark')">
+      <span class="lang-bg">Тъмен</span>
+      <span class="lang-en" style="display:none;">Dark</span>
+    </button>
+  </div>
+  <div id="fontOptions" class="options hidden">
+    <!-- Font names are universal (no translation needed) -->
+    <button onclick="selectFont('Inter')">Inter</button>
+    <button onclick="selectFont('Courier New')">Courier New</button>
+    <button onclick="selectFont('Comic Sans MS')">Comic Sans</button>
+    <button onclick="selectFont('Roboto')">Roboto</button>
+  </div>
+  <div id="layoutOptions" class="options hidden">
+    <button onclick="selectLayout('default')">
+      <span class="lang-bg">Квадратен</span>
+      <span class="lang-en" style="display:none;">Square</span>
+    </button>
+    <button onclick="selectLayout('rounded')">
+      <span class="lang-bg">Закръглен</span>
+      <span class="lang-en" style="display:none;">Rounded</span>
+    </button>
+    <button onclick="selectLayout('compact')">
+      <span class="lang-bg">Компактен</span>
+      <span class="lang-en" style="display:none;">Compact</span>
+    </button>
+  </div>
+  <div id="icon-options" class="options hidden">
+    <!-- Icon choices (no text labels to translate) -->
+    <button onclick="setSendIcon('plane')"><i class="fas fa-paper-plane"></i></button>
+    <button onclick="setSendIcon('arrow')"><i class="fas fa-arrow-right"></i></button>
+    <button onclick="setSendIcon('bolt')"><i class="fas fa-bolt"></i></button>
+  </div>
+  <div id="bubbleShapeOptions" class="options hidden">
+    <button onclick="selectShape('rounded')">
+      <span class="lang-bg">Закръглен</span>
+      <span class="lang-en" style="display:none;">Rounded</span>
+    </button>
+    <button onclick="selectShape('square')">
+      <span class="lang-bg">Квадратен</span>
+      <span class="lang-en" style="display:none;">Square</span>
+    </button>
+    <button onclick="selectShape('pill')">
+      <span class="lang-bg">Овален</span>
+      <span class="lang-en" style="display:none;">Pill</span>
+    </button>
+  </div>
+  <div id="avatarShapeOptions" class="options hidden">
+    <button onclick="selectAvatar('round')">
+      <span class="lang-bg">Закръглен</span>
+      <span class="lang-en" style="display:none;">Rounded</span>
+    </button>
+    <button onclick="selectAvatar('square')">
+      <span class="lang-bg">Квадратен</span>
+      <span class="lang-en" style="display:none;">Square</span>
+    </button>
+    <button onclick="selectAvatar('hidden')">
+      <span class="lang-bg">Без</span>
+      <span class="lang-en" style="display:none;">None</span>
+    </button>
+  </div>
+  <div id="shadowOptions" class="options hidden">
+    <button onclick="selectShadow('none')">
+      <span class="lang-bg">Без</span>
+      <span class="lang-en" style="display:none;">None</span>
+    </button>
+    <button onclick="selectShadow('soft')">
+      <span class="lang-bg">Лека</span>
+      <span class="lang-en" style="display:none;">Soft</span>
+    </button>
+    <button onclick="selectShadow('deep')">
+      <span class="lang-bg">Дълбока</span>
+      <span class="lang-en" style="display:none;">Deep</span>
+    </button>
+  </div>
 
-  <button class="lang-en" onclick="selectColor('blue')" style="display:none;">Blue</button>
-  <button class="lang-en" onclick="selectColor('green')" style="display:none;">Green</button>
-  <button class="lang-en" onclick="selectColor('red')" style="display:none;">Red</button>
-  <button class="lang-en" onclick="selectColor('dark')" style="display:none;">Dark</button>
-</div>
-<div id="fontOptions" class="options hidden">
-  <button onclick="selectFont('Inter')">Inter</button>
-  <button onclick="selectFont('Courier New')">Courier New</button>
-  <button onclick="selectFont('Comic Sans MS')">Comic Sans</button>
-  <button onclick="selectFont('Roboto')">Roboto</button>
-</div>
-<div id="layoutOptions" class="options hidden">
-  <button class="lang-bg" onclick="selectLayout('default')">Квадратен</button>
-  <button class="lang-bg" onclick="selectLayout('rounded')">Закръглен</button>
-  <button class="lang-bg" onclick="selectLayout('compact')">Компактен</button>
-
-  <button class="lang-en" onclick="selectLayout('default')" style="display:none;">Square</button>
-  <button class="lang-en" onclick="selectLayout('rounded')" style="display:none;">Rounded</button>
-  <button class="lang-en" onclick="selectLayout('compact')" style="display:none;">Compact</button>
-</div>
-<div id="icon-options" class="options hidden">
-  <button onclick="setSendIcon('plane')"><i class="fas fa-paper-plane"></i></button>
-  <button onclick="setSendIcon('arrow')"><i class="fas fa-arrow-right"></i></button>
-  <button onclick="setSendIcon('bolt')"><i class="fas fa-bolt"></i></button>
-</div>
-
-<div id="bubbleShapeOptions" class="options hidden">
-  <button class="lang-bg" onclick="selectShape('rounded')">Закръглен</button>
-  <button class="lang-bg" onclick="selectShape('square')">Квадратен</button>
-  <button class="lang-bg" onclick="selectShape('pill')">Овален</button>
-
-  <button class="lang-en" onclick="selectShape('rounded')" style="display:none;">Rounded</button>
-  <button class="lang-en" onclick="selectShape('square')" style="display:none;">Square</button>
-  <button class="lang-en" onclick="selectShape('pill')" style="display:none;">Pill</button>
-</div>
-
-<div id="avatarShapeOptions" class="options hidden">
-  <button class="lang-bg" onclick="selectAvatar('round')">Закръглен</button>
-  <button class="lang-bg" onclick="selectAvatar('square')">Квадратен</button>
-  <button class="lang-bg" onclick="selectAvatar('hidden')">Без</button>
-
-  <button class="lang-en" onclick="selectAvatar('round')" style="display:none;">Rounded</button>
-  <button class="lang-en" onclick="selectAvatar('square')" style="display:none;">Square</button>
-  <button class="lang-en" onclick="selectAvatar('hidden')" style="display:none;">None</button>
-</div>
-
-<div id="shadowOptions" class="options hidden">
-  <button class="lang-bg" onclick="selectShadow('none')">Без</button>
-  <button class="lang-bg" onclick="selectShadow('soft')">Лека</button>
-  <button class="lang-bg" onclick="selectShadow('deep')">Дълбока</button>
-
-  <button class="lang-en" onclick="selectShadow('none')" style="display:none;">None</button>
-  <button class="lang-en" onclick="selectShadow('soft')" style="display:none;">Soft</button>
-  <button class="lang-en" onclick="selectShadow('deep')" style="display:none;">Deep</button>
-</div>
-
+  <!-- Embedded Chatbot Demo (with translatable sample messages) -->
   <div class="chat-container" id="customDemo" style="position: static; margin: 0 auto;">
-  <div class="clickable-overlay" onclick="toggleCustomChat()"></div>
+    <div class="clickable-overlay" onclick="toggleCustomChat()"></div>
     <div class="chat-header">
-      <h4 style="font-size: 1rem">Botcho</h4>
+      <h4 style="font-size: 1rem;">Botcho</h4>
       <button class="minimize-btn" onclick="toggleCustomChat()">–</button>
     </div>
     <div class="chat-body" id="customChatBody">
       <div class="messages" id="customMessages">
+        <!-- Sample user message (BG/EN) -->
         <div class="message-row user">
-          <div class="message user">Здравей, какво можеш да направиш?</div>
+          <div class="message user">
+            <span class="lang-bg">Здравей, какво можеш да направиш?</span>
+            <span class="lang-en" style="display:none;">Hello! What can you do?</span>
+          </div>
         </div>
+        <!-- Sample bot message (BG/EN) -->
         <div class="message-row bot">
-          <img src="logoOriginalno.png" class="avatar">
-          <div class="message bot">Мога да отговарям на въпроси и да помогна на клиентите ви!</div>
+          <img src="logoOriginalno.png" alt="Bot avatar" class="avatar">
+          <div class="message bot">
+            <span class="lang-bg">Мога да отговарям на въпроси и да помогна на клиентите ви!</span>
+            <span class="lang-en" style="display:none;">I can answer questions and help your customers!</span>
+          </div>
         </div>
       </div>
       <div class="chat-input">
         <div class="input-wrapper">
+          <!-- Chat input with placeholder in BG (will toggle via script) -->
           <input type="text" id="customInput" placeholder="Напиши съобщение...">
-          <button class="send-btn" onclick="sendCustomMessage()"><i class="fas fa-paper-plane"></i></button>
+          <button class="send-btn" onclick="sendCustomMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </div>
         <div class="plug">
           <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-          <span>Botcho демо</span>
+          <span>
+            <span class="lang-bg">Botcho демо</span>
+            <span class="lang-en" style="display:none;">Botcho demo</span>
+          </span>
         </div>
       </div>
     </div>
