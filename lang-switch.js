@@ -13,16 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update html lang
     document.documentElement.lang = showBG ? 'bg' : 'en';
 
-    // Update flag icon only if it exists (some pages don’t have it)
-    if (flagIcon) {
-      if (showBG) {
-        flagIcon.src = 'flag-en.png';
-        flagIcon.alt = 'English';
-      } else {
-        flagIcon.src = 'flag-bg.png';
-        flagIcon.alt = 'Bulgarian';
-      }
-    }
+   // Don't touch the flag icon here; func.js manages it.
+// Optional: keep an accessible label on the link.
+if (toggleLink) {
+  toggleLink.setAttribute('aria-label', showBG ? 'Switch to English' : 'Превключи на български');
+}
 
     // Main floating chat widget placeholder & titles
     const chatInput = document.getElementById('userInput');
