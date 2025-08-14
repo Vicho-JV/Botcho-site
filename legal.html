@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botcho - Правни условия</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Chatbot Widget CSS – Creative Redesign for Botcho */
+    /* Brand Colors (from main site): primary navy and accent orange */
+    :root {
+        --primary-color: #081847;
+        --accent-color: #ff7f2a;
+        --minimized-size: 70px;
+    }
+    .chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: clamp(240px, 90vw, 320px);
+        background-color: #fff;
+        color: #333;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        overflow: hidden;
+        transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .chat-container.minimized {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #081847;
+        background-image: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        transform-origin: bottom right;
+    }
+    .chat-container.minimized::before {
+        content: "\f075";
+        font-family: FontAwesome;
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: #fff;
+        display: inline-block;
+    }
+    .chat-container.minimized::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 70px;
+        height: 70px;
+        border: 3px solid #ff7f2a;
+        border-radius: 50%;
+        opacity: 0;
+        animation: pulse-ring 3s infinite;
+        z-index: -1;
+    }
+    @keyframes pulse-ring {
+        0% { transform: scale(1); opacity: 0.6; }
+        50% { transform: scale(1.8); opacity: 0; }
+        100% { transform: scale(1.8); opacity: 0; }
+    }
+    .chat-container.minimized:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        transform: scale(1.05);
+    }
+    .chat-container.minimized .chat-header,
+    .chat-container.minimized .chat-body,
+    .chat-container.minimized .chat-input {
+        display: none;
+    }
+    .chat-header {
+        background: #081847;
+        color: #fff;
+        padding: 18px 16px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+    .chat-header h4 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1.13rem;
+        line-height: 1.2;
+        margin: 0;
+        margin-right: auto;
+        letter-spacing: 0.02em;
+    }
+    .minimize-btn {
+        margin-right: 4px;
+        align-self: center;
+        background: #081847;
+        border: 2px solid #ff7f2a;
+        border-radius: 50%;
+        font-size: 18px;
+        color: #ff7f2a;
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 0 0 2px #081847;
+        z-index: 2;
+    }
+    .minimize-btn:hover {
+        background: #ff7f2a;
+        color: #fff;
+        transform: scale(1.07);
+        box-shadow: 0 0 0 2px #ff7f2a;
+    }
+    .chat-body {
+        display: flex;
+        flex-direction: column;
+        height: clamp(200px, 50vh, 360px);
+        background-color: #f9f9f9;
+    }
+    .messages {
+        flex: 1;
+        padding: 12px;
+        overflow-y: auto;
+    }
+    .message-row.bot {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        clear: both;
+    }
+    .message-row.bot .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ccc;
+        margin-right: 8px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+    .message-row.bot .message.bot {
+        background: #e9e9eb;
+        color: #333;
+        padding: 8px 12px;
+        margin: 0;
+        max-width: 80%;
+        border-radius: 16px 16px 16px 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .message-row.user {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        clear: both;
+    }
+    .message-row.user .message.user {
+        background: #081847;
+        color: #fff;
+        padding: 8px 12px;
+        margin: 0;
+        max-width: 80%;
+        border-radius: 16px 4px 16px 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+    .chat-input {
+        padding: 10px 12px;
+        background-color: #f9f9f9;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+    .input-wrapper input {
+        width: 100%;
+        height: 45px;
+        box-sizing: border-box;
+        padding: 0 140px 0 14px;
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
+        border: 1px solid #ddd;
+        border-radius: 22px;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-wrapper input::placeholder {
+        color: #999;
+    }
+    .input-wrapper input:focus {
+        border-color: #ff7f2a;
+        box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
+        outline: none;
+    }
+    .input-wrapper button.send-btn,
+    .input-wrapper button.mic-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: #ff7f2a;
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    .input-wrapper button.send-btn { right: 12px; }
+    .input-wrapper button.mic-btn { right: 54px; }
+    .input-wrapper button.send-btn:hover,
+    .input-wrapper button.mic-btn:hover {
+        background-color: #e67300;
+        transform: translateY(-50%) scale(1.01);
+    }
+    .input-wrapper button.mic-btn.recording {
+        background-color: #c0392b !important;
+    }
+    .input-wrapper button.mic-btn.recording::after {
+        content: "🔴";
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        font-size: 10px;
+    }
+    .input-wrapper button.mic-btn.recording i.fa-microphone {
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-key="navHome">Начало</a></li>
+          <li><a href="home.html" data-key="navAbout">За нас</a></li>
+          <li><a href="products.html" data-key="navProducts">Продукти</a></li>
+          <li><a href="contact.html" data-key="navContact">Контакти</a></li>
+          <li><a href="#" id="langToggle">EN</a></li>
+        </ul>
+      </nav>
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Botcho Logo" class="logo-navbar">
+      </a>
+    </div>
+  </header>
+  <main>
+    <section class="content-section">
+      <div class="container">
+        <h2><span class="lang-bg">Botcho – Правни условия и политики</span><span class="lang-en" style="display:none;">Botcho – Legal Terms and Policies</span></h2>
+        <h3><span class="lang-bg">Общи условия</span><span class="lang-en" style="display:none;">Terms and Conditions</span></h3>
+        <p><span class="lang-bg">С използването на Botcho вие приемате следните общи условия. Тези условия уреждат ползването на AI чатбота Botcho при взаимодействие с него, включително когато е внедрен в уебсайтове на трети страни (в допълнение към условията на тези сайтове). Botcho представлява виртуален асистент, задвижван от изкуствен интелект, който предоставя обща информация и съдействие при задачи като записване на час. Той не е човешки агент или професионален съветник.</span><span class="lang-en" style="display:none;">By using Botcho, you agree to the following terms and conditions. These terms govern your use of the Botcho AI chatbot service on any third-party website where it is embedded, in addition to that site’s own terms. Botcho is an AI-powered virtual assistant designed to provide general information and help with simple tasks like scheduling appointments. It is not operated by a human agent or a professional advisor.</span></p>
+        <p><span class="lang-bg"><strong>Правила за ползване:</strong> Задължавате се да използвате Botcho законосъобразно и учтиво. Не въвеждайте в чата незаконно, обидно съдържание или чувствителна лична информация (напр. номера на лични документи, данни за банкови карти, здравни данни). Не бива да злоупотребявате със системата, да се опитвате да манипулирате нейните отговори или да заобикаляте мерките за сигурност. Отговорите на Botcho се генерират автоматично и служат за обща помощ – не се предоставят професионални съвети. Винаги проверявайте важна информация чрез официални източници или с наш представител, ако е необходимо.</span><span class="lang-en" style="display:none;"><strong>Proper Use:</strong> You agree to use Botcho lawfully and respectfully. Do not submit unlawful, offensive, or sensitive personal information (such as credit card numbers, national ID numbers, health details) through the chatbot. You must not misuse the chatbot by attempting to manipulate its responses, generate prohibited content, or bypass its security measures. Botcho’s answers are generated automatically for general assistance – no professional advice is given. Always verify important or personalized information with official sources or a human representative.</span></p>
+        <p><span class="lang-bg"><strong>Отказ от отговорност и ограничаване на отговорността:</strong> Botcho се предоставя „както е“, без никакви преки или косвени гаранции. Ние полагаме усилия за точни и полезни отговори, но не гарантираме пълнотата, актуалността или безпогрешността на информацията. Не носим отговорност за евентуални вреди, загуби или последици, произтичащи от използването на Botcho или доверието във неговите отговори. Вие използвате чатбота на собствен риск. В максимално допустимата от закона степен изключваме и ограничаваме нашата отговорност. Запазваме си правото да актуализираме настоящите условия, като при съществени промени ще уведомим потребителите; продължаването на ползването на Botcho след промяна означава, че приемате обновените условия. Приложимо право е правото на Република България и релевантното право на ЕС. Всички спорове във връзка с тези условия или с използването на Botcho се отнасят за разглеждане от компетентните български съдилища в гр. София, освен ако императивно не е предвидено друго за защита на потребителите.</span><span class="lang-en" style="display:none;"><strong>Disclaimers and Liability:</strong> Botcho is provided “as is” without warranties of any kind. We strive for accurate and helpful responses but do not guarantee the completeness or correctness of the information. We are not liable for any loss, damage, or consequences arising from your use of Botcho or reliance on its responses. Use of the chatbot is at your own risk. To the fullest extent permitted by law, we disclaim liability and limit any potential responsibility. We may update these terms from time to time and will notify users of significant changes; continued use of Botcho after updates signifies acceptance of the revised terms. These terms are governed by the laws of the Republic of Bulgaria and applicable EU regulations. Any disputes will be subject to the jurisdiction of the Bulgarian courts in Sofia, except as otherwise required by consumer protection law.</span></p>
+        <h3><span class="lang-bg">Политика за поверителност</span><span class="lang-en" style="display:none;">Privacy Policy</span></h3>
+        <p><span class="lang-bg">Настоящата политика за поверителност описва как Botcho събира, използва и защитава лични данни, в съответствие с Общия регламент относно защитата на данните (GDPR) и българския Закон за защита на личните данни (ЗЗЛД). Политиката се прилага за взаимодействия с чатбота на уебсайтове в България и Европейския съюз. Доставчикът на Botcho действа като администратор на лични данни за информацията, обработвана чрез чатбота. Събираме само данните, които са необходими за услугата: например съдържанието на вашите чат-разговори (което може да включва лична информация, предоставена от вас) и данни за контакт (име, имейл), ако доброволно ги предоставите за определени функции (напр. при запазване на час чрез бота).</span><span class="lang-en" style="display:none;">This Privacy Policy explains how Botcho collects, uses, and protects personal data, in compliance with the EU General Data Protection Regulation (GDPR) and Bulgaria’s Personal Data Protection Act (PDPA). It applies to chatbot interactions on websites in Bulgaria and the EU. The provider of Botcho acts as the data controller for personal data processed via the chatbot. We only collect data that is necessary for the service: for example, the content of your chat conversations (which may include personal information you choose to provide) and contact details (like your name or email) if you provide them for certain features (such as booking an appointment).</span></p>
+        <p><span class="lang-bg"><strong>Използване на данните:</strong> Личните данни, събрани чрез Botcho, се използват единствено с цел обслужване и подобряване на функцията на чатбота – например, за да отговорим на вашите запитвания или да изпълним ваша заявка (като организиране на среща, която сте поискали). Ние не продаваме вашите данни и не ги споделяме с външни лица за техни маркетингови цели. Записите от чат-разговори се съхраняват за ограничен период от време с цел контрол на качеството и отстраняване на проблеми, след което биват изтрити или анонимизирани. Информацията, предоставена за насрочване на срещи или други услуги чрез Botcho, се пази само толкова дълго, колкото е необходимо за изпълнение на тази цел и свързаните с нея нужди, в съответствие с принципа за ограничение на съхранението.</span><span class="lang-en" style="display:none;"><strong>Use of Data:</strong> Personal data collected via Botcho is used solely to operate and improve the chatbot service – for instance, to respond to your inquiries or to facilitate a request you’ve made (like scheduling a meeting). We do not sell your data or share it with third parties for their own marketing purposes. Chat logs are stored for a limited period for quality assurance and troubleshooting, then deleted or anonymized. Information provided for scheduling or other services is retained only as long as necessary to fulfill that purpose and any related needs (such as follow-up), in line with storage limitation principles.</span></p>
+        <p><span class="lang-bg"><strong>Споделяне на данни и сигурност:</strong> Възможно е да споделяме определени ваши данни с доверени външни доставчици на услуги, единствено за да осигурим функционирането на Botcho. Например, съдържанието на вашите въпроси може да бъде обработено от нашия доставчик на AI платформа, а чат логовете да се съхраняват на наш сървър в облачна среда. Такива партньори действат по наше възлагане и са обвързани със споразумения за обработване на данни (DPA), които ги задължават да спазват нашите инструкции и да защитават вашите данни. При нужда от трансфер на лични данни извън Европейското икономическо пространство (например към САЩ), тези споразумения включват Стандартни договорни клаузи на ЕС, гарантиращи ниво на защита, еквивалентно на това в ЕС. Ние прилагаме подходящи технически и организационни мерки за сигурност (например шифроване, ограничен достъп), за да предпазим личните ви данни. Съгласно GDPR имате определени права – право на достъп до вашите данни, на коригиране, изтриване и др. Може да се свържете с нас, за да упражните правата си или при въпроси, свързани с личните ви данни. Ако считате, че правата Ви са нарушени, имате право да подадете жалба до надзорния орган – Комисията за защита на личните данни (КЗЛД) в България.</span><span class="lang-en" style="display:none;"><strong>Data Sharing and Security:</strong> We may share your data with trusted third-party service providers strictly for the purpose of running Botcho. For example, your chat queries may be processed by our AI platform provider and stored on our cloud hosting service. These partners act under our instructions via Data Processing Agreements (DPAs) and are bound to protect your data – including, where applicable, using European Commission Standard Contractual Clauses for any data transfers outside the European Economic Area to ensure GDPR-level protection. We implement appropriate security measures (encryption, access controls, etc.) to safeguard your data. You have rights under GDPR regarding your personal data, including the right to access, correct, or delete information we hold about you. You can contact us to exercise these rights or with any privacy-related questions. If you have concerns about how your data is handled, you may also contact the Bulgarian Commission for Personal Data Protection (CPDP), the supervisory authority.</span></p>
+        <h3><span class="lang-bg">Политика за бисквитки</span><span class="lang-en" style="display:none;">Cookie Policy</span></h3>
+        <p><span class="lang-bg">Botcho сам по себе си не използва проследяващи или рекламни бисквитки. Възможно е чатботът да използва функционална бисквитка, за да запомни състоянието на вашия разговор по време на посещението ви (например, да държи прозореца на чата отворен или да възстанови предишни съобщения, докато разглеждате сайта). Подобна бисквитка, ако бъде използвана, служи единствено за функционирането на услугата и обикновено е временна (сесийна) – тя се изтрива, когато затворите браузъра. Тази бисквитка не ви проследява в други сайтове и не събира информация за маркетингови цели.</span><span class="lang-en" style="display:none;">Botcho itself does not use any tracking or advertising cookies. The chatbot widget may use a functional cookie to remember the state of your chat during your visit (for example, to keep the chat window open or recall previous messages as you navigate the site). Such a cookie, if used, is only to support the chatbot’s functionality and is typically a session cookie that expires when you close your browser. It does not track you across other websites.</span></p>
+        <p><span class="lang-bg">Ние не прилагаме аналитични или рекламни бисквитки чрез Botcho и не извършваме проследяване на потребители между различни сайтове. Всяка бисквитка, която Botcho може да зададе на даден сайт, ще бъде оповестена в политиката за бисквитки на съответния сайт (например, в неговия банер или списък с бисквитки). Имайте предвид, че уебсайтът, на който ползвате Botcho, може самостоятелно да използва свои бисквитки за анализ или други цели, които се уреждат от политиката за бисквитки на този сайт. Препоръчваме ви да се запознаете с политиката за бисквитки на конкретния уебсайт, ако имате притеснения. Ако в бъдеще внедрим функционалност за анализ специално за Botcho, това ще бъде осъществено по начин, който спазва правилата за поверителност (например чрез анонимизирани данни или след получаване на изрично съгласие, ако такова се изисква).</span><span class="lang-en" style="display:none;">We do not deploy any analytics or marketing cookies through Botcho, and we do not engage in cross-site tracking. Any cookie set by the Botcho chatbot on a host website will be disclosed in that website’s cookie notice or banner. Please note that the host website itself may use its own cookies for purposes like analytics, which are governed by that site’s cookie policy. We encourage you to review the cookie policy of the website where you’re using Botcho for more information. If we introduce any analytics features specific to Botcho in the future, we will do so in a privacy-compliant manner (for example, using anonymized data or obtaining consent if required).</span></p>
+        <h3><span class="lang-bg">Лицензионно споразумение с краен потребител (EULA)</span><span class="lang-en" style="display:none;">End-User License Agreement (EULA)</span></h3>
+        <p><span class="lang-bg">Целият изкуствен интелект зад Botcho (включително неговият софтуер, интерфейс и генерирано съдържание, с изключение на въведената от потребителите информация) е обект на права, притежавани от нас или нашите лицензодатели. Ние предоставяме на крайните потребители ограничен, неизключителен, непрехвърлим лиценз да достъпват и използват Botcho на поддържаните уебсайтове единствено за неговата предвидена цел (обслужване на клиенти и помощ при запитвания). Потребителят може да използва отговорите на чатбота за лични нужди или за вътрешни бизнес цели, но няма право да възпроизвежда, публикува, разпространява или създава производни материали от софтуера на Botcho или неговото съдържание извън рамките на разрешеното нормално ползване.</span><span class="lang-en" style="display:none;">All rights to the Botcho AI chatbot (including its software, interface, and content outputs, except for your own inputs) are owned by us or our licensors. We grant you a limited, non-exclusive, non-transferable license to access and use Botcho on authorized websites for its intended purpose of customer service assistance. You may use the chatbot’s responses for your personal use or internal business use, but you may not copy, publish, distribute, or create derivative works from the Botcho software or its responses beyond what is allowed for normal use of the service.</span></p>
+        <p><span class="lang-bg"><strong>Ограничения по лиценза:</strong> Забранено е да опитвате обратно инженерство, декомпилация или друга намеса в кода на Botcho. Също така не трябва да премахвате или прикривате известия за авторски права, търговски марки или откази от отговорност, показвани в интерфейса на чатбота. Botcho се предоставя по силата на този лиценз на принципа „както е“, без каквито и да е гаранции или уверения. Ние си запазваме правото да прекъснем или прекратим достъпа ви до услугата, ако нарушите тези условия или злоупотребите с Botcho. Всички посочени в раздела “Общи условия” по-горе откази от гаранция и ограничения на отговорността се прилагат в пълна степен и за ползването на Botcho съгласно настоящото лицензионно споразумение.</span><span class="lang-en" style="display:none;"><strong>License Restrictions:</strong> You must not attempt to reverse-engineer, decompile, or tamper with Botcho’s underlying software. You also agree not to remove or obscure any copyright notices or disclaimers in the chatbot interface. Botcho is provided under this license on an “as is” basis without any guarantees. We reserve the right to suspend or terminate your access to the chatbot if you violate these terms or misuse the service. All warranty disclaimers and liability limitations outlined in the Terms and Conditions above apply to your use of Botcho under this license agreement.</span></p>
+        <h3><span class="lang-bg">Обобщение на Споразумението за обработка на данни (DPA)</span><span class="lang-en" style="display:none;">Data Processing Agreement (DPA) Summary</span></h3>
+        <p><span class="lang-bg">Ние прилагаме строги правила за защита на личните данни и имаме сключени споразумения за обработване на данни (DPA) с основните ни подизпълнители. Например, с нашия доставчик на AI технология и с облачния ни хостинг доставчик имаме подписани DPA, които включват клаузи, гарантиращи спазване на GDPR. Тези договори съдържат и Стандартни договорни клаузи на Европейската комисия, когато е необходимо прехвърляне на лични данни към държави извън ЕИП (напр. към САЩ), за да се осигури еквивалентно ниво на защита на данните. Съгласно нашите DPA тези доставчици действат само по наше указание и са задължени да ги защитават и да не ги обработват за други цели извън предоставянето на услугите за Botcho.</span><span class="lang-en" style="display:none;">We maintain strict data protection standards and have Data Processing Agreements (DPAs) in place with our key subprocessors. For example, our AI technology provider and cloud hosting provider have each signed a DPA with us that includes commitments to GDPR compliance. These agreements incorporate the European Commission’s Standard Contractual Clauses when personal data is transferred outside the EU (for instance, to servers in the United States), ensuring that your data remains protected at a level equivalent to EU standards. Under our DPAs, these service providers act only on our instructions and are obligated to safeguard personal data and not use it for any purpose other than providing services to us.</span></p>
+        <p><span class="lang-bg">Ако Botcho бъде внедрен като услуга на уебсайт на клиент, при необходимост можем да сключим и DPA с оператора на този сайт. В такова споразумение се определят ролите и отговорностите на всяка страна съгласно законодателството за защита на данните (обикновено операторът на сайта е администратор на данните, а ние действаме като обработващ от негово име за данните, събирани чрез чатбота – или в определени случаи можем да бъдем самостоятелни администратори за конкретни данни; това ще бъде уточнено според ситуацията). DPA гарантира спазване на GDPR и ЗЗЛД, като урежда мерките за сигурност, поверителността, съдействието при упражняване на правата на субектите на данни и ограничава обработването на личните данни само до необходимото за предоставяне на услугата на чатбота. Накратко, нашите DPA споразумения гарантират, че всички лични данни, обработвани чрез Botcho, се третират законосъобразно, сигурно и в съответствие с европейските стандарти за защита на данните.</span><span class="lang-en" style="display:none;">If Botcho is integrated into a third-party client’s website, we are prepared to sign a DPA with that website operator as well. Such an agreement defines each party’s role under data protection laws (typically, the client is the data controller and we operate as a data processor on their behalf for chatbot interactions, or in some cases we may be independent controllers for certain data – this will be clarified as needed). The DPA ensures compliance with GDPR and Bulgarian data protection law by outlining obligations for data security, confidentiality, assistance with data subject rights, and limitations on processing of personal data strictly for the chatbot service. In summary, our DPAs are designed to guarantee that any personal data handled through Botcho is processed lawfully, securely, and in accordance with European data protection standards.</span></p>
+        <h3><span class="lang-bg">Декларация за прозрачност на AI</span><span class="lang-en" style="display:none;">AI Transparency Statement</span></h3>
+        <p><span class="lang-bg">Botcho е чатбот, управляван от технологии за изкуствен интелект, а не от човек, и ние осигуряваме прозрачност относно този факт. Още в началото на разговора Botcho се представя като AI асистент, така че да е ясно за потребителя, че комуникира със софтуерна система. Това съответства на изискванията за прозрачност на предстоящия Акт на ЕС за изкуствения интелект (AI Act) по отношение на „системи с ограничен риск“, които взаимодействат с хора.</span><span class="lang-en" style="display:none;">Botcho is an AI-driven chatbot, not a human being, and we are transparent about its nature. From the start of your interaction, Botcho will identify itself as an AI (for example, greeting you as an AI virtual assistant) so you are aware you’re chatting with a software system. This disclosure is aligned with the transparency requirements of the forthcoming EU Artificial Intelligence Act for “limited-risk” AI systems that interact with people.</span></p>
+        <p><span class="lang-bg"><strong>Цел и употреба:</strong> Botcho е предназначен да помага при общи клиентски запитвания и рутинни задачи. Чатботът може да отговаря на често задавани въпроси, да предоставя информация за услуги, да помага при насрочване на срещи и други подобни дейности. Botcho не предоставя професионални съвети (например медицински, юридически или финансови) и няма да взема решения, които имат правни или значителни последици за потребителите. Неговата роля е да улесни обслужването – при по-сложни или специфични случаи ботът ще ви насочи към разговор с човешки представител за допълнителна помощ или потвърждение. Всяка информация, дадена от Botcho, е с информативна цел и при важни въпроси следва да бъде потвърдена от надежден източник.</span><span class="lang-en" style="display:none;"><strong>Purpose and Use:</strong> Botcho’s purpose is to assist with general inquiries and routine tasks. It can answer FAQs about services, help schedule appointments, and provide general guidance. Botcho does not provide professional advice (medical, legal, financial, etc.) and will not make consequential decisions about users. Its role is to offer convenient assistance and, when needed, direct you to a human representative for further help or confirmation. Any information provided by Botcho is for general support and should be verified if it’s important to your situation.</span></p>
+        <p><span class="lang-bg"><strong>Технология и ограничения:</strong> Botcho работи на базата на голям езиков модел (напр. модел от серията GPT на OpenAI), който генерира отговори въз основа на шаблони, извлечени от обемни текстови данни. Чатботът разчита на информацията, която му предоставяте в разговора, и на своя тренировъчен набор от знания; Botcho няма достъп до ваши лични записи или вътрешни бази данни, нито “сърфира” в интернет в реално време по време на разговора. Всички отговори и съдържание, които Botcho предоставя, са генерирани от AI. Въпреки че сме внедрили мерки за подобряване на точността и за филтриране на неуместно съдържание, възможно е понякога AI да създаде неточен, остарял или неотносим отговор (явление, известно като „халюцинации“ на AI). Моля, подхождайте с разбиране и проверявайте важната информация, получена от бота, особено когато тя е критична за вас. Ние постоянно наблюдаваме и настройваме работата на Botcho, за да гарантираме, че той остава полезен, коректен и отговаря на релевантните регулаторни изисквания за AI. Ангажирани сме с принципите на прозрачност относно природата и ограниченията на Botcho като AI система, в съответствие с изискванията на AI Act.</span><span class="lang-en" style="display:none;"><strong>Technology and Limitations:</strong> Botcho operates using a Large Language Model (such as OpenAI’s GPT series) that generates responses based on patterns learned from vast amounts of text data. It works only with the information you provide and its training knowledge; Botcho does not have direct access to personal records, nor does it browse the internet in real time during the chat. All responses you receive from Botcho are AI-generated. While we have implemented measures to improve accuracy and filter out inappropriate content, the AI may occasionally produce incorrect, incomplete, or irrelevant answers (sometimes known as “hallucinations”). Please use your discretion and double-check critical information. We continuously monitor and refine Botcho’s performance and behavior to ensure it remains helpful, accurate, and compliant with relevant AI regulations. We are committed to transparency about Botcho’s AI nature and limitations, in line with the EU AI Act’s principles.</span></p>
+        <h3><span class="lang-bg">Декларация за достъпност</span><span class="lang-en" style="display:none;">Accessibility Statement</span></h3>
+        <p><span class="lang-bg">Ние се стремим Botcho да бъде достъпен и удобен за всички потребители, включително за хора с увреждания. Интерфейсът на чатбота е разработен в съответствие с изискванията на Европейския акт за достъпност (Директива (ЕС) 2019/882) и релевантните стандарти за достъпност, като стандарт EN 301 549, който от своя страна включва Насоките за достъпност на уеб съдържанието (WCAG) 2.1, ниво AA. Това означава, че интерфейсът на Botcho е проектиран да бъде възприемаем, управляваем, разбираем и стабилен. Например, можете да навигирате през чатбота с помощта на клавиатура (клавишът Tab и други клавишни команди са напълно поддържани, като активният елемент е ясно видим), важните икони или изображения имат текстови алтернативи, а системата е съвместима със софтуер за екранно четене.</span><span class="lang-en" style="display:none;">We are committed to making Botcho accessible to all users, including people with disabilities. The Botcho chatbot interface is designed to comply with the European Accessibility Act (Directive (EU) 2019/882) and relevant accessibility standards, such as the EN 301 549 standard which includes the Web Content Accessibility Guidelines (WCAG) 2.1 at the AA level. In practice, this means we strive to ensure Botcho’s interface is perceivable, operable, understandable, and robust for users. For example, the chatbot can be navigated using a keyboard (with clear focus indicators when you tab through elements), provides text alternatives for non-text elements (like icons or images), and is compatible with screen reader software.</span></p>
+        <p><span class="lang-bg"><strong>Нашият ангажимент:</strong> Ние регулярно тестваме и подобряваме достъпността на Botcho. Ако поради някаква причина не можете да използвате чатбота вследствие на затруднение, свързано с достъпността, или предпочитате да общувате по друг начин, ние сме осигурили и алтернативни канали за комуникация (например можете да се свържете с нас чрез имейл или телефон, посочени на нашия сайт). При нужда можем да предоставим информацията, която Botcho дава, в алтернативен формат – например с едър шрифт, аудио запис или друг подходящ вид, по ваша заявка. Ако срещнете проблем с достъпността на Botcho или имате предложения за подобрение, моля, уведомете ни. Ще се постараем бързо да съдействаме и да коригираме установения проблем. Нашата цел е да изпълним и надхвърлим изискванията на Европейския акт за достъпност, като гарантираме, че Botcho е приобщаваща и удобна услуга за всички потребители.</span><span class="lang-en" style="display:none;"><strong>Ongoing Efforts:</strong> We regularly test and improve Botcho’s accessibility features. If you have difficulty using the chatbot due to a disability or if you prefer an alternative method of interaction, we offer support through other channels (such as email or telephone, as listed on our website). We can also provide information shared by Botcho in alternative formats (e.g. large print, audio) upon request. Please contact us if you encounter any accessibility barriers or have suggestions – we will do our best to assist and address issues promptly. Our goal is to meet and exceed the requirements of the European Accessibility Act, ensuring Botcho is inclusive and user-friendly for everyone.</span></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p data-key="emailLine"><i class="fas fa-envelope"></i> Имейл: info@botcho.com</p>
+        <p data-key="phoneLine"><i class="fas fa-phone"></i> Телефон: +359 88 123 4567</p>
+      </div>
+      <p>© 2025 Botcho. <span class="lang-bg">Всички права запазени.</span><span class="lang-en" style="display:none;">All rights reserved.</span> | <a href="legal.html"><span class="lang-bg">Правни условия</span><span class="lang-en" style="display:none;">Legal Terms</span></a></p>
+    </div>
+  </footer>
+  <script src="func.js"></script>
+  <script src="lang-switch.js"></script>
+</body>
+</html>
