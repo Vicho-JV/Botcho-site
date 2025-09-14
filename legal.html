@@ -17,31 +17,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<iframe id="chat-widget"
-        src="https://d19n00fxgbkngl.cloudfront.net/index.html"
-        allow="microphone"
-        allowtransparency="true"
-        frameborder="0"
-        scrolling="no"
-        style=" border: none; position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 120px; height: 120px; background: transparent; clip-path: inset(0 round 16px); transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;"
-        title="Chat Widget"></iframe>
-
-<!-- 4. Your resize listener toggles .expanded -->
-<script>
-    const iframe = document.getElementById('chat-widget');
-    const MIN_SIZE = 120; // same as your minimized width
-
-    window.addEventListener('message', e => {
-        if (e.origin !== 'https://d19n00fxgbkngl.cloudfront.net') return;
-        const { type, width, height } = e.data || {};
-        if (type === 'resize') {
-            iframe.style.width = width + 'px';
-            iframe.style.height = height + 'px';
-            // add the border only when bigger than your minimized bubble
-            iframe.classList.toggle('expanded', width > MIN_SIZE);
-        }
-    });
-</script>
 <body>
   <header>
     <div class="container">
@@ -117,6 +92,31 @@
       <p>© 2025 Botcho. <span class="lang-bg">Всички права запазени.</span><span class="lang-en" style="display:none;">All rights reserved.</span> | <a href="legal.html"><span class="lang-bg">Правни условия</span><span class="lang-en" style="display:none;">Legal Terms</span></a></p>
     </div>
   </footer>
+  <iframe id="chat-widget"
+        src="https://d19n00fxgbkngl.cloudfront.net/index.html"
+        allow="microphone"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="no"
+        style=" border: none; position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 120px; height: 120px; background: transparent; clip-path: inset(0 round 16px); transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;"
+        title="Chat Widget"></iframe>
+
+<!-- 4. Your resize listener toggles .expanded -->
+<script>
+    const iframe = document.getElementById('chat-widget');
+    const MIN_SIZE = 120; // same as your minimized width
+
+    window.addEventListener('message', e => {
+        if (e.origin !== 'https://d19n00fxgbkngl.cloudfront.net') return;
+        const { type, width, height } = e.data || {};
+        if (type === 'resize') {
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+            // add the border only when bigger than your minimized bubble
+            iframe.classList.toggle('expanded', width > MIN_SIZE);
+        }
+    });
+</script>
   <script src="func.js"></script>
   <script src="lang-switch.js"></script>
 </body>
