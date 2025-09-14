@@ -16,267 +16,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Chatbot Widget CSS – Creative Redesign for Botcho */
-    /* Brand Colors (from main site): primary navy and accent orange */
-    :root {
-        --primary-color: #081847;
-        --accent-color: #ff7f2a;
-        --minimized-size: 70px;
-    }
-    .chat-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: clamp(240px, 90vw, 320px);
-        background-color: #fff;
-        color: #333;
-        border-radius: 16px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        overflow: hidden;
-        transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .chat-container.minimized {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background-color: #081847;
-        background-image: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: visible;
-        transform-origin: bottom right;
-    }
-    .chat-container.minimized::before {
-        content: "\f075";
-        font-family: FontAwesome;
-        font-size: 1.4rem;
-        font-weight: 900;
-        color: #fff;
-        display: inline-block;
-    }
-    .chat-container.minimized::after {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 70px;
-        height: 70px;
-        border: 3px solid #ff7f2a;
-        border-radius: 50%;
-        opacity: 0;
-        animation: pulse-ring 3s infinite;
-        z-index: -1;
-    }
-    @keyframes pulse-ring {
-        0% { transform: scale(1); opacity: 0.6; }
-        50% { transform: scale(1.8); opacity: 0; }
-        100% { transform: scale(1.8); opacity: 0; }
-    }
-    .chat-container.minimized:hover {
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        transform: scale(1.05);
-    }
-    .chat-container.minimized .chat-header,
-    .chat-container.minimized .chat-body,
-    .chat-container.minimized .chat-input {
-        display: none;
-    }
-    .chat-header {
-        background: #081847;
-        color: #fff;
-        padding: 18px 16px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 48px;
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-    }
-    .chat-header h4 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        font-size: 1.13rem;
-        line-height: 1.2;
-        margin: 0;
-        margin-right: auto;
-        letter-spacing: 0.02em;
-    }
-    .minimize-btn {
-        margin-right: 4px;
-        align-self: center;
-        background: #081847;
-        border: 2px solid #ff7f2a;
-        border-radius: 50%;
-        font-size: 18px;
-        color: #ff7f2a;
-        cursor: pointer;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-        box-shadow: 0 0 0 2px #081847;
-        z-index: 2;
-    }
-    .minimize-btn:hover {
-        background: #ff7f2a;
-        color: #fff;
-        transform: scale(1.07);
-        box-shadow: 0 0 0 2px #ff7f2a;
-    }
-    .chat-body {
-        display: flex;
-        flex-direction: column;
-        height: clamp(200px, 50vh, 360px);
-        background-color: #f9f9f9;
-    }
-    .messages {
-        flex: 1;
-        padding: 12px;
-        overflow-y: auto;
-    }
-    .message-row.bot {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 10px;
-        clear: both;
-    }
-    .message-row.bot .avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #ccc;
-        margin-right: 8px;
-        object-fit: cover;
-        flex-shrink: 0;
-    }
-    .message-row.bot .message.bot {
-        background: #e9e9eb;
-        color: #333;
-        padding: 8px 12px;
-        margin: 0;
-        max-width: 80%;
-        border-radius: 16px 16px 16px 4px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .message-row.user {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
-        clear: both;
-    }
-    .message-row.user .message.user {
-        background: #081847;
-        color: #fff;
-        padding: 8px 12px;
-        margin: 0;
-        max-width: 80%;
-        border-radius: 16px 4px 16px 16px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        text-align: left;
-    }
-    .chat-input {
-        padding: 10px 12px;
-        background-color: #f9f9f9;
-        border-top: 1px solid #eee;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .input-wrapper {
-        position: relative;
-        width: 100%;
-    }
-    .input-wrapper input {
-        width: 100%;
-        height: 45px;
-        box-sizing: border-box;
-        padding: 0 140px 0 14px;
-        font-size: 14px;
-        font-family: 'Roboto', sans-serif;
-        border: 1px solid #ddd;
-        border-radius: 22px;
-        outline: none;
-        transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .input-wrapper input::placeholder {
-        color: #999;
-    }
-    .input-wrapper input:focus {
-        border-color: #ff7f2a;
-        box-shadow: 0 0 0 2px rgba(255,127,42, 0.2);
-        outline: none;
-    }
-    .input-wrapper button.send-btn,
-    .input-wrapper button.mic-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        background-color: #ff7f2a;
-        cursor: pointer;
-        padding: 0;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-    .input-wrapper button.send-btn { right: 12px; }
-    .input-wrapper button.mic-btn { right: 54px; }
-    .input-wrapper button.send-btn:hover,
-    .input-wrapper button.mic-btn:hover {
-        background-color: #e67300;
-        transform: translateY(-50%) scale(1.01);
-    }
-    .input-wrapper button.mic-btn.recording {
-        background-color: #c0392b !important;
-    }
-    .input-wrapper button.mic-btn.recording::after {
-        content: "🔴";
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        font-size: 10px;
-    }
-    .input-wrapper button.mic-btn.recording i.fa-microphone {
-        color: #fff;
-    }
-  </style>
 </head>
-<div class="chat-container minimized" id="chatBox">
-  <div class="chat-header">
-    <h4>Chat assistance</h4>
-    <button class="minimize-btn" id="minimizeBtn">+</button>
-  </div>
-  <div class="chat-body hidden" id="chatBody">
-    <div class="messages" id="messages"></div>
-    <div class="chat-input">
-      <div class="input-wrapper">
-        <input id="userInput" ...>
-        <button class="book-btn" id="bookBtn" title="Запази час">
-          <i class="fas fa-calendar-alt"></i>
-        </button>
-        <button class="mic-btn" id="micBtn" title="Говори">
-          <i class="fas fa-microphone"></i>
-        </button>
-        <button class="send-btn" id="sendBtn" title="Изпрати">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-      <div class="plug">
-        <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-        <span>Powered by Botcho</span>
-      </div>
-    </div>
-  </div>
-</div>
+<iframe id="chat-widget"
+        src="https://d19n00fxgbkngl.cloudfront.net/index.html"
+        allow="microphone"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="no"
+        style=" border: none; position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 120px; height: 120px; background: transparent; clip-path: inset(0 round 16px); transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;"
+        title="Chat Widget"></iframe>
+
+<!-- 4. Your resize listener toggles .expanded -->
+<script>
+    const iframe = document.getElementById('chat-widget');
+    const MIN_SIZE = 120; // same as your minimized width
+
+    window.addEventListener('message', e => {
+        if (e.origin !== 'https://d19n00fxgbkngl.cloudfront.net') return;
+        const { type, width, height } = e.data || {};
+        if (type === 'resize') {
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+            // add the border only when bigger than your minimized bubble
+            iframe.classList.toggle('expanded', width > MIN_SIZE);
+        }
+    });
+</script>
 <body>
   <header>
     <div class="container">
