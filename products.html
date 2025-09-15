@@ -132,6 +132,55 @@
 
   /* Simple minimize: collapse body only (preview stays static) */
   .chatbot-customizer.minimized #customChatBody{ display:none; }
+  /* --- FORCE ROUND MINIMIZED PREVIEW BUBBLE (override static preview size) --- */
+.chatbot-customizer .chat-container.minimized{
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  background: var(--primary-color) !important;
+  border: none !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  position: relative;
+  overflow: visible;
+}
+
+/* hide internals while minimized */
+.chatbot-customizer .chat-container.minimized .chat-header,
+.chatbot-customizer .chat-container.minimized .chat-body,
+.chatbot-customizer .chat-container.minimized .chat-input{
+  display: none !important;
+}
+
+/* optional pulse ring like the old working design */
+.chatbot-customizer .chat-container.minimized::after{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 70px; height: 70px;
+  border: 3px solid var(--accent-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: preview-pulse-ring 3s infinite;
+}
+
+@keyframes preview-pulse-ring{
+  0%   { transform: scale(1);   opacity: .6; }
+  50%  { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+/* Reopen overlay for minimized preview */
+.chatbot-customizer .chat-container { position: relative; }
+.chatbot-customizer .minimized-overlay{
+  display: none;
+  position: absolute;
+  inset: 0;           /* cover the whole bubble */
+  cursor: pointer;
+}
+.chatbot-customizer .chat-container.minimized .minimized-overlay{
+  display: block;     /* only show overlay while minimized */
+}
+/* Demo bubble should look clickable when minimized */
+.chatbot-customizer .chat-container.minimized { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -302,7 +351,11 @@
   </div>
 
   <!-- Embedded Chatbot Demo -->
+  <button class="launcher" onclick="toggleCustomChat()">
+  <i class="fas fa-comment"></i>
+</button>
   <div class="chat-container" id="customDemo" style="position: static; margin: 0 auto;">
+  <div class="minimized-overlay" onclick="toggleCustomChat()" aria-label="Open chat"></div>
     <div class="chat-header">
       <h4 style="font-size: 1rem;">Botcho</h4>
       <button class="minimize-btn" onclick="toggleCustomChat()">–</button>
@@ -420,5 +473,41 @@
 </script>
   <script src="func.js"></script>
   <script src="lang-switch.js"></script>
+  <script>
+(function () {
+  // Demo preview only
+  const demo = document.getElementById('customDemo');
+  if (!demo) return;
+
+  // Single, global function name used by your button markup
+  window.toggleCustomChat = function (force) {
+    const isMin = demo.classList.contains('minimized');
+    const next =
+      force === true ? true :
+      force === false ? false :
+      !isMin;
+    demo.classList.toggle('minimized', next);
+  };
+
+  // Minimize button collapses the demo
+  const btn = document.querySelector('.chatbot-customizer .minimize-btn');
+  if (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCustomChat(true);
+    });
+  }
+
+  // When minimized, clicking the round bubble reopens it
+  demo.addEventListener('click', function (e) {
+    if (demo.classList.contains('minimized')) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCustomChat(false);
+    }
+  });
+})();
+</script>
 </body>
 </html>
