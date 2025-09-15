@@ -17,44 +17,122 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Chatbot Widget CSS – Creative Redesign for Botcho */
-    /* (Same chat CSS as in index.html, omitted for brevity) */
-    :root { --primary-color: #081847; --accent-color: #ff7f2a; --minimized-size: 70px; }
-    .chat-container { position: fixed; bottom: 20px; right: 20px; width: clamp(240px, 90vw, 320px); background-color: #fff; color: #333; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); overflow: hidden; transition: width 0.3s, height 0.3s, border-radius 0.3s, transform 0.3s, box-shadow 0.3s;   z-index: 9999; }
-    .chat-container.minimized { width: 70px; height: 70px; border-radius: 50%; background-color: #081847; background-image: none; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: visible; transform-origin: bottom right; }
-	
-    .chat-container.minimized::after { content: ""; position: absolute; top: 0; left: 0; width: 70px; height: 70px; border: 3px solid #ff7f2a; border-radius: 50%; opacity: 0; animation: pulse-ring 3s infinite; z-index: -1; }
-    @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.8); opacity: 0; } 100% { transform: scale(1.8); opacity: 0; } }
-    .chat-container.minimized:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.3); transform: scale(1.05); }
-    .chat-container.minimized .chat-header, .chat-container.minimized .chat-body, .chat-container.minimized .chat-input { display: none; }
-    .chat-header { background: #081847; color: #fff; padding: 18px 16px 16px; display: flex; align-items: center; justify-content: space-between; min-height: 48px; border-top-left-radius: 16px; border-top-right-radius: 16px; }
-    .chat-header h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.13rem; line-height: 1.2; margin: 0; margin-right: auto; letter-spacing: 0.02em; }
-    .minimize-btn { margin-right: 4px; align-self: center; background: #081847; border: 2px solid #ff7f2a; border-radius: 50%; font-size: 18px; color: #ff7f2a; cursor: pointer; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s, box-shadow 0.2s; box-shadow: 0 0 0 2px #081847; z-index: 2; }
-    .minimize-btn:hover { background: #ff7f2a; color: #fff; transform: scale(1.07); box-shadow: 0 0 0 2px #ff7f2a; }
-    .chat-body { display: flex; flex-direction: column; height: clamp(200px, 50vh, 360px); background-color: #f9f9f9; }
-    .messages { flex: 1; padding: 12px; overflow-y: auto; }
-    .message-row.bot { display: flex; align-items: flex-start; margin-bottom: 10px; clear: both; }
-    .message-row.bot .avatar { width: 32px; height: 32px; border-radius: 50%; background: #ccc; margin-right: 8px; object-fit: cover; flex-shrink: 0; }
-    .message-row.bot .message.bot { background: #e9e9eb; color: #333; padding: 8px 12px; margin: 0; max-width: 80%; border-radius: 16px 16px 16px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .message-row.user { display: flex; justify-content: flex-end; margin-bottom: 10px; clear: both; }
-    .message-row.user .message.user { background: #081847; color: #fff; padding: 8px 12px; margin: 0; max-width: 80%; border-radius: 16px 4px 16px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: left; }
-    .chat-input { padding: 10px 12px; background-color: #f9f9f9; border-top: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
-    .input-wrapper { position: relative; width: 100%; }
-    .input-wrapper input { width: 100%; height: 45px; box-sizing: border-box; padding: 0 140px 0 14px; font-size: 14px; font-family: 'Roboto', sans-serif; border: 1px solid #ddd; border-radius: 22px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-    .input-wrapper input::placeholder { color: #999; }
-    .input-wrapper input:focus { border-color: #ff7f2a; box-shadow: 0 0 0 2px rgba(255,127,42, 0.2); outline: none; }
-    .input-wrapper button.send-btn, .input-wrapper button.mic-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; color: #fff; background-color: #ff7f2a; cursor: pointer; padding: 0; transition: background-color 0.3s, transform 0.2s; }
-    .input-wrapper button.send-btn { right: 12px; }
-    .input-wrapper button.mic-btn { right: 54px; }
-    .input-wrapper button.send-btn:hover, .input-wrapper button.mic-btn:hover { background-color: #e67300; transform: translateY(-50%) scale(1.01); }
-    .input-wrapper button.mic-btn.recording { background-color: #c0392b !important; }
-    .input-wrapper button.mic-btn.recording::after { content: "🔴"; position: absolute; top: 2px; right: 2px; font-size: 10px; }
-    .input-wrapper button.mic-btn.recording i.fa-microphone { color: #fff; }
-    .plug { display: flex; align-items: center; background: #fff; border-radius: 12px; padding: 4px 8px; margin-top: 8px; font-family: inherit; font-size: 13px; color: #555; text-decoration: none; gap: 5px; }
-    .plug-logo { width: 16px; height: 16px; margin-right: 4px; border-radius: 4px; object-fit: cover; }
-    .message-row { animation: fadeIn 0.3s ease forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to   { opacity: 1; transform: translateY(0); } }
-  </style>
+  /* ==== SCOPED ONLY TO THE CUSTOMIZER PREVIEW (FIXED) ==== */
+  .chatbot-customizer{
+    --primary-color:#081847;
+    --accent-color:#ff7f2a;
+    font-family: Roboto, Inter, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  }
+
+  .chatbot-customizer .customization-buttons button,
+  .chatbot-customizer .options button{
+    background: #ff7f2a;
+    color: #fff;
+    border: 1px solid #ff7f2a;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .chatbot-customizer .customization-buttons button:hover,
+  .chatbot-customizer .options button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,.10);
+    filter: brightness(0.95);
+  }
+
+  .chatbot-customizer .options{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 16px; }
+  .chatbot-customizer .options.hidden{ display:none!important; }
+
+  /* Round launcher shown only when minimized */
+  .chatbot-customizer .launcher{ display:none; }
+
+  /* Hide the chat when minimized; show round launcher instead */
+  .chatbot-customizer.minimized .chat-container{ display:none; }
+  .chatbot-customizer.minimized .launcher{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+    margin: 16px auto 0; /* center horizontally */
+  }
+  .chatbot-customizer .launcher i{ font-size: 20px; line-height: 1; }
+
+  /* Preview chat box (STATIC — not fixed — so it won’t conflict with the real widget) */
+  .chatbot-customizer .chat-container{
+    position: static;
+    width: clamp(260px, 90vw, 340px);
+    margin: 0 auto;
+    background:#fff; color:#333; border-radius:16px; overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+    border:1px solid #eee;
+  }
+  .chatbot-customizer .chat-header{
+    background: var(--primary-color); color:#fff; padding:14px 12px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .chatbot-customizer .minimize-btn{
+    background: var(--primary-color); border:2px solid var(--accent-color); color: var(--accent-color);
+    width:28px; height:28px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .chatbot-customizer .chat-body{ background:#f9f9f9; height: clamp(220px, 50vh, 360px); display:flex; flex-direction:column; }
+  .chatbot-customizer .messages{ flex:1; padding:12px; overflow-y:auto; }
+  .chatbot-customizer .message-row{ animation:fadeIn .25s ease forwards; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+  .chatbot-customizer .message-row.bot{ display:flex; align-items:flex-start; gap:8px; margin-bottom:10px; }
+  .chatbot-customizer .message-row.bot .avatar{ width:32px; height:32px; border-radius:50%; object-fit:cover; flex-shrink:0; background:#ccc; }
+  .chatbot-customizer .message-row.bot .message.bot{
+    background:#e9e9eb; color:#333; padding:8px 12px; max-width:80%; border-radius:16px 16px 16px 4px; box-shadow:0 1px 3px rgba(0,0,0,.08);
+  }
+  .chatbot-customizer .message-row.user{ display:flex; justify-content:flex-end; margin-bottom:10px; }
+  .chatbot-customizer .message-row.user .message.user{
+    background: var(--primary-color); color:#fff; padding:8px 12px; max-width:80%;
+    border-radius:16px 4px 16px 16px; box-shadow:0 1px 3px rgba(0,0,0,.08);
+  }
+
+  .chatbot-customizer .chat-input{ padding:10px 12px; background:#f9f9f9; border-top:1px solid #eee; }
+  .chatbot-customizer .input-wrapper{ position:relative; }
+  .chatbot-customizer .input-wrapper input{
+    width:100%; height:45px; border:1px solid #ddd; border-radius:22px; padding:0 140px 0 14px; font:14px inherit;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .chatbot-customizer .input-wrapper input:focus{
+    border-color: var(--accent-color); box-shadow:0 0 0 2px rgba(255,127,42,.2);
+  }
+  .chatbot-customizer .input-wrapper .send-btn{
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    width:36px; height:36px; border-radius:50%; border:none; background: var(--accent-color); color:#fff; cursor:pointer;
+  }
+
+  .chatbot-customizer .plug{ display:flex; align-items:center; gap:6px; margin-top:8px; background:#fff; border-radius:10px; padding:4px 8px; font-size:13px; color:#555; }
+  .chatbot-customizer .plug-logo{ width:16px; height:16px; border-radius:4px; object-fit:cover; }
+
+  /* Shape/layout controls (class-based so buttons work) */
+  .chatbot-customizer.layout-default .chat-container{ border-radius:16px; }
+  .chatbot-customizer.layout-rounded .chat-container{ border-radius:22px; }
+  .chatbot-customizer.layout-compact .chat-container{ border-radius:12px; }
+
+  .chatbot-customizer.bubble-rounded .message.user{ border-radius:16px 4px 16px 16px; }
+  .chatbot-customizer.bubble-square  .message.user{ border-radius:8px; }
+  .chatbot-customizer.bubble-pill    .message.user{ border-radius:999px; }
+
+  .chatbot-customizer.avatar-round  .avatar{ border-radius:50%; }
+  .chatbot-customizer.avatar-square .avatar{ border-radius:8px; }
+  .chatbot-customizer.avatar-hidden .avatar{ display:none; }
+
+  .chatbot-customizer.shadow-none  .chat-container{ box-shadow:none; border:1px solid #e6e6e6; }
+  .chatbot-customizer.shadow-soft  .chat-container{ box-shadow:0 6px 20px rgba(0,0,0,.18); }
+  .chatbot-customizer.shadow-deep  .chat-container{ box-shadow:0 14px 36px rgba(0,0,0,.28); }
+
+  /* Simple minimize: collapse body only (preview stays static) */
+  .chatbot-customizer.minimized #customChatBody{ display:none; }
+</style>
 </head>
 <body>
   <header>
@@ -114,7 +192,7 @@
     </span>
   </p>
 
-  <!-- Customization control buttons (single button with both languages) -->
+  <!-- Customization control buttons -->
   <div class="customization-buttons" style="margin-bottom: 16px;">
     <button id="colorBtn" onclick="toggleColor()">
       <span class="lang-bg">Цвят</span>
@@ -146,112 +224,97 @@
     </button>
   </div>
 
-  <!-- Pop-up option panels (combined BG/EN text) -->
+  <!-- Pop-up option panels -->
   <div id="colorOptions" class="options hidden">
     <button onclick="selectColor('blue')">
-      <span class="lang-bg">Син</span>
-      <span class="lang-en" style="display:none;">Blue</span>
+      <span class="lang-bg">Син</span><span class="lang-en" style="display:none;">Blue</span>
     </button>
     <button onclick="selectColor('green')">
-      <span class="lang-bg">Зелен</span>
-      <span class="lang-en" style="display:none;">Green</span>
+      <span class="lang-bg">Зелен</span><span class="lang-en" style="display:none;">Green</span>
     </button>
     <button onclick="selectColor('red')">
-      <span class="lang-bg">Червен</span>
-      <span class="lang-en" style="display:none;">Red</span>
+      <span class="lang-bg">Червен</span><span class="lang-en" style="display:none;">Red</span>
     </button>
     <button onclick="selectColor('dark')">
-      <span class="lang-bg">Тъмен</span>
-      <span class="lang-en" style="display:none;">Dark</span>
+      <span class="lang-bg">Тъмен</span><span class="lang-en" style="display:none;">Dark</span>
     </button>
   </div>
+
   <div id="fontOptions" class="options hidden">
-    <!-- Font names are universal (no translation needed) -->
     <button onclick="selectFont('Inter')">Inter</button>
     <button onclick="selectFont('Courier New')">Courier New</button>
     <button onclick="selectFont('Comic Sans MS')">Comic Sans</button>
     <button onclick="selectFont('Roboto')">Roboto</button>
   </div>
+
   <div id="layoutOptions" class="options hidden">
     <button onclick="selectLayout('default')">
-      <span class="lang-bg">Квадратен</span>
-      <span class="lang-en" style="display:none;">Square</span>
+      <span class="lang-bg">Квадратен</span><span class="lang-en" style="display:none;">Square</span>
     </button>
     <button onclick="selectLayout('rounded')">
-      <span class="lang-bg">Закръглен</span>
-      <span class="lang-en" style="display:none;">Rounded</span>
+      <span class="lang-bg">Закръглен</span><span class="lang-en" style="display:none;">Rounded</span>
     </button>
     <button onclick="selectLayout('compact')">
-      <span class="lang-bg">Компактен</span>
-      <span class="lang-en" style="display:none;">Compact</span>
+      <span class="lang-bg">Компактен</span><span class="lang-en" style="display:none;">Compact</span>
     </button>
   </div>
+
   <div id="icon-options" class="options hidden">
-    <!-- Icon choices (no text labels to translate) -->
     <button onclick="setSendIcon('plane')"><i class="fas fa-paper-plane"></i></button>
     <button onclick="setSendIcon('arrow')"><i class="fas fa-arrow-right"></i></button>
     <button onclick="setSendIcon('bolt')"><i class="fas fa-bolt"></i></button>
   </div>
+
   <div id="bubbleShapeOptions" class="options hidden">
     <button onclick="selectShape('rounded')">
-      <span class="lang-bg">Закръглен</span>
-      <span class="lang-en" style="display:none;">Rounded</span>
+      <span class="lang-bg">Закръглен</span><span class="lang-en" style="display:none;">Rounded</span>
     </button>
     <button onclick="selectShape('square')">
-      <span class="lang-bg">Квадратен</span>
-      <span class="lang-en" style="display:none;">Square</span>
+      <span class="lang-bg">Квадратен</span><span class="lang-en" style="display:none;">Square</span>
     </button>
     <button onclick="selectShape('pill')">
-      <span class="lang-bg">Овален</span>
-      <span class="lang-en" style="display:none;">Pill</span>
-    </button>
-  </div>
-  <div id="avatarShapeOptions" class="options hidden">
-    <button onclick="selectAvatar('round')">
-      <span class="lang-bg">Закръглен</span>
-      <span class="lang-en" style="display:none;">Rounded</span>
-    </button>
-    <button onclick="selectAvatar('square')">
-      <span class="lang-bg">Квадратен</span>
-      <span class="lang-en" style="display:none;">Square</span>
-    </button>
-    <button onclick="selectAvatar('hidden')">
-      <span class="lang-bg">Без</span>
-      <span class="lang-en" style="display:none;">None</span>
-    </button>
-  </div>
-  <div id="shadowOptions" class="options hidden">
-    <button onclick="selectShadow('none')">
-      <span class="lang-bg">Без</span>
-      <span class="lang-en" style="display:none;">None</span>
-    </button>
-    <button onclick="selectShadow('soft')">
-      <span class="lang-bg">Лека</span>
-      <span class="lang-en" style="display:none;">Soft</span>
-    </button>
-    <button onclick="selectShadow('deep')">
-      <span class="lang-bg">Дълбока</span>
-      <span class="lang-en" style="display:none;">Deep</span>
+      <span class="lang-bg">Овален</span><span class="lang-en" style="display:none;">Pill</span>
     </button>
   </div>
 
-  <!-- Embedded Chatbot Demo (with translatable sample messages) -->
+  <div id="avatarShapeOptions" class="options hidden">
+    <button onclick="selectAvatar('round')">
+      <span class="lang-bg">Закръглен</span><span class="lang-en" style="display:none;">Rounded</span>
+    </button>
+    <button onclick="selectAvatar('square')">
+      <span class="lang-bg">Квадратен</span><span class="lang-en" style="display:none;">Square</span>
+    </button>
+    <button onclick="selectAvatar('hidden')">
+      <span class="lang-bg">Без</span><span class="lang-en" style="display:none;">None</span>
+    </button>
+  </div>
+
+  <div id="shadowOptions" class="options hidden">
+    <button onclick="selectShadow('none')">
+      <span class="lang-bg">Без</span><span class="lang-en" style="display:none;">None</span>
+    </button>
+    <button onclick="selectShadow('soft')">
+      <span class="lang-bg">Лека</span><span class="lang-en" style="display:none;">Soft</span>
+    </button>
+    <button onclick="selectShadow('deep')">
+      <span class="lang-bg">Дълбока</span><span class="lang-en" style="display:none;">Deep</span>
+    </button>
+  </div>
+
+  <!-- Embedded Chatbot Demo -->
   <div class="chat-container" id="customDemo" style="position: static; margin: 0 auto;">
-    <div class="clickable-overlay" onclick="toggleCustomChat()"></div>
     <div class="chat-header">
       <h4 style="font-size: 1rem;">Botcho</h4>
       <button class="minimize-btn" onclick="toggleCustomChat()">–</button>
     </div>
     <div class="chat-body" id="customChatBody">
       <div class="messages" id="customMessages">
-        <!-- Sample user message (BG/EN) -->
         <div class="message-row user">
           <div class="message user">
             <span class="lang-bg">Здравей, какво можеш да направиш?</span>
             <span class="lang-en" style="display:none;">Hello! What can you do?</span>
           </div>
         </div>
-        <!-- Sample bot message (BG/EN) -->
         <div class="message-row bot">
           <img src="logoOriginalno.png" alt="Bot avatar" class="avatar">
           <div class="message bot">
@@ -262,7 +325,6 @@
       </div>
       <div class="chat-input">
         <div class="input-wrapper">
-          <!-- Chat input with placeholder in BG (will toggle via script) -->
           <input type="text" id="customInput" placeholder="Напиши съобщение...">
           <button class="send-btn" onclick="sendCustomMessage()">
             <i class="fas fa-paper-plane"></i>
@@ -316,7 +378,7 @@
   <a href="mailto:ulianmateev@botcho.bg">ulianmateev@botcho.bg</a>
 </p>
 <p>
-  <i="fas fa-envelope"></i>
+  <i class="fas fa-envelope"></i>
   <span class="lang-bg"> Общи запитвания и партньорства:</span>
   <span class="lang-en" style="display:none;"> General inquiries and partnerships:</span>
   <a href="mailto:viktoratanasov@botcho.bg">viktoratanasov@botcho.bg</a>
@@ -331,33 +393,31 @@
       <p>© 2025 Botcho. <span class="lang-bg">Всички права запазени.</span><span class="lang-en" style="display:none;">All rights reserved.</span> | <a href="legal.html"><span class="lang-bg">Правни условия</span><span class="lang-en" style="display:none;">Legal Terms</span></a></p>
     </div>
   </footer>
-  <div class="chat-container minimized" id="chatBox">
-    <div class="chat-header">
-        <h4>Chat assistance</h4>
-        <button class="minimize-btn" id="minimizeBtn">+</button>
-    </div>
-    <div class="chat-body hidden" id="chatBody">
-        <div class="messages" id="messages"></div>
-        <div class="chat-input">
- <div class="input-wrapper">
-  <input id="userInput" ...>
-  <button class="book-btn" id="bookBtn" title="Запази час">
-    <i class="fas fa-calendar-alt"></i>
-  </button>
-  <button class="mic-btn" id="micBtn" title="Говори">
-    <i class="fas fa-microphone"></i>
-  </button>
-  <button class="send-btn" id="sendBtn" title="Изпрати">
-    <i class="fas fa-paper-plane"></i>
-  </button>
-</div>
-            <div class="plug">
-                <img src="logoOriginalno.png" alt="Botcho mini logo" class="plug-logo" />
-                <span>Powered by Botcho</span>
-            </div>
-        </div>
-    </div>
-  </div>
+<iframe id="chat-widget"
+        src="https://d19n00fxgbkngl.cloudfront.net/index.html"
+        allow="microphone"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="no"
+        style=" border: none; position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 120px; height: 120px; background: transparent; clip-path: inset(0 round 16px); transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;"
+        title="Chat Widget"></iframe>
+
+<!-- 4. Your resize listener toggles .expanded -->
+<script>
+    const iframe = document.getElementById('chat-widget');
+    const MIN_SIZE = 120; // same as your minimized width
+
+    window.addEventListener('message', e => {
+        if (e.origin !== 'https://d19n00fxgbkngl.cloudfront.net') return;
+        const { type, width, height } = e.data || {};
+        if (type === 'resize') {
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+            // add the border only when bigger than your minimized bubble
+            iframe.classList.toggle('expanded', width > MIN_SIZE);
+        }
+    });
+</script>
   <script src="func.js"></script>
   <script src="lang-switch.js"></script>
 </body>
