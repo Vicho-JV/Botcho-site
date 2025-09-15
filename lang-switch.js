@@ -49,16 +49,28 @@ if (toggleLink) {
   // IMPORTANT: do NOT toggle here. Let func.js handle the toggle,
   // then we sync *after* its handler runs.
   if (toggleLink) {
-    toggleLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      // Give func.js a tick to flip localStorage('lang') and update [data-key] text
-      setTimeout(() => {
-        setLanguageVisuals(getCurrentLang());
-        // Re-grab a flag icon if func.js just injected it
-        if (!flagIcon) flagIcon = toggleLink.querySelector('img');
-      }, 0);
-    });
-  }
+  toggleLink.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const before = (localStorage.getItem('lang') || localStorage.getItem('siteLang') || 'bg');
+
+    // 1) Flip the flag here (so we don't depend on func.js to toggle it)
+    const after = (before === 'en') ? 'bg' : 'en';
+    localStorage.setItem('lang', after);           // your key
+    localStorage.setItem('siteLang', after);       // legacy/other pages
+
+    // 2) If func.js is alive, let it translate all [data-key] text
+    if (typeof window.applyLanguage === 'function') {
+      try { window.applyLanguage(after); } catch (_) {}
+    }
+
+    // 3) Always sync visuals (.lang-bg/.lang-en, <html lang>, titles/placeholders)
+    setLanguageVisuals(after);
+
+    // 4) (Optional) if the button uses flag+text injected by func.js, refresh it
+    if (!flagIcon) flagIcon = toggleLink.querySelector('img');
+  });
+}
 
   // Also resync when returning to this page (e.g., from another page that changed the lang)
   window.addEventListener('pageshow', () => setLanguageVisuals(getCurrentLang()));
