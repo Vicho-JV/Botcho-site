@@ -920,3 +920,57 @@ footer .container {
   z-index: 10;
   pointer-events: none;
 }
+/* ─── Products dropdown ─── */
+
+.nav-links li.dropdown {
+  position: relative;
+}
+
+.nav-links li.dropdown > a {
+  /* keep existing padding/hover from .nav-links a */
+}
+
+/* Desktop dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary-color);
+  min-width: 210px;
+  padding: 8px 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  margin: 0;          /* override global gap */
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* Show on hover (desktop) */
+.nav-links li.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Mobile: menu is already full-width column, so keep it open */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    position: static;
+    display: block;
+    background: transparent;
+    box-shadow: none;
+    padding: 4px 0 0;
+  }
+
+  .dropdown-menu a {
+    padding-left: 36px; /* small indent under "Продукти" */
+  }
+}

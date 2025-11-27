@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ0YLG91M4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FJ0YLG91M4');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botcho - Instagram Чатбот</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" data-key="navHome">Начало</a></li>
+          <li><a href="home.html" data-key="navAbout">За нас</a></li>
+          <li class="dropdown">
+            <a href="products.html" data-key="navProducts">Продукти</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="products.html">
+                  <span class="lang-bg">Чатбот за уебсайт</span>
+                  <span class="lang-en" style="display:none;">Website chatbot</span>
+                </a>
+              </li>
+              <li>
+                <a href="instagram.html" class="active">
+                  <span class="lang-bg">Instagram чатбот</span>
+                  <span class="lang-en" style="display:none;">Instagram chatbot</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="contact.html" data-key="navContact">Контакти</a></li>
+          <li><a href="#" id="langToggle">EN</a></li>
+        </ul>
+      </nav>
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Botcho Logo" class="logo-navbar">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <div class="container">
+        <h2>
+          <span class="lang-bg">Botcho Instagram Чатбот</span>
+          <span class="lang-en" style="display:none;">Botcho Instagram Chatbot</span>
+        </h2>
+
+        <div class="product-main">
+          <!-- LEFT: image + intro text -->
+          <div class="product-intro">
+            <img src="https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=800&q=80" 
+                 alt="Instagram chatbot" class="product-hero-img">
+            <p class="lang-bg">
+              Botcho за Instagram автоматизира отговорите на вашите директни съобщения (DM) – 
+              без да се налага да пишете ръчно на всеки клиент. Чатботът поема най-честите въпроси 
+              за услуги, цени, работно време и записване на часове, така че профилът ви да остане активен 24/7.
+            </p>
+            <p class="lang-en" style="display:none;">
+              Botcho for Instagram automates replies to your DMs, so you don’t have to manually answer 
+              every client. The chatbot handles FAQs about services, pricing, opening hours, and bookings, 
+              keeping your profile active 24/7.
+            </p>
+          </div>
+
+          <!-- RIGHT: DM-style demo -->
+          <div class="product-demo">
+            <div class="chat-demo">
+              <div class="chat-message user">
+                <span class="lang-bg">Клиент:</span>
+                <span class="lang-en" style="display:none;">Client:</span>
+                <span class="lang-bg"> Здравей, колко струва подстрижка?</span>
+                <span class="lang-en" style="display:none;"> Hi, how much is a haircut?</span>
+              </div>
+              <div class="chat-message bot">
+                <span>Botcho:</span>
+                <span class="lang-bg">
+                  Здрасти! Стандартна подстрижка е 30 лв. Ако искаш, мога да ти предложа свободни часове за тази седмица.
+                </span>
+                <span class="lang-en" style="display:none;">
+                  Hey! A standard haircut is 30 BGN. If you want, I can show you available time slots for this week.
+                </span>
+              </div>
+
+              <div class="chat-message user">
+                <span class="lang-bg">Клиент:</span>
+                <span class="lang-en" style="display:none;">Client:</span>
+                <span class="lang-bg"> Мога ли да запазя час за събота следобед?</span>
+                <span class="lang-en" style="display:none;"> Can I book a slot for Saturday afternoon?</span>
+              </div>
+              <div class="chat-message bot">
+                <span>Botcho:</span>
+                <span class="lang-bg">
+                  Да, имаме свободни часове между 14:00 и 17:00. Кой час ти е удобен и на какво име да запиша?
+                </span>
+                <span class="lang-en" style="display:none;">
+                  Yes, we have free slots between 14:00 and 17:00. What time works best for you and under what name should I book it?
+                </span>
+              </div>
+            </div>
+            <p class="demo-note">
+              <span class="lang-bg">* Демонстрация на типичен Instagram DM чат</span>
+              <span class="lang-en" style="display:none;">* Example of a typical Instagram DM chat</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Features (reuse same layout) -->
+        <h3 class="features-title">
+          <span class="lang-bg">Основни функционалности:</span>
+          <span class="lang-en" style="display:none;">Key features:</span>
+        </h3>
+        <div class="product-features-list">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fab fa-instagram"></i></div>
+            <h4 class="lang-bg">Автоматични отговори в DM</h4>
+            <h4 class="lang-en" style="display:none;">Automatic DM replies</h4>
+            <p class="lang-bg">Отговаря вместо вас на често задаваните въпроси – услуги, цени, местоположение и др.</p>
+            <p class="lang-en" style="display:none;">Answers frequently asked questions about services, pricing, location, and more.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+            <h4 class="lang-bg">Записване на часове през Instagram</h4>
+            <h4 class="lang-en" style="display:none;">Bookings via Instagram</h4>
+            <p class="lang-bg">Може да насочва клиентите към форма за записване или директно да събира нужната информация.</p>
+            <p class="lang-en" style="display:none;">Can guide users to a booking flow or collect the needed info directly in DM.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-language"></i></div>
+            <h4 class="lang-bg">Български и английски</h4>
+            <h4 class="lang-en" style="display:none;">Bulgarian & English</h4>
+            <p class="lang-bg">Разбира разговорен език, емоджита и „инста“ стил комуникация.</p>
+            <p class="lang-en" style="display:none;">Understands casual language, emojis, and Instagram-style messaging.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h4 class="lang-bg">Работи 24/7</h4>
+            <h4 class="lang-en" style="display:none;">24/7 availability</h4>
+            <p class="lang-bg">Профилът ви отговаря мигновено, дори когато сте заети или извън салона.</p>
+            <p class="lang-en" style="display:none;">Your profile replies instantly, even when you’re busy or away.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>
+          <i class="fas fa-envelope"></i>
+          <span class="lang-bg"> За технически въпроси:</span>
+          <span class="lang-en" style="display:none;"> For technical inquiries:</span>
+          <a href="mailto:ulianmateev@botcho.bg">ulianmateev@botcho.bg</a>
+        </p>
+        <p>
+          <i class="fas fa-envelope"></i>
+          <span class="lang-bg"> Общи запитвания и партньорства:</span>
+          <span class="lang-en" style="display:none;"> General inquiries and partnerships:</span>
+          <a href="mailto:viktoratanasov@botcho.bg">viktoratanasov@botcho.bg</a>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i>
+          <span class="lang-bg"> Телефон:</span>
+          <span class="lang-en" style="display:none;"> Phone:</span>
+          +359 876880155
+        </p>
+      </div>
+      <p>© 2025 Botcho. 
+        <span class="lang-bg">Всички права запазени.</span>
+        <span class="lang-en" style="display:none;">All rights reserved.</span> 
+        | <a href="legal.html">
+          <span class="lang-bg">Правни условия</span>
+          <span class="lang-en" style="display:none;">Legal Terms</span>
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Same floating widget + scripts as other pages -->
+  <iframe id="chat-widget"
+        src="https://d19n00fxgbkngl.cloudfront.net/index.html"
+        allow="microphone"
+        allowtransparency="true"
+        frameborder="0"
+        scrolling="no"
+        style=" border: none; position: fixed; bottom: 20px; right: 20px; z-index: 99999; width: 120px; height: 120px; background: transparent; clip-path: inset(0 round 16px); transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;"
+        title="Chat Widget"></iframe>
+
+<script>
+  const iframe = document.getElementById('chat-widget');
+  const MIN_SIZE = 120;
+
+  window.addEventListener('message', e => {
+    if (e.origin !== 'https://d19n00fxgbkngl.cloudfront.net') return;
+    const { type, width, height } = e.data || {};
+    if (type === 'resize') {
+      iframe.style.width = width + 'px';
+      iframe.style.height = height + 'px';
+      iframe.classList.toggle('expanded', width > MIN_SIZE);
+    }
+  });
+</script>
+<script src="func.js"></script>
+<script src="lang-switch.js"></script>
+</body>
+</html>
